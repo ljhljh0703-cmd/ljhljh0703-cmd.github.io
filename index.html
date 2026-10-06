@@ -1,4 +1,4 @@
-<!-- 포트폴리오 첫 페이지 시안 — 작품 7개를 카드로 넘기고, 카드마다 대표 물건이 테두리 밖으로 튀어나온다(레퍼런스 해체 6 적용). -->
+<!-- 포트폴리오 첫 페이지 — 작품 7개 콜라주 카드 넘김: 찢긴 종이 인쇄 카드 + 테이프 + 인쇄 스티커 대표 물건 + 스톱모션 흔들림·시차·부스러기(작가 「콜라주 기법 응용해서 모션도 적용해」). -->
 <!doctype html>
 <html lang="ko">
 <head>
@@ -13,96 +13,139 @@
 <meta property="og:image" content="https://ljhljh0703-cmd.github.io/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR:wght@900&display=swap">
 <style>
   :root {
-    --bg: #0a0a0d; --ink: #f2efe8; --muted: #a9a49a; --gold: #d9b45a; --line: rgba(242, 239, 232, .14);
-    --card-w: min(300px, 62vw); --card-h: calc(var(--card-w) * 1.4);
+    --bg: #121216; --ink: #1b1a17; --cream: #eee6d6; --red: #c0412a; --blue: #4b4ad1; --teal: #207878; --neon: #ffd84a;
+    --card-w: min(300px, 64vw); --card-h: calc(var(--card-w) * 1.312);
+    --mx: 0; --my: 0;
   }
   * { box-sizing: border-box; margin: 0; }
-  html, body { height: 100%; }
   body {
-    background: var(--bg); color: var(--ink); overflow-x: hidden;
+    background: var(--bg); color: var(--cream); overflow-x: hidden; min-height: 100vh;
     font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: anywhere;
   }
-  .glow { position: fixed; inset: 0; pointer-events: none;
-    background: radial-gradient(60% 45% at 50% 58%, rgba(217, 180, 90, .13), transparent 70%); }
+  /* 종이 결 — 화면 전체에 아주 옅게 */
+  .grain { position: fixed; inset: -50%; pointer-events: none; z-index: 50; opacity: .09; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
 
-  header { position: relative; max-width: 1100px; margin: 0 auto; padding: 56px 28px 0; }
-  .who { font-size: 13px; letter-spacing: .14em; color: var(--gold); font-weight: 600; }
-  h1 { margin-top: 14px; font-size: clamp(26px, 3.6vw, 40px); line-height: 1.3; font-weight: 700; letter-spacing: -.02em; }
-  .lede { margin-top: 12px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+  /* ── 흩어진 종이 조각(뒤 배경, 시차) ── */
+  .scraps { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .scrap { position: absolute; transform: translate(calc(var(--mx) * var(--d) * 1px), calc(var(--my) * var(--d) * 1px)) rotate(var(--r)); transition: transform .25s ease-out; }
+  .scrap .in { animation: drift var(--t) ease-in-out infinite alternate; }
+  .scrap.paper .in { width: var(--w); height: var(--h); background: center/cover; }
+  .scrap.dots .in { width: var(--w); height: var(--w); border-radius: 50%;
+    background: radial-gradient(var(--c) 32%, transparent 34%) 0 0/9px 9px; opacity: .55; }
+  .scrap.tape .in { width: var(--w); height: auto; display: block; opacity: .8; }
+  .scrap.star svg, .scrap.squig svg { display: block; overflow: visible; }
+  @keyframes drift { to { transform: translateY(14px) rotate(3deg); } }
 
-  .carousel { position: relative; margin-top: 40px; height: calc(var(--card-h) + 210px); outline: none; touch-action: pan-y; user-select: none; }
-  .track { position: absolute; inset: 0; perspective: 1400px; }
-  .slide {
-    position: absolute; left: 50%; top: 70px; width: var(--card-w); height: var(--card-h);
-    margin-left: calc(var(--card-w) / -2); transform-style: preserve-3d;
-    transition: transform .62s cubic-bezier(.2, .8, .2, 1), opacity .62s, filter .62s; cursor: pointer;
-  }
-  .card { position: absolute; inset: 0; border-radius: 18px; overflow: hidden; background: #15151a center/cover no-repeat;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, .55); border: 1px solid var(--line);
-    filter: brightness(.58) saturate(.8); transition: filter .62s; }
-  .slide.is-active .card { border-color: rgba(217, 180, 90, .45); }
-  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,13,.25) 0%, rgba(10,10,13,.1) 40%, rgba(10,10,13,.82) 100%); }
-  .idx { position: absolute; top: -28px; left: 2px; z-index: 3; font-size: 12px; letter-spacing: .16em; color: var(--muted); font-variant-numeric: tabular-nums; }
-  /* 대표 물건 — 카드보다 크게, 테두리 밖으로 */
-  .obj { position: absolute; left: 50%; top: -14%; width: 112%; margin-left: -56%; aspect-ratio: 1; pointer-events: none;
-    filter: drop-shadow(0 24px 30px rgba(0, 0, 0, .55)); transition: transform .62s cubic-bezier(.2, .8, .2, 1); z-index: 2; }
-  .obj img { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .obj.ghost { opacity: 0; z-index: 1; filter: blur(6px); }
+  /* ── 머리 ── */
+  header { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 54px 28px 0; }
+  .who { position: relative; z-index: 1; display: inline-block; padding: 14px 38px; color: var(--ink); font-size: 13px; font-weight: 800; letter-spacing: .14em; }
+  .who::before { content: ""; position: absolute; inset: 0; background: url(assets/collage/tape-1.png) center/100% 100% no-repeat; z-index: -1; transform: rotate(-2deg); }
+  h1 { margin-top: 18px; font-size: clamp(26px, 3.8vw, 44px); line-height: 1.55; font-weight: 800; letter-spacing: -.02em; }
+  .strip { display: inline-block; padding: .04em .32em .08em; margin: .08em .1em; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/180px;
+    clip-path: polygon(0 4%, 3% 0, 30% 6%, 62% 0, 97% 3%, 100% 40%, 98% 100%, 66% 94%, 31% 100%, 2% 96%); box-shadow: 0 6px 0 rgba(0,0,0,.35); }
+  .strip.red { color: #fff4e8; background-image: url(assets/collage/paper-red.jpg); }
+  .strip.blue { color: #fff4e8; background-image: url(assets/collage/paper-blue.jpg); }
+  .ransom { position: relative; z-index: 2; display: inline-flex; gap: .08em; margin: 0 .42em 0 .12em; vertical-align: middle; }
+  .ransom span { display: inline-block; padding: .02em .16em; line-height: 1.15; background: center/150px; box-shadow: 0 4px 0 rgba(0,0,0,.35); }
+  .lede { position: relative; display: inline-block; max-width: 640px; margin-top: 18px; padding: 16px 22px; color: var(--ink); font-size: 15px; line-height: 1.7;
+    background: url(assets/collage/paper-cream.jpg) center/300px; clip-path: polygon(1% 3%, 40% 0, 99% 2%, 100% 55%, 98% 98%, 55% 100%, 2% 97%, 0 40%); transform: rotate(-.6deg); }
+  .piece { opacity: 0; }
+  .piece.on { animation: slapIn .42s steps(4, end) forwards; }
+  @keyframes slapIn { 0% { opacity: 1; transform: scale(1.35) rotate(var(--rot, -3deg)); } 60% { opacity: 1; transform: scale(.96) rotate(calc(var(--rot, -3deg) * -.3)); } 100% { opacity: 1; transform: scale(1) rotate(calc(var(--rot, -3deg) * .25)); } }
 
-  .slide.is-active { transform: translateX(0) translateZ(0) rotateY(0); opacity: 1; z-index: 5; }
-  .slide.is-prev { transform: translateX(-74%) translateZ(-180px) rotateY(18deg) scale(.82); opacity: .5; z-index: 3; }
-  .slide.is-next { transform: translateX(74%) translateZ(-180px) rotateY(-18deg) scale(.82); opacity: .5; z-index: 3; }
-  .slide.is-far-prev { transform: translateX(-130%) translateZ(-360px) rotateY(24deg) scale(.66); opacity: 0; pointer-events: none; }
-  .slide.is-far-next { transform: translateX(130%) translateZ(-360px) rotateY(-24deg) scale(.66); opacity: 0; pointer-events: none; }
-  .slide:not(.is-active) .obj { transform: scale(.88); }
-  .slide:not(.is-active) .idx { opacity: 0; }
+  /* ── 카드 넘김 ── */
+  .carousel { position: relative; z-index: 2; margin-top: 46px; height: calc(var(--card-h) + 250px); outline: none; touch-action: pan-y; user-select: none; }
+  .track { position: absolute; inset: 0; perspective: 1500px; }
+  .slide { position: absolute; left: 50%; top: 86px; width: var(--card-w); height: var(--card-h); margin-left: calc(var(--card-w) / -2);
+    transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2, .8, .2, 1), opacity .6s; cursor: pointer; }
+  .sheet { position: absolute; inset: 0; background: center/100% 100% no-repeat; filter: drop-shadow(0 22px 24px rgba(0,0,0,.6)); transform: rotate(var(--tilt)); }
+  .tape { position: absolute; width: 46%; top: -5%; left: 27%; transform: rotate(var(--tape-r)); z-index: 3; pointer-events: none; opacity: .92; }
+  .num { position: absolute; top: -58px; left: -46px; z-index: 7; display: flex; align-items: center; gap: 3px; transform: rotate(-6deg); }
+  .num b { display: inline-block; padding: 2px 7px; font: 26px/1.1 "Black Han Sans", sans-serif; color: var(--ink); background: center/120px; box-shadow: 0 3px 0 rgba(0,0,0,.4); }
+  .num b:nth-child(2) { transform: rotate(8deg); }
+  .num i { font: 600 13px/1 "Pretendard", sans-serif; font-style: normal; color: var(--cream); margin-left: 4px; letter-spacing: .1em; }
+  /* 대표 물건 = 인쇄 스티커. 겉 = 들어오기·시차 / 가운데 = 둥실 / 안 = 스톱모션 흔들림 */
+  .obj { position: absolute; left: 50%; top: -20%; width: 110%; margin-left: -55%; aspect-ratio: 1; z-index: 5; pointer-events: none;
+    transform: translate(calc(var(--mx) * -14px), calc(var(--my) * -10px)); transition: transform .25s ease-out; }
+  .obj .float { width: 100%; height: 100%; animation: float 3.2s ease-in-out infinite; }
+  .obj .boil { width: 100%; height: 100%; animation: boil .5s steps(1) infinite; }
+  .obj img { width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(9px 9px 0 var(--ink-c)) drop-shadow(0 16px 18px rgba(0,0,0,.45)); }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+  @keyframes boil { 0% { transform: rotate(-1deg); } 33% { transform: rotate(.7deg) translate(1px, -1px); } 66% { transform: rotate(-.2deg) translate(-1px, 1px); } }
+  .scribble { position: absolute; left: -12%; top: -24%; width: 124%; height: 90%; z-index: 4; pointer-events: none; overflow: visible; }
+  .scribble path { fill: none; stroke: var(--neon); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1400; stroke-dashoffset: 1400; opacity: .9; }
+  .slide.is-active .scribble path { animation: draw .9s .35s steps(9, end) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
 
-  /* 넘기는 순간에만 — 들어오는 물건이 돌며 들어오고 잔상 1회 */
-  .slide.enter-r .obj:not(.ghost) { animation: spinInR .62s cubic-bezier(.2, .8, .2, 1); }
-  .slide.enter-l .obj:not(.ghost) { animation: spinInL .62s cubic-bezier(.2, .8, .2, 1); }
-  .slide.enter-r .obj.ghost, .slide.enter-l .obj.ghost { animation: ghost .45s ease-out; }
-  @keyframes spinInR { from { transform: rotateY(-70deg) scale(.7) translateX(18%); filter: blur(4px) drop-shadow(0 24px 30px rgba(0,0,0,.55)); } }
-  @keyframes spinInL { from { transform: rotateY(70deg) scale(.7) translateX(-18%); filter: blur(4px) drop-shadow(0 24px 30px rgba(0,0,0,.55)); } }
-  @keyframes ghost { 0% { opacity: .38; transform: translateX(-10%) scale(.92); } 100% { opacity: 0; transform: translateX(0) scale(1); } }
+  .slide.is-active { transform: none; opacity: 1; z-index: 5; }
+  .slide.is-prev { transform: translateX(-80%) translateZ(-200px) rotateY(16deg) rotate(-5deg) scale(.8); opacity: .62; z-index: 3; }
+  .slide.is-next { transform: translateX(80%) translateZ(-200px) rotateY(-16deg) rotate(5deg) scale(.8); opacity: .62; z-index: 3; }
+  .slide.is-far-prev { transform: translateX(-140%) translateZ(-380px) rotate(-9deg) scale(.64); opacity: 0; pointer-events: none; }
+  .slide.is-far-next { transform: translateX(140%) translateZ(-380px) rotate(9deg) scale(.64); opacity: 0; pointer-events: none; }
+  .slide:not(.is-active) .obj { opacity: .85; }
+  .slide:not(.is-active) .num, .slide:not(.is-active) .scribble { opacity: 0; }
+  .slide.slap .sheet { animation: slapCard .5s steps(4, end); }
+  .slide.enter-r .obj .float { animation: spinInR .6s cubic-bezier(.2, .8, .2, 1), float 3.2s .6s ease-in-out infinite; }
+  .slide.enter-l .obj .float { animation: spinInL .6s cubic-bezier(.2, .8, .2, 1), float 3.2s .6s ease-in-out infinite; }
+  @keyframes slapCard { 0% { transform: rotate(var(--tilt)) scale(1.12) rotate(-3deg); } 50% { transform: rotate(var(--tilt)) scale(.97) rotate(1deg); } 100% { transform: rotate(var(--tilt)); } }
+  @keyframes spinInR { from { transform: rotateY(-80deg) scale(.6) translateX(26%) rotate(-12deg); } }
+  @keyframes spinInL { from { transform: rotateY(80deg) scale(.6) translateX(-26%) rotate(12deg); } }
 
-  .meta { position: absolute; left: 50%; top: calc(var(--card-h) + 92px); transform: translateX(-50%); width: min(520px, 90vw); text-align: center; }
-  .meta h2 { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
-  .meta p { margin-top: 8px; color: var(--muted); font-size: 14.5px; line-height: 1.6; min-height: 2.4em; }
-  .stage { display: inline-block; margin-top: 10px; padding: 3px 10px; border: 1px solid rgba(217,180,90,.5); color: var(--gold); border-radius: 999px; font-size: 12px; }
-  .open { display: inline-block; margin: 10px 0 0 8px; color: var(--ink); font-size: 13.5px; text-decoration: none; border-bottom: 1px solid var(--line); }
-  .open:hover, .open:focus-visible { border-color: var(--gold); color: var(--gold); }
+  /* 넘길 때 튀는 종이 부스러기 */
+  .bit { position: absolute; left: 50%; top: calc(86px + var(--card-h) * .45); width: var(--s); height: var(--s); z-index: 6; pointer-events: none;
+    background: center/120px; clip-path: polygon(10% 0, 100% 18%, 82% 100%, 0 76%); animation: burst .9s cubic-bezier(.15, .7, .3, 1) forwards; }
+  @keyframes burst { 0% { transform: translate(-50%, -50%) rotate(0); opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--rr)); opacity: 0; } }
+
+  .meta { position: absolute; left: 50%; top: calc(86px + var(--card-h) + 26px); transform: translateX(-50%); width: min(560px, 92vw); text-align: center; }
+  .meta h2 { display: inline-block; font: 30px/1.25 "Black Han Sans", "Pretendard", sans-serif; letter-spacing: .01em; color: var(--cream); }
+  .meta p { margin-top: 8px; color: #c9c2b4; font-size: 14.5px; line-height: 1.6; min-height: 2.4em; }
+  .row { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 10px; }
+  .stamp { display: inline-block; padding: 4px 11px; border: 2.5px solid var(--red); color: #f08a72; font-weight: 800; font-size: 12.5px; letter-spacing: .06em;
+    transform: rotate(-4deg); border-radius: 4px; mask: radial-gradient(circle at 30% 40%, #000 60%, rgba(0,0,0,.75) 61%); }
+  .open { position: relative; display: inline-block; padding: 7px 18px; color: var(--ink); font-weight: 800; font-size: 13.5px; text-decoration: none; }
+  .open::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url(assets/collage/tape-2.png) center/100% 100% no-repeat; transform: rotate(2deg); }
+  .open:hover::before, .open:focus-visible::before { filter: sepia(.6) saturate(3) hue-rotate(-10deg); }
 
   .dots { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: flex; gap: 12px; }
-  .dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 1px solid var(--muted); background: transparent; cursor: pointer; }
-  .dots button[aria-current="true"] { background: var(--gold); border-color: var(--gold); }
-  .arrow { position: absolute; top: calc(70px + var(--card-h) / 2 - 22px); width: 44px; height: 44px; border-radius: 50%;
-    border: 1px solid var(--line); background: rgba(10,10,13,.6); color: var(--ink); font-size: 18px; cursor: pointer; z-index: 9; }
-  .arrow.prev { left: max(12px, calc(50% - var(--card-w) * 1.55)); }
-  .arrow.next { right: max(12px, calc(50% - var(--card-w) * 1.55)); }
-  .arrow:focus-visible, .dots button:focus-visible, .carousel:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .dots button { width: 13px; height: 13px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: url(assets/collage/paper-kraft.jpg) center/60px; opacity: .55; }
+  .dots button[aria-current="true"] { background-image: url(assets/collage/paper-red.jpg); opacity: 1; transform: scale(1.25); }
+  .arrow { position: absolute; top: calc(86px + var(--card-h) / 2 - 26px); width: 52px; height: 52px; border: 0; cursor: pointer; z-index: 9;
+    font: 22px/1 "Black Han Sans", sans-serif; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/120px;
+    clip-path: polygon(8% 0, 100% 6%, 94% 100%, 0 92%); }
+  .arrow.prev { left: max(10px, calc(50% - var(--card-w) * 1.6)); transform: rotate(-6deg); }
+  .arrow.next { right: max(10px, calc(50% - var(--card-w) * 1.6)); transform: rotate(5deg); }
+  .arrow:focus-visible, .dots button:focus-visible, .carousel:focus-visible, .open:focus-visible { outline: 3px solid var(--neon); outline-offset: 4px; }
+  .hint { position: relative; z-index: 2; color: #9d968a; font-size: 12px; text-align: center; margin-top: 20px; }
+  footer { position: relative; z-index: 2; max-width: 1100px; margin: 48px auto 0; padding: 0 28px 48px; font-size: 13px; }
+  footer a { color: var(--cream); text-decoration: none; border-bottom: 1px solid rgba(238,230,214,.3); }
 
-  footer { max-width: 1100px; margin: 56px auto 0; padding: 0 28px 48px; color: var(--muted); font-size: 13px; display: flex; gap: 18px; }
-  footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .hint { color: var(--muted); font-size: 12px; text-align: center; margin-top: 18px; }
-
-  @media (max-width: 600px) { .arrow { display: none; } header { padding-top: 40px; } }
+  @media (max-width: 600px) { .arrow { display: none; } header { padding-top: 38px; } .meta h2 { font-size: 24px; } }
   @media (prefers-reduced-motion: reduce) {
-    .slide, .obj { transition: none; }
-    .slide.enter-r .obj, .slide.enter-l .obj { animation: none !important; }
-    .slide.is-prev, .slide.is-next { transform: translateX(var(--x, 0)) scale(.82); }
-    .slide.is-prev { --x: -74%; } .slide.is-next { --x: 74%; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .piece { opacity: 1; } .scribble path { stroke-dashoffset: 0; }
+    .scrap, .obj { transform: none; }
   }
 </style>
 </head>
 <body>
-<div class="glow"></div>
+<div class="grain"></div>
+<div class="scraps" id="scraps" aria-hidden="true"></div>
+
 <header>
-  <div class="who">이주형 · LEE JU HYEONG</div>
-  <h1>기획 역량으로 도메인별 특화<br>AI 하네스를 설계하는 AI 엔지니어</h1>
-  <p class="lede">17억 매출 기획 판단을 RAG·LoRA·다중 에이전트로 구현했습니다. 직접 만들고 검증한 작품 7개를 카드로 넘겨 보세요. 누르면 작품 페이지로 갑니다.</p>
+  <div class="who piece" style="--rot:-4deg">이주형 · LEE JU HYEONG</div>
+  <h1 aria-label="기획 역량으로 도메인별 특화 AI 하네스를 설계하는 AI 엔지니어">
+    <span class="strip piece" style="--rot:-2deg" aria-hidden="true">기획 역량으로 도메인별 특화</span><br>
+    <span class="ransom piece" style="--rot:3deg" data-ransom="AI하네스" aria-hidden="true"></span><span class="strip piece" style="--rot:-1deg" aria-hidden="true">를 설계하는</span><br>
+    <span class="strip red piece" style="--rot:2deg" aria-hidden="true">AI 엔지니어</span>
+  </h1>
+  <p class="lede piece" style="--rot:-1.5deg">17억 매출 기획 판단을 RAG·LoRA·다중 에이전트로 구현했습니다. 직접 만들고 검증한 작품 7개를 넘겨 보세요. 누르면 작품 페이지로 갑니다.</p>
 </header>
 
 <section class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" aria-label="작품 모음">
@@ -112,54 +155,78 @@
   <div class="meta" aria-live="polite">
     <h2 id="m-name"></h2>
     <p id="m-line"></p>
-    <span class="stage" id="m-stage"></span><a class="open" id="m-open" href="#">작품 보기 →</a>
+    <div class="row"><span class="stamp" id="m-stage"></span><a class="open" id="m-open" href="#">작품 보기 →</a></div>
   </div>
   <div class="dots" id="dots" role="tablist" aria-label="작품 선택"></div>
 </section>
 <p class="hint">끌어서 넘기기 · 화살표 키 · 점 누르기</p>
-
-<footer>
-  <a href="https://github.com/ljhljh0703-cmd">GitHub</a>
-</footer>
+<footer><a href="https://github.com/ljhljh0703-cmd">GitHub</a></footer>
 
 <script>
-const B = "https://ljhljh0703-cmd.github.io/";
+const B = "https://ljhljh0703-cmd.github.io/", C = "assets/collage/";
 const WORKS = [
-  { id: "01-bookemon", name: "북켓몬", line: "AI 개인화 도서 큐레이션 — 부적합 추천 비율 15.56% → 2.22%", stage: "데모 · 오프라인 평가 완료", url: B + "AI-Book-Curation/portfolio.html" },
-  { id: "02-starlink", name: "StarLink", line: "무선 이어폰 하나로 듣는 실시간 동시통역 iOS 앱", stage: "작동 프로토타입", url: B + "StarLink/portfolio.html" },
-  { id: "03-medical-cat", name: "알려줄고양", line: "내과 데이터로 직접 파인튜닝한 의료 자문 RAG 챗봇", stage: "데모", url: B + "Medical-Chatbot/portfolio.html" },
-  { id: "04-werewolf-table", name: "로켓단", line: "인문학을 학습한 AI는 늑대인간 게임에서 더 잘 추리할까", stage: "탐색적 연구 · 20회", url: B + "ai-npc-social-reasoning-harness/" },
-  { id: "05-quant-gate", name: "QuantLeap", line: "통계 게이트가 진입을 막고 AI가 방향을 읽는 자동매매", stage: "작동 프로토타입 · 모의 실행", url: B + "hyunsoo-bot/portfolio.html" },
-  { id: "06-agent-forge", name: "Agent Forge", line: "아이디어 한 줄을 넣으면 파이프라인이 게임을 만든다", stage: "작동 프로토타입", url: B + "agent-forge/portfolio.html" },
-  { id: "07-hwigi-tower", name: "회귀자는 탑을 오른다", line: "죽어도 끝나지 않는 탑, 동료 AI와 함께 오르는 로그라이크", stage: "플레이 가능 · Android", url: B + "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html" },
+  { id: "01-bookemon", name: "북켓몬", line: "AI 개인화 도서 큐레이션 — 부적합 추천 비율 15.56% → 2.22%", stage: "데모 · 오프라인 평가 완료", url: B + "AI-Book-Curation/portfolio.html", ink: "#4b4ad1" },
+  { id: "02-starlink", name: "StarLink", line: "무선 이어폰 하나로 듣는 실시간 동시통역 iOS 앱", stage: "작동 프로토타입", url: B + "StarLink/portfolio.html", ink: "#207878" },
+  { id: "03-medical-cat", name: "알려줄고양", line: "내과 데이터로 직접 파인튜닝한 의료 자문 RAG 챗봇", stage: "데모", url: B + "Medical-Chatbot/portfolio.html", ink: "#c0412a" },
+  { id: "04-werewolf-table", name: "로켓단", line: "인문학을 학습한 AI는 늑대인간 게임에서 더 잘 추리할까", stage: "탐색적 연구 · 20회", url: B + "ai-npc-social-reasoning-harness/", ink: "#1b1a17" },
+  { id: "05-quant-gate", name: "QuantLeap", line: "통계 게이트가 진입을 막고 AI가 방향을 읽는 자동매매", stage: "작동 프로토타입 · 모의 실행", url: B + "hyunsoo-bot/portfolio.html", ink: "#4b4ad1" },
+  { id: "06-agent-forge", name: "Agent Forge", line: "아이디어 한 줄을 넣으면 파이프라인이 게임을 만든다", stage: "작동 프로토타입", url: B + "agent-forge/portfolio.html", ink: "#c0412a" },
+  { id: "07-hwigi-tower", name: "회귀자는 탑을 오른다", line: "죽어도 끝나지 않는 탑, 동료 AI와 함께 오르는 로그라이크", stage: "플레이 가능 · Android", url: B + "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html", ink: "#c0412a" },
 ];
+const PAPERS = ["paper-cream.jpg", "paper-kraft.jpg", "paper-red.jpg", "paper-blue.jpg"];
 const N = WORKS.length, track = document.getElementById("track"), dots = document.getElementById("dots");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // 고정 난수 — 새로고침해도 같은 배치
+const pick = a => a[Math.floor(rnd() * a.length)];
+const paperBg = p => `url(${C}${p})`;
+const pad = n => String(n).padStart(2, "0");
 let cur = 0;
+
+/* 손으로 그린 듯한 동그라미 — 반지름을 흔든 닫힌 곡선 2바퀴 */
+function scribblePath() {
+  let d = ""; const cx = 150, cy = 110;
+  for (let k = 0; k <= 54; k++) {
+    const a = k / 40 * Math.PI * 2 - 1.2, rx = 136 + Math.sin(k * .9) * 4 + k * .3, ry = 98 + Math.cos(k * .7) * 3 - k * .15;
+    d += (k ? "L" : "M") + (cx + Math.cos(a) * rx).toFixed(1) + " " + (cy + Math.sin(a) * ry).toFixed(1);
+  }
+  return d;
+}
+/* 몇 번째 = 오린 숫자 두 장 */
+const numHtml = i => [...pad(i + 1)].map(ch => `<b style="background-image:${paperBg(pick(["paper-cream.jpg", "paper-kraft.jpg"]))}">${ch}</b>`).join("") + `<i>/ ${pad(N)}</i>`;
 
 WORKS.forEach((w, i) => {
   const s = document.createElement("div");
-  s.className = "slide"; s.setAttribute("role", "group"); s.setAttribute("aria-roledescription", "slide");
-  s.setAttribute("aria-label", `${i + 1} / ${N}: ${w.name}`);
-  s.innerHTML = `<div class="idx">${String(i + 1).padStart(2, "0")} — ${String(N).padStart(2, "0")}</div>
-    <div class="card" style="background-image:url(assets/cards/${w.id}.jpg)"></div>
-    <div class="obj ghost"><img src="assets/objects/${w.id}.png" alt=""></div>
-    <div class="obj"><img src="assets/objects/${w.id}.png" alt=""></div>`;
+  s.className = "slide"; s.setAttribute("role", "group"); s.setAttribute("aria-roledescription", "slide"); s.setAttribute("aria-label", `${i + 1} / ${N}: ${w.name}`);
+  s.style.setProperty("--tilt", ((rnd() - .5) * 4).toFixed(2) + "deg"); s.style.setProperty("--tape-r", ((rnd() - .5) * 10).toFixed(1) + "deg");
+  s.style.setProperty("--ink-c", w.ink);
+  s.innerHTML = `<div class="num" aria-hidden="true">${numHtml(i)}</div>
+    <div class="sheet" style="background-image:url(${C}card-${w.id}.webp)"></div>
+    <img class="tape" src="${C}tape-${1 + (i % 2)}.png" alt="">
+    <svg class="scribble" viewBox="0 0 300 220" preserveAspectRatio="none" aria-hidden="true"><path d="${scribblePath()}"/></svg>
+    <div class="obj"><div class="float"><div class="boil" style="animation-delay:-${(rnd() * .5).toFixed(2)}s"><img src="${C}sticker-${w.id}.webp" alt=""></div></div></div>`;
   s.addEventListener("click", () => { if (moved) return; i === cur ? location.href = w.url : go(i); });
   track.appendChild(s);
-  const d = document.createElement("button");
-  d.setAttribute("role", "tab"); d.setAttribute("aria-label", `${i + 1}번째 작품: ${w.name}`);
+  const d = document.createElement("button"); d.setAttribute("role", "tab"); d.setAttribute("aria-label", `${i + 1}번째 작품: ${w.name}`);
   d.addEventListener("click", () => go(i)); dots.appendChild(d);
 });
 const slides = [...track.children];
 
 function rel(i) { let r = i - cur; if (r > N / 2) r -= N; if (r < -N / 2) r += N; return r; }
+function burst() {
+  if (reduce) return;
+  const car = document.getElementById("carousel");
+  for (let k = 0; k < 12; k++) {
+    const b = document.createElement("div"); b.className = "bit";
+    const ang = rnd() * Math.PI * 2, dist = 140 + rnd() * 220;
+    b.style.cssText = `--s:${8 + rnd() * 16}px;--x:${(Math.cos(ang) * dist).toFixed(0)}px;--y:${(Math.sin(ang) * dist * .7 + 60).toFixed(0)}px;--rr:${(rnd() * 720 - 360).toFixed(0)}deg;background-image:${paperBg(pick(PAPERS))}`;
+    car.appendChild(b); b.addEventListener("animationend", () => b.remove());
+  }
+}
 function render(dir) {
   slides.forEach((s, i) => {
     const r = rel(i);
     s.className = "slide " + (r === 0 ? "is-active" : r === -1 ? "is-prev" : r === 1 ? "is-next" : r < 0 ? "is-far-prev" : "is-far-next");
-    s.tabIndex = -1;
-    if (r === 0 && dir && !reduce) { void s.offsetWidth; s.classList.add(dir > 0 ? "enter-r" : "enter-l"); }
+    if (r === 0 && dir && !reduce) { void s.offsetWidth; s.classList.add("slap", dir > 0 ? "enter-r" : "enter-l"); }
   });
   [...dots.children].forEach((d, i) => d.setAttribute("aria-current", i === cur ? "true" : "false"));
   const w = WORKS[cur];
@@ -167,6 +234,7 @@ function render(dir) {
   document.getElementById("m-line").textContent = w.line;
   document.getElementById("m-stage").textContent = w.stage;
   document.getElementById("m-open").href = w.url;
+  if (dir) burst();
 }
 function go(i) { const dir = Math.sign(rel(i)) || 1; cur = (i + N) % N; render(dir); }
 document.getElementById("prev").onclick = () => go(cur - 1);
@@ -185,6 +253,56 @@ car.addEventListener("pointerup", e => {
   if (Math.abs(dx) > 60) go(cur + (dx < 0 ? 1 : -1));
   setTimeout(() => moved = false, 0);
 });
+
+/* 오린 글자 */
+document.querySelectorAll("[data-ransom]").forEach(el => {
+  const fonts = ['"Black Han Sans"', '"Noto Serif KR"', '"Pretendard"'];
+  [...el.dataset.ransom].forEach(ch => {
+    const sp = document.createElement("span"); sp.textContent = ch;
+    const p = pick(PAPERS); sp.style.backgroundImage = paperBg(p);
+    sp.style.color = /red|blue/.test(p) ? "#fff4e8" : "#1b1a17";
+    sp.style.fontFamily = pick(fonts); sp.style.fontWeight = 900;
+    sp.style.transform = `rotate(${((rnd() - .5) * 12).toFixed(1)}deg) translateY(${((rnd() - .5) * 6).toFixed(0)}px)`;
+    el.appendChild(sp);
+  });
+});
+
+/* 흩어진 종이 조각 */
+const scraps = document.getElementById("scraps");
+const tapeImgs = [C + "tape-1.png", C + "tape-2.png"];
+for (let k = 0; k < 22; k++) {
+  const el = document.createElement("div"); const kind = pick(["paper", "paper", "dots", "tape", "star", "squig"]);
+  el.className = "scrap " + kind;
+  const side = k % 2 ? rnd() * 22 : 78 + rnd() * 22;          // 가운데를 비우고 양옆에
+  el.style.cssText = `left:${side.toFixed(1)}%;top:${(rnd() * 100).toFixed(1)}%;--r:${(rnd() * 70 - 35).toFixed(0)}deg;--d:${(8 + rnd() * 30).toFixed(0)};`;
+  let inner = "";
+  if (kind === "paper") {
+    const w = 40 + rnd() * 90, h = 30 + rnd() * 70;
+    const poly = Array.from({ length: 7 }, (_, j) => { const a = j / 7 * Math.PI * 2; return `${(50 + Math.cos(a) * (38 + rnd() * 12)).toFixed(0)}% ${(50 + Math.sin(a) * (38 + rnd() * 12)).toFixed(0)}%`; }).join(",");
+    inner = `<div class="in" style="--w:${w.toFixed(0)}px;--h:${h.toFixed(0)}px;--t:${(5 + rnd() * 5).toFixed(1)}s;background-image:${paperBg(pick(PAPERS))};clip-path:polygon(${poly})"></div>`;
+  } else if (kind === "dots") {
+    inner = `<div class="in" style="--w:${(60 + rnd() * 80).toFixed(0)}px;--t:${(6 + rnd() * 4).toFixed(1)}s;--c:${pick(["#c0412a", "#4b4ad1", "#eee6d6", "#ffd84a"])}"></div>`;
+  } else if (kind === "tape") {
+    inner = `<img class="in" src="${pick(tapeImgs)}" alt="" style="--w:${(70 + rnd() * 60).toFixed(0)}px;--t:${(5 + rnd() * 5).toFixed(1)}s">`;
+  } else if (kind === "star") {
+    const c = pick(["#ffd84a", "#c0412a", "#eee6d6"]);
+    inner = `<div class="in" style="--t:${(4 + rnd() * 4).toFixed(1)}s"><svg width="46" height="46" viewBox="-12 -12 24 24"><path d="M0-11 3-3 11 0 3 3 0 11-3 3-11 0-3-3Z" fill="${c}" stroke="#eee6d6" stroke-width="1.6"/></svg></div>`;
+  } else {
+    inner = `<div class="in" style="--t:${(5 + rnd() * 4).toFixed(1)}s"><svg width="110" height="40" viewBox="0 0 110 40"><path d="M4 30 C 20 4, 30 4, 40 22 S 62 38, 72 16 S 96 2, 106 20" fill="none" stroke="#ffd84a" stroke-width="3.5" stroke-linecap="round" opacity=".85"/></svg></div>`;
+  }
+  el.innerHTML = inner; scraps.appendChild(el);
+}
+
+/* 마우스 시차 */
+if (!reduce) addEventListener("pointermove", e => {
+  document.documentElement.style.setProperty("--mx", ((e.clientX / innerWidth) * 2 - 1).toFixed(3));
+  document.documentElement.style.setProperty("--my", ((e.clientY / innerHeight) * 2 - 1).toFixed(3));
+});
+
+/* 첫 등장 — 조각이 하나씩 탁탁 붙는다 */
+const pieces = [...document.querySelectorAll(".piece")];
+pieces.forEach((p, k) => reduce ? p.classList.add("on") : setTimeout(() => p.classList.add("on"), 120 + k * 140));
+
 const h = parseInt(location.hash.slice(1), 10); if (h >= 1 && h <= N) cur = h - 1;
 render(0);
 </script>
