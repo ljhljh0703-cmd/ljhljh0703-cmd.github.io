@@ -1,0 +1,192 @@
+<!-- 포트폴리오 첫 페이지 시안 — 작품 7개를 카드로 넘기고, 카드마다 대표 물건이 테두리 밖으로 튀어나온다(레퍼런스 해체 6 적용). -->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이주형 · 포트폴리오</title>
+<meta name="description" content="기획 역량으로 도메인별 특화 AI 하네스를 설계하는 AI 엔지니어 — 직접 만들고 검증한 작품 7개">
+<meta property="og:title" content="이주형 · 포트폴리오">
+<meta property="og:description" content="기획 역량으로 도메인별 특화 AI 하네스를 설계하는 AI 엔지니어 — 직접 만들고 검증한 작품 7개">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ljhljh0703-cmd.github.io/">
+<meta property="og:image" content="https://ljhljh0703-cmd.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --bg: #0a0a0d; --ink: #f2efe8; --muted: #a9a49a; --gold: #d9b45a; --line: rgba(242, 239, 232, .14);
+    --card-w: min(300px, 62vw); --card-h: calc(var(--card-w) * 1.4);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--ink); overflow-x: hidden;
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: anywhere;
+  }
+  .glow { position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 45% at 50% 58%, rgba(217, 180, 90, .13), transparent 70%); }
+
+  header { position: relative; max-width: 1100px; margin: 0 auto; padding: 56px 28px 0; }
+  .who { font-size: 13px; letter-spacing: .14em; color: var(--gold); font-weight: 600; }
+  h1 { margin-top: 14px; font-size: clamp(26px, 3.6vw, 40px); line-height: 1.3; font-weight: 700; letter-spacing: -.02em; }
+  .lede { margin-top: 12px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+  .carousel { position: relative; margin-top: 40px; height: calc(var(--card-h) + 210px); outline: none; touch-action: pan-y; user-select: none; }
+  .track { position: absolute; inset: 0; perspective: 1400px; }
+  .slide {
+    position: absolute; left: 50%; top: 70px; width: var(--card-w); height: var(--card-h);
+    margin-left: calc(var(--card-w) / -2); transform-style: preserve-3d;
+    transition: transform .62s cubic-bezier(.2, .8, .2, 1), opacity .62s, filter .62s; cursor: pointer;
+  }
+  .card { position: absolute; inset: 0; border-radius: 18px; overflow: hidden; background: #15151a center/cover no-repeat;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, .55); border: 1px solid var(--line);
+    filter: brightness(.58) saturate(.8); transition: filter .62s; }
+  .slide.is-active .card { border-color: rgba(217, 180, 90, .45); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,13,.25) 0%, rgba(10,10,13,.1) 40%, rgba(10,10,13,.82) 100%); }
+  .idx { position: absolute; top: -28px; left: 2px; z-index: 3; font-size: 12px; letter-spacing: .16em; color: var(--muted); font-variant-numeric: tabular-nums; }
+  /* 대표 물건 — 카드보다 크게, 테두리 밖으로 */
+  .obj { position: absolute; left: 50%; top: -14%; width: 112%; margin-left: -56%; aspect-ratio: 1; pointer-events: none;
+    filter: drop-shadow(0 24px 30px rgba(0, 0, 0, .55)); transition: transform .62s cubic-bezier(.2, .8, .2, 1); z-index: 2; }
+  .obj img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .obj.ghost { opacity: 0; z-index: 1; filter: blur(6px); }
+
+  .slide.is-active { transform: translateX(0) translateZ(0) rotateY(0); opacity: 1; z-index: 5; }
+  .slide.is-prev { transform: translateX(-74%) translateZ(-180px) rotateY(18deg) scale(.82); opacity: .5; z-index: 3; }
+  .slide.is-next { transform: translateX(74%) translateZ(-180px) rotateY(-18deg) scale(.82); opacity: .5; z-index: 3; }
+  .slide.is-far-prev { transform: translateX(-130%) translateZ(-360px) rotateY(24deg) scale(.66); opacity: 0; pointer-events: none; }
+  .slide.is-far-next { transform: translateX(130%) translateZ(-360px) rotateY(-24deg) scale(.66); opacity: 0; pointer-events: none; }
+  .slide:not(.is-active) .obj { transform: scale(.88); }
+  .slide:not(.is-active) .idx { opacity: 0; }
+
+  /* 넘기는 순간에만 — 들어오는 물건이 돌며 들어오고 잔상 1회 */
+  .slide.enter-r .obj:not(.ghost) { animation: spinInR .62s cubic-bezier(.2, .8, .2, 1); }
+  .slide.enter-l .obj:not(.ghost) { animation: spinInL .62s cubic-bezier(.2, .8, .2, 1); }
+  .slide.enter-r .obj.ghost, .slide.enter-l .obj.ghost { animation: ghost .45s ease-out; }
+  @keyframes spinInR { from { transform: rotateY(-70deg) scale(.7) translateX(18%); filter: blur(4px) drop-shadow(0 24px 30px rgba(0,0,0,.55)); } }
+  @keyframes spinInL { from { transform: rotateY(70deg) scale(.7) translateX(-18%); filter: blur(4px) drop-shadow(0 24px 30px rgba(0,0,0,.55)); } }
+  @keyframes ghost { 0% { opacity: .38; transform: translateX(-10%) scale(.92); } 100% { opacity: 0; transform: translateX(0) scale(1); } }
+
+  .meta { position: absolute; left: 50%; top: calc(var(--card-h) + 92px); transform: translateX(-50%); width: min(520px, 90vw); text-align: center; }
+  .meta h2 { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+  .meta p { margin-top: 8px; color: var(--muted); font-size: 14.5px; line-height: 1.6; min-height: 2.4em; }
+  .stage { display: inline-block; margin-top: 10px; padding: 3px 10px; border: 1px solid rgba(217,180,90,.5); color: var(--gold); border-radius: 999px; font-size: 12px; }
+  .open { display: inline-block; margin: 10px 0 0 8px; color: var(--ink); font-size: 13.5px; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .open:hover, .open:focus-visible { border-color: var(--gold); color: var(--gold); }
+
+  .dots { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: flex; gap: 12px; }
+  .dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 1px solid var(--muted); background: transparent; cursor: pointer; }
+  .dots button[aria-current="true"] { background: var(--gold); border-color: var(--gold); }
+  .arrow { position: absolute; top: calc(70px + var(--card-h) / 2 - 22px); width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--line); background: rgba(10,10,13,.6); color: var(--ink); font-size: 18px; cursor: pointer; z-index: 9; }
+  .arrow.prev { left: max(12px, calc(50% - var(--card-w) * 1.55)); }
+  .arrow.next { right: max(12px, calc(50% - var(--card-w) * 1.55)); }
+  .arrow:focus-visible, .dots button:focus-visible, .carousel:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  footer { max-width: 1100px; margin: 56px auto 0; padding: 0 28px 48px; color: var(--muted); font-size: 13px; display: flex; gap: 18px; }
+  footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .hint { color: var(--muted); font-size: 12px; text-align: center; margin-top: 18px; }
+
+  @media (max-width: 600px) { .arrow { display: none; } header { padding-top: 40px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .slide, .obj { transition: none; }
+    .slide.enter-r .obj, .slide.enter-l .obj { animation: none !important; }
+    .slide.is-prev, .slide.is-next { transform: translateX(var(--x, 0)) scale(.82); }
+    .slide.is-prev { --x: -74%; } .slide.is-next { --x: 74%; }
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<header>
+  <div class="who">이주형 · LEE JU HYEONG</div>
+  <h1>기획 역량으로 도메인별 특화<br>AI 하네스를 설계하는 AI 엔지니어</h1>
+  <p class="lede">17억 매출 기획 판단을 RAG·LoRA·다중 에이전트로 구현했습니다. 직접 만들고 검증한 작품 7개를 카드로 넘겨 보세요. 누르면 작품 페이지로 갑니다.</p>
+</header>
+
+<section class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" aria-label="작품 모음">
+  <div class="track" id="track"></div>
+  <button class="arrow prev" id="prev" aria-label="이전 작품">←</button>
+  <button class="arrow next" id="next" aria-label="다음 작품">→</button>
+  <div class="meta" aria-live="polite">
+    <h2 id="m-name"></h2>
+    <p id="m-line"></p>
+    <span class="stage" id="m-stage"></span><a class="open" id="m-open" href="#">작품 보기 →</a>
+  </div>
+  <div class="dots" id="dots" role="tablist" aria-label="작품 선택"></div>
+</section>
+<p class="hint">끌어서 넘기기 · 화살표 키 · 점 누르기</p>
+
+<footer>
+  <a href="https://github.com/ljhljh0703-cmd">GitHub</a>
+</footer>
+
+<script>
+const B = "https://ljhljh0703-cmd.github.io/";
+const WORKS = [
+  { id: "01-bookemon", name: "북켓몬", line: "AI 개인화 도서 큐레이션 — 부적합 추천 비율 15.56% → 2.22%", stage: "데모 · 오프라인 평가 완료", url: B + "AI-Book-Curation/portfolio.html" },
+  { id: "02-starlink", name: "StarLink", line: "무선 이어폰 하나로 듣는 실시간 동시통역 iOS 앱", stage: "작동 프로토타입", url: B + "StarLink/portfolio.html" },
+  { id: "03-medical-cat", name: "알려줄고양", line: "내과 데이터로 직접 파인튜닝한 의료 자문 RAG 챗봇", stage: "데모", url: B + "Medical-Chatbot/portfolio.html" },
+  { id: "04-werewolf-table", name: "로켓단", line: "인문학을 학습한 AI는 늑대인간 게임에서 더 잘 추리할까", stage: "탐색적 연구 · 20회", url: B + "ai-npc-social-reasoning-harness/" },
+  { id: "05-quant-gate", name: "QuantLeap", line: "통계 게이트가 진입을 막고 AI가 방향을 읽는 자동매매", stage: "작동 프로토타입 · 모의 실행", url: B + "hyunsoo-bot/portfolio.html" },
+  { id: "06-agent-forge", name: "Agent Forge", line: "아이디어 한 줄을 넣으면 파이프라인이 게임을 만든다", stage: "작동 프로토타입", url: B + "agent-forge/portfolio.html" },
+  { id: "07-hwigi-tower", name: "회귀자는 탑을 오른다", line: "죽어도 끝나지 않는 탑, 동료 AI와 함께 오르는 로그라이크", stage: "플레이 가능 · Android", url: B + "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html" },
+];
+const N = WORKS.length, track = document.getElementById("track"), dots = document.getElementById("dots");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let cur = 0;
+
+WORKS.forEach((w, i) => {
+  const s = document.createElement("div");
+  s.className = "slide"; s.setAttribute("role", "group"); s.setAttribute("aria-roledescription", "slide");
+  s.setAttribute("aria-label", `${i + 1} / ${N}: ${w.name}`);
+  s.innerHTML = `<div class="idx">${String(i + 1).padStart(2, "0")} — ${String(N).padStart(2, "0")}</div>
+    <div class="card" style="background-image:url(assets/cards/${w.id}.jpg)"></div>
+    <div class="obj ghost"><img src="assets/objects/${w.id}.png" alt=""></div>
+    <div class="obj"><img src="assets/objects/${w.id}.png" alt=""></div>`;
+  s.addEventListener("click", () => { if (moved) return; i === cur ? location.href = w.url : go(i); });
+  track.appendChild(s);
+  const d = document.createElement("button");
+  d.setAttribute("role", "tab"); d.setAttribute("aria-label", `${i + 1}번째 작품: ${w.name}`);
+  d.addEventListener("click", () => go(i)); dots.appendChild(d);
+});
+const slides = [...track.children];
+
+function rel(i) { let r = i - cur; if (r > N / 2) r -= N; if (r < -N / 2) r += N; return r; }
+function render(dir) {
+  slides.forEach((s, i) => {
+    const r = rel(i);
+    s.className = "slide " + (r === 0 ? "is-active" : r === -1 ? "is-prev" : r === 1 ? "is-next" : r < 0 ? "is-far-prev" : "is-far-next");
+    s.tabIndex = -1;
+    if (r === 0 && dir && !reduce) { void s.offsetWidth; s.classList.add(dir > 0 ? "enter-r" : "enter-l"); }
+  });
+  [...dots.children].forEach((d, i) => d.setAttribute("aria-current", i === cur ? "true" : "false"));
+  const w = WORKS[cur];
+  document.getElementById("m-name").textContent = w.name;
+  document.getElementById("m-line").textContent = w.line;
+  document.getElementById("m-stage").textContent = w.stage;
+  document.getElementById("m-open").href = w.url;
+}
+function go(i) { const dir = Math.sign(rel(i)) || 1; cur = (i + N) % N; render(dir); }
+document.getElementById("prev").onclick = () => go(cur - 1);
+document.getElementById("next").onclick = () => go(cur + 1);
+const car = document.getElementById("carousel");
+car.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") { go(cur + 1); e.preventDefault(); }
+  if (e.key === "ArrowLeft") { go(cur - 1); e.preventDefault(); }
+  if (e.key === "Enter" && e.target === car) location.href = WORKS[cur].url;
+});
+let x0 = null, moved = false;
+car.addEventListener("pointerdown", e => { x0 = e.clientX; moved = false; });
+car.addEventListener("pointermove", e => { if (x0 !== null && Math.abs(e.clientX - x0) > 8) moved = true; });
+car.addEventListener("pointerup", e => {
+  if (x0 === null) return; const dx = e.clientX - x0; x0 = null;
+  if (Math.abs(dx) > 60) go(cur + (dx < 0 ? 1 : -1));
+  setTimeout(() => moved = false, 0);
+});
+const h = parseInt(location.hash.slice(1), 10); if (h >= 1 && h <= N) cur = h - 1;
+render(0);
+</script>
+</body>
+</html>
