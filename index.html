@@ -140,6 +140,47 @@
     .piece { opacity: 1; } .scribble path { stroke-dashoffset: 0; } .scribble path.fill { opacity: .92; }
     .scrap, .obj { transform: none; }
   }
+
+  /* 종류별 묶음 — 카드 목록 + 마우스를 올리면 미리보기 쪽지가 아래에서 올라옴 */
+  .kinds { position: relative; z-index: 2; max-width: 1080px; margin: 40px auto 30px; padding: 0 16px; }
+  .kinds-board { position: relative; padding: 40px 44px 30px; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/420px; box-shadow: 0 18px 40px rgba(0,0,0,.45); transform: rotate(-.4deg); }
+  .kinds-board::before { content: ""; position: absolute; left: 0; right: 0; top: 18px; height: 8px; background: radial-gradient(circle at 6px -2px, transparent 6px, rgba(27,26,23,.18) 6.5px, transparent 7.5px) 0 0/12px 8px repeat-x; }
+  .kinds h2 { display: inline-block; margin: 6px 0 22px; padding: 4px 12px 6px; font: 26px/1.1 "Black Han Sans", sans-serif; color: var(--cream); background: var(--ink); transform: rotate(-1.2deg); }
+  .kinds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; align-items: start; }
+  .kcol { display: flex; flex-direction: column; gap: 6px; }
+  .kind { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 16px 14px 16px; border-radius: 14px; overflow: hidden; cursor: pointer; transition: background .25s; outline: none; }
+  .kind:hover, .kind:focus-visible, .kind.open { background: rgba(27,26,23,.07); }
+  .kind .ico { width: 56px; height: 56px; border-radius: 12px; display: grid; place-items: center; background: rgba(27,26,23,.08); transition: background .25s, transform .25s; }
+  .kind:hover .ico, .kind.open .ico { background: var(--k); transform: rotate(-6deg); }
+  .kind .ico svg { width: 26px; height: 26px; fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: stroke .25s; }
+  .kind:hover .ico svg, .kind.open .ico svg { stroke: #fff; }
+  .kind h3 { font-size: 18px; font-weight: 800; margin-top: 2px; }
+  .kind p { margin-top: 5px; font-size: 14.5px; line-height: 1.55; color: rgba(27,26,23,.78); max-width: 30em; }
+  .kind .kmeta { display: flex; align-items: center; gap: 7px; margin-top: 9px; font-size: 13px; color: rgba(27,26,23,.55); }
+  .kind .kmeta svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+  .peek { position: absolute; right: 14px; bottom: -14px; width: 214px; padding: 12px 14px 14px; background: #fffdf8; border: 1px solid rgba(27,26,23,.14); border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18); transform: translateY(105%) rotate(4deg); transition: transform .45s cubic-bezier(.2,.9,.25,1.15); pointer-events: none; }
+  .kind:hover .peek, .kind:focus-visible .peek { transform: translateY(0) rotate(4deg); }
+  .kind.open .peek { transform: translateY(105%) rotate(4deg); }
+  .peek b { display: block; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
+  .peek i { display: flex; align-items: center; gap: 7px; font-style: normal; font-size: 12px; font-weight: 600; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .peek i::before { content: ""; flex: none; width: 13px; height: 13px; border-radius: 3px; border: 1.5px solid rgba(27,26,23,.3); }
+  .peek i.on::before { border-color: var(--k); background: var(--k) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.2 4.7-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center/11px no-repeat; }
+  .kind ul { grid-column: 2; list-style: none; padding: 0; display: grid; gap: 2px; max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .kind.open ul { max-height: 420px; margin-top: 4px; }
+  .kind li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 7px 0; border-top: 1px dashed rgba(27,26,23,.18); font-size: 14px; }
+  .kind li a { color: var(--ink); font-weight: 800; text-decoration: underline; text-decoration-color: var(--k); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  .kind li span.n { font-weight: 800; }
+  .kind li em { font-style: normal; font-size: 12.5px; color: rgba(27,26,23,.6); }
+  @media (max-width: 760px) {
+    .kinds-board { padding: 34px 14px 20px; transform: none; }
+    .kinds-grid { display: flex; flex-direction: column; gap: 6px; }
+    .kcol { display: contents; }
+    .kind { grid-template-columns: 46px 1fr; gap: 12px; padding: 14px 8px; }
+    .kind .ico { width: 46px; height: 46px; }
+    .peek { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .peek, .kind ul, .kind .ico { transition: none; } }
 </style>
 </head>
 <body>
@@ -168,6 +209,14 @@
   <div class="dots" id="dots" role="tablist" aria-label="작품 선택"></div>
 </section>
 <p class="hint">끌어서 넘기기 · 화살표 키 · 점 누르기</p>
+
+<section class="kinds" aria-label="종류별 묶음">
+  <div class="kinds-board">
+    <h2>종류별로 보기</h2>
+    <div class="kinds-grid" id="kinds"></div>
+  </div>
+</section>
+
 <footer><a href="https://github.com/ljhljh0703-cmd">GitHub</a></footer>
 
 <script>
@@ -328,6 +377,72 @@ pieces.forEach((p, k) => reduce ? p.classList.add("on") : setTimeout(() => p.cla
 
 const h = parseInt(location.hash.slice(1), 10); if (h >= 1 && h <= N) cur = h - 1;
 render(0);
+</script>
+
+<script>
+/* 종류별 묶음 데이터 — on = 공개되어 바로 볼 수 있음 */
+(() => {
+const G = "https://ljhljh0703-cmd.github.io/";
+const IC = {
+  game: '<rect x="3" y="7" width="18" height="11" rx="4"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".6"/><circle cx="17.5" cy="13.8" r=".6"/>',
+  ai: '<path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>',
+  sys: '<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/>',
+  cup: '<path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7"/>',
+  work: '<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M9 7V5h6v2M3 12h18"/>',
+  pen: '<path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/>',
+};
+const KINDS = [
+  { ico: "game", k: "#c0412a", name: "게임", en: "Games", desc: "AI와 같이 만들고, 규칙을 먼저 정해 검증한 게임들", meta: "웹·안드로이드에서 바로 실행", items: [
+    ["지켜줘! 젤리 패닉", "jelly-panic-case/", "수읽기 퍼즐 디펜스 · 스토어 심사 제출"],
+    ["회귀자는 탑을 오른다", "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html", "동료 AI와 오르는 로그라이크 · Android"],
+    ["Bone Trail", "bone-trail/", "libGDX 로그라이크"],
+    ["BackRoom Level 0", "backroom-level-0-godot/portfolio.html", "Godot 탐험 게임"],
+    ["해골 짐꾼의 탑", null, "로그라이크 개조판 · 진행 중"],
+    ["턴제 퍼즐", null, "솔버가 풀이 가능 여부를 판정 · 진행 중"] ] },
+  { ico: "ai", k: "#4b4ad1", name: "AI 서비스", en: "AI services", desc: "추천·상담·통역·매매처럼 실제 쓰임을 두고 만든 AI 서비스", meta: "전부 공개 페이지로 연결", items: [
+    ["북켓몬", "AI-Book-Curation/portfolio.html", "AI 도서 큐레이션"],
+    ["알려줄고양", "Medical-Chatbot/portfolio.html", "내과 자문 챗봇"],
+    ["StarLink", "StarLink/portfolio.html", "실시간 통역 iOS 앱"],
+    ["QuantLeap", "hyunsoo-bot/portfolio.html", "자동매매 에이전트 · 모의 실행"],
+    ["로켓단", "ai-npc-social-reasoning-harness/", "늑대인간 게임 사회추론 실험"] ] },
+  { ico: "sys", k: "#207878", name: "시스템·운영체계", en: "Systems", desc: "여러 AI가 같은 기준으로 일하게 만드는 도구와 작업 체계", meta: "매일 직접 운영 중", items: [
+    ["Sub brain", null, "여러 AI가 함께 쓰는 지식·작업 운영 체계 · 매일 운영"],
+    ["Agent Forge", "agent-forge/portfolio.html", "아이디어 한 줄로 게임을 만드는 파이프라인"],
+    ["Vibe Design Studio", "VDS/", "바이브 코더용 디자인 시스템"],
+    ["Learning Atlas", "learning-atlas/", "학습 기록 지도"] ] },
+  { ico: "cup", k: "#c99a1a", name: "대회·해커톤", en: "Competitions", desc: "정해진 시간 안에 문제를 다시 정하고 끝까지 낸 기록", meta: "수상 1 · 제출 3", items: [
+    ["Cofathon 2026 최우수 수상", "cofathon/", "KRAFTON Forward Deployed Engineer 트랙 · 개인 참가"],
+    ["카투사 해커톤", "https://github.com/ljhljh0703-cmd/katousa-agent-harness", "투자 에이전트 안전 기준 · 제출"],
+    ["OpenAI Build Week", null, "Penelope · 제출"],
+    ["SKT 모두의 promp.T", null, "업무 AI 활용 · 제출"] ] },
+  { ico: "work", k: "#1b1a17", name: "실무 경력", en: "Work", desc: "제안 PM으로 시작해 지금은 AI 엔지니어로 일하는 중", meta: "2022 ~ 현재", items: [
+    ["위메이드엑스알", null, "AI 엔지니어 인턴 · 기획 직군 AI 도구 · 재직 중"],
+    ["트루빈스", null, "제안 PM · 누적 매출 17억 · 2022~2024"],
+    ["기업 홍보 영상 기획", null, "외주 · 진행 중"] ] },
+  { ico: "pen", k: "#8a5a2b", name: "창작·글", en: "Writing", desc: "소설·게임 시나리오·수기까지, 기획의 바탕이 되는 글", meta: "출판 1", items: [
+    ["초파리", null, "장편소설 · 2024 출판"],
+    ["TRPG 시나리오", null, "크툴루의 부름"],
+    ["공모전 수기·에세이", null, "여러 편"] ] },
+];
+const clock = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+const box = document.getElementById("kinds");
+const cols = [0, 1].map(() => box.appendChild(Object.assign(document.createElement("div"), { className: "kcol" })));
+KINDS.forEach((c, i) => {
+  const el = document.createElement("div");
+  el.className = "kind"; el.tabIndex = 0; el.setAttribute("role", "button"); el.setAttribute("aria-expanded", "false");
+  el.style.setProperty("--k", c.k); el.style.order = i;
+  const url = u => u && (u.startsWith("http") ? u : G + u);
+  el.innerHTML = `
+    <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true">${IC[c.ico]}</svg></div>
+    <div><h3>${c.name}</h3><p>${c.desc}</p><div class="kmeta">${clock}${c.meta} · ${c.items.length}개</div></div>
+    <ul>${c.items.map(([n, u, d]) => `<li>${u ? `<a href="${url(u)}">${n}</a>` : `<span class="n">${n}</span>`}<em>${d}</em></li>`).join("")}</ul>
+    <div class="peek" aria-hidden="true"><b>${c.en}</b>${c.items.slice(0, 3).map(([n, u]) => `<i class="${u ? "on" : ""}">${n}</i>`).join("")}</div>`;
+  const toggle = e => { if (e.target.closest("a")) return; const o = el.classList.toggle("open"); el.setAttribute("aria-expanded", o); };
+  el.addEventListener("click", toggle);
+  el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); } });
+  cols[i % 2].appendChild(el);
+});
+})();
 </script>
 </body>
 </html>
