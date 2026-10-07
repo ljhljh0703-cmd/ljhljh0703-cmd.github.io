@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!-- 지켜줘! 젤리 패닉 작품 페이지 · 첫 페이지·cofathon 페이지와 같은 콜라주 결(찢긴 종이·테이프·오린 글자·스톱모션). 글은 핵심만. 근거 = applications/_portfolio/jelly-panic/EVIDENCE-PACKET-2026-10-07.md (J01~J10 · limits) -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>덮을 수 있을 때만 위협이 생깁니다 · 지켜줘! 젤리 패닉 · 이주형</title>
+<meta name="description" content="지켜줘! 젤리 패닉 · 예고된 위협에서 소중한 것을 지키는 수읽기 퍼즐 디펜스. 무작위 500판에서 덮을 수 없는 위협 0건을 확인했습니다.">
+<meta property="og:title" content="덮을 수 있을 때만 위협이 생깁니다 · 지켜줘! 젤리 패닉">
+<meta property="og:description" content="예고된 위협에서 소중한 것을 지키는 수읽기 퍼즐 디펜스. 무작위 500판에서 덮을 수 없는 위협 0건.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR:wght@900&display=swap">
+<style>
+  :root { --bg: #121216; --ink: #1b1a17; --cream: #eee6d6; --red: #c0412a; --blue: #4b4ad1; --teal: #207878; --mint: #9ff0c8; --neon: #ffd84a; --mx: 0; --my: 0; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { overflow-x: clip; }
+  body { background: var(--bg); color: var(--cream); font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: anywhere; line-height: 1.6; }
+  .grain { position: fixed; inset: -50%; pointer-events: none; z-index: 50; opacity: .09; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .scraps { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .scrap { position: absolute; transform: translate(calc(var(--mx) * var(--d) * 1px), calc(var(--my) * var(--d) * 1px)) rotate(var(--r)); transition: transform .25s ease-out; }
+  .scrap .in { animation: drift var(--t) ease-in-out infinite alternate; }
+  .scrap.paper .in { width: var(--w); height: var(--h); background: center/cover; }
+  .scrap.dots .in { width: var(--w); height: var(--w); border-radius: 50%; background: radial-gradient(var(--c) 32%, transparent 34%) 0 0/9px 9px; opacity: .5; }
+  .scrap.tape .in { width: var(--w); display: block; opacity: .75; }
+  @keyframes drift { to { transform: translateY(14px) rotate(3deg); } }
+
+  /* 공통 종이 */
+  .p { position: relative; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/320px; padding: 26px 28px;
+    clip-path: polygon(0 2%, 30% 0, 70% 1.5%, 100% 0, 99% 40%, 100% 98%, 62% 100%, 28% 98.5%, 0 100%, 1% 55%);
+    filter: drop-shadow(0 14px 16px rgba(0,0,0,.5)); }
+  .p.kraft { background-image: url(assets/collage/paper-kraft.jpg); }
+  .p.blue { background-image: url(assets/collage/paper-blue.jpg); color: #fff4e8; }
+  .p.red { background-image: url(assets/collage/paper-red.jpg); color: #fff4e8; }
+  .p.teal { background-image: url(assets/collage/paper-teal.jpg); color: #fff4e8; }
+  .wrap { position: relative; transform: rotate(var(--tilt, 0deg)); }
+  .wrap > .tp { position: absolute; top: -18px; right: 14%; width: 120px; z-index: 3; transform: rotate(var(--tr, -4deg)); opacity: .92; pointer-events: none; }
+  .tag { display: inline-block; margin-bottom: 14px; padding: 3px 10px; font: 15px/1.3 "Black Han Sans", sans-serif; letter-spacing: .04em; color: var(--ink);
+    background: url(assets/collage/paper-kraft.jpg) center/120px; transform: rotate(-3deg); box-shadow: 0 3px 0 rgba(0,0,0,.25); }
+  .p.kraft .tag { background-image: url(assets/collage/paper-cream.jpg); }
+  .p.blue .tag, .p.red .tag, .p.teal .tag { color: var(--ink); background-image: url(assets/collage/paper-cream.jpg); }
+  .src { margin-top: 10px; font-size: 12.5px; opacity: .7; }
+
+  /* 등장 = 탁 붙기 */
+  .js .piece { opacity: 0; }
+  .js .piece.on { animation: slapIn .42s steps(4, end) forwards; }
+  @keyframes slapIn { 0% { opacity: 1; transform: scale(1.3) rotate(var(--rot, -3deg)); } 60% { opacity: 1; transform: scale(.97) rotate(calc(var(--rot, -3deg) * -.3)); } 100% { opacity: 1; transform: none; } }
+
+  /* ── 머리 ── */
+  header { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; padding: 46px 28px 0; display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; align-items: center; }
+  .top { position: relative; z-index: 3; max-width: 1080px; margin: 0 auto; padding: 22px 28px 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .back { display: inline-block; padding: 6px 13px; color: var(--ink); font-weight: 800; font-size: 13px; text-decoration: none;
+    background: url(assets/collage/paper-kraft.jpg) center/120px; transform: rotate(-2deg); clip-path: polygon(0 8%, 8% 0, 96% 6%, 100% 70%, 94% 100%, 4% 94%); }
+  .back:hover, .back:focus-visible { background-image: url(assets/collage/paper-teal.jpg); color: #fff4e8; }
+  .who { font-size: 12.5px; font-weight: 700; letter-spacing: .16em; color: #9d968a; text-align: right; }
+  h1 { font-size: clamp(28px, 4.2vw, 50px); line-height: 1.5; font-weight: 800; letter-spacing: -.02em; }
+  .strip { display: inline-block; padding: .03em .3em .07em; margin: .07em .08em; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/180px;
+    clip-path: polygon(0 4%, 3% 0, 30% 6%, 62% 0, 97% 3%, 100% 40%, 98% 100%, 66% 94%, 31% 100%, 2% 96%); box-shadow: 0 6px 0 rgba(0,0,0,.35); }
+  .strip.teal { color: #fff4e8; background-image: url(assets/collage/paper-teal.jpg); }
+  .line { display: inline-flex; align-items: center; flex-wrap: wrap; }
+  .ransom { display: inline-flex; gap: .06em; margin: 0 .12em; }
+  .ransom span { display: inline-block; padding: .02em .15em; line-height: 1.15; background: center/150px; box-shadow: 0 4px 0 rgba(0,0,0,.35); }
+  .lede { display: inline-block; max-width: 560px; margin-top: 18px; padding: 15px 20px; color: var(--ink); font-size: 16px; line-height: 1.7;
+    background: url(assets/collage/paper-cream.jpg) center/300px; clip-path: polygon(1% 3%, 40% 0, 99% 2%, 100% 55%, 98% 98%, 55% 100%, 2% 97%, 0 40%); }
+  .play { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 22px; }
+  .play small { color: #c9c2b4; font-size: 13px; line-height: 1.5; }
+  .btn { display: inline-block; padding: 10px 18px 9px; color: var(--ink); font-weight: 800; font-size: 14px; text-decoration: none; background: url(assets/collage/paper-cream.jpg) center/160px;
+    transform: rotate(2deg); box-shadow: 0 4px 0 rgba(0,0,0,.4); clip-path: polygon(0 6%, 8% 0, 52% 5%, 97% 0, 100% 52%, 96% 100%, 45% 95%, 3% 100%); }
+  .btn.main { color: #fff4e8; background-image: url(assets/collage/paper-teal.jpg); font: 800 17px/1.2 "Pretendard", sans-serif; padding: 12px 22px 11px; transform: rotate(-2deg); }
+  .btn:hover, .btn:focus-visible { background-image: url(assets/collage/paper-teal.jpg); color: #fff4e8; }
+  .btn.main:hover, .btn.main:focus-visible { background-image: url(assets/collage/paper-cream.jpg); color: var(--ink); }
+  .hero-obj { position: relative; aspect-ratio: 1; width: min(400px, 100%); justify-self: center; transform: translate(calc(var(--mx) * -14px), calc(var(--my) * -10px)); transition: transform .25s ease-out; }
+  .hero-obj .float { width: 100%; height: 100%; animation: float 3.2s ease-in-out infinite; }
+  .hero-obj .boil { width: 100%; height: 100%; animation: boil .5s steps(1) infinite; }
+  .hero-obj img { width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(10px 10px 0 var(--teal)) drop-shadow(0 18px 20px rgba(0,0,0,.45)); }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+  @keyframes boil { 0% { transform: rotate(-1deg); } 33% { transform: rotate(.7deg) translate(1px, -1px); } 66% { transform: rotate(-.2deg) translate(-1px, 1px); } }
+  .scribble { position: absolute; inset: -8%; width: 116%; height: 116%; pointer-events: none; overflow: visible; }
+  .scribble path { fill: none; stroke: var(--mint); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .js .scribble.on path { animation: draw .45s calc(.5s + var(--i) * .14s) steps(6, end) forwards; }
+  .scribble.on { animation: boil .6s 1.6s steps(1) infinite; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  html:not(.js) .scribble path { stroke-dashoffset: 0; }
+
+  /* ── 판 ── */
+  main { position: relative; z-index: 2; max-width: 1080px; margin: 64px auto 0; padding: 0 28px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 54px 34px; }
+  .c-rule { grid-column: 1 / span 7; }
+  .c-reframe { grid-column: 8 / span 5; align-self: center; }
+  .c-out { grid-column: 1 / span 12; }
+  .c-store { grid-column: 1 / span 7; }
+  .c-who { grid-column: 8 / span 5; align-self: center; }
+  .c-unk { grid-column: 4 / span 6; align-self: start; }
+
+  .quote { font: 900 clamp(20px, 2.3vw, 27px)/1.45 "Noto Serif KR", serif; letter-spacing: -.02em; }
+  .quote::before { content: "“"; } .quote::after { content: "”"; }
+  .then { margin-top: 16px; font-size: 16px; font-weight: 600; }
+  .then b { display: inline-block; padding: 0 .3em; background: rgba(32,120,120,.18); }
+  .p.teal .then b, .p.blue .then b, .p.red .then b { background: rgba(255,244,232,.18); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chip { padding: 4px 11px; font-size: 13.5px; font-weight: 700; color: var(--ink); background: url(assets/collage/paper-kraft.jpg) center/100px; transform: rotate(var(--cr, -1deg)); }
+  .p.kraft .chip { background-image: url(assets/collage/paper-cream.jpg); }
+
+  .x { font-size: 17px; text-decoration: line-through; text-decoration-color: var(--teal); text-decoration-thickness: 3px; opacity: .78; }
+  .arrow { display: block; margin: 8px 0; font: 26px/1 "Black Han Sans", sans-serif; color: var(--teal); }
+  .big { font: 800 21px/1.5 "Pretendard", sans-serif; }
+
+  .outs { list-style: none; padding: 0; display: grid; gap: 10px; margin-top: 4px; }
+  .outs li { color: var(--ink); display: flex; gap: 12px; align-items: baseline; padding: 10px 16px; background: url(assets/collage/paper-cream.jpg) center/200px; transform: rotate(var(--lr));
+    clip-path: polygon(0 10%, 4% 0, 60% 8%, 100% 0, 98% 90%, 70% 100%, 3% 94%); }
+  .outs .what { font-weight: 800; font-size: 17px; white-space: nowrap; }
+  .outs .what em { font-style: normal; font: 900 22px/1 "Black Han Sans", sans-serif; letter-spacing: .02em; color: var(--teal); padding: 0 .1em; }
+  .outs .why { font-size: 13.5px; opacity: .75; }
+  .outs li.zero { background-image: url(assets/collage/paper-teal.jpg); color: #fff4e8; }
+  .outs li.zero .what em { color: var(--neon); }
+  .outs li.zero .why { opacity: .85; }
+  .seal { position: absolute; right: 22px; top: 18px; padding: 4px 12px; border: 3px solid var(--teal); color: var(--teal); font: 20px/1.2 "Black Han Sans", sans-serif; transform: rotate(7deg); border-radius: 4px;
+    mask: radial-gradient(circle at 30% 40%, #000 60%, rgba(0,0,0,.78) 61%); }
+
+  .rule { display: inline-block; margin-top: 20px; padding: 8px 16px; font: 800 19px/1.4 "Pretendard", sans-serif; color: #fff4e8;
+    background: url(assets/collage/paper-teal.jpg) center/200px; clip-path: polygon(0 6%, 4% 0, 97% 5%, 100% 70%, 96% 100%, 2% 94%); transform: rotate(-1deg); }
+  .rule-note { margin-top: 10px; font-size: 15px; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: .92em; padding: 0 .25em; background: rgba(27,26,23,.08); }
+  .p.teal code, .p.red code, .p.blue code { background: rgba(255,244,232,.16); }
+
+  .note { position: relative; padding: 56px 52px 40px; color: var(--ink); background: url(assets/collage/note.png) center/100% 100% no-repeat; min-height: 300px; }
+  .note ul { padding-left: 1.1em; display: grid; gap: 8px; font-size: 16px; font-weight: 600; }
+
+  footer { position: relative; z-index: 2; max-width: 1080px; margin: 84px auto 0; padding: 0 28px 60px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: center; }
+  .stack { position: relative; z-index: 3; max-width: 560px; padding: 8px 14px; color: var(--ink); font-size: 13.5px; font-weight: 600; background: url(assets/collage/paper-kraft.jpg) center/160px;
+    transform: rotate(-1deg); clip-path: polygon(0 8%, 5% 0, 97% 6%, 100% 60%, 96% 100%, 3% 94%); }
+  .btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  a:focus-visible { outline: 3px solid var(--neon); outline-offset: 4px; }
+
+  @media (max-width: 860px) {
+    header { grid-template-columns: 1fr; }
+    .hero-obj { width: min(300px, 78vw); order: -1; margin-bottom: -10px; }
+    main { grid-template-columns: 1fr; gap: 46px; margin-top: 46px; }
+    main > * { grid-column: 1 / -1 !important; }
+    .outs li { flex-direction: column; gap: 2px; }
+    .outs .what { white-space: normal; }
+    .scraps { opacity: .4; }
+    .p { padding: 22px 20px; }
+    .wrap > .tp { width: 78px; top: -24px; right: 8%; }
+    .seal { position: static; display: inline-block; margin: 0 0 12px 10px; font-size: 17px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .piece { opacity: 1; } .scribble path { stroke-dashoffset: 0; } .scrap, .hero-obj { transform: none; }
+  }
+  @media print { .grain, .scraps { display: none; } body { background: #fff; } .js .piece { opacity: 1; } }
+</style>
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+<div class="grain"></div>
+<div class="scraps" id="scraps" aria-hidden="true"></div>
+
+<div class="top">
+  <a class="back" href="../">← 작품 모음</a>
+  <span class="who">이주형 · 지켜줘! 젤리 패닉</span>
+</div>
+
+<header>
+  <div>
+    <h1 aria-label="덮을 수 있을 때만 위협이 생깁니다">
+      <span class="strip piece" style="--rot:-2deg" aria-hidden="true">덮을 수 있을 때만</span><br>
+      <span class="line" aria-hidden="true"><span class="ransom piece" style="--rot:3deg" data-ransom="위협이"></span><span class="strip teal piece" style="--rot:-1deg">생깁니다</span></span>
+    </h1>
+    <p class="lede piece" style="--rot:-1.5deg" data-claim="J01">8×8 판에 조각을 끌어 놓아 줄을 지우고, 예고된 위협에서 소중한 것을 지키는 수읽기 퍼즐 디펜스입니다. 모든 위협은 미리 보입니다.</p>
+    <div class="play piece" style="--rot:-4deg" data-claim="J10 J09">
+      <a class="btn main" href="../jelly-panic/">웹에서 바로 플레이 →</a>
+      <small>설치 없이 브라우저에서 열립니다<br>위협 5종 · 아이템 4종 · 클래식 / 스테이지 10개 / 디펜스</small>
+    </div>
+  </div>
+  <div class="hero-obj" aria-hidden="true">
+    <div class="float"><div class="boil"><img src="assets/collage/sticker-09-jelly-panic.webp" alt="" onerror="this.style.display='none'"></div></div>
+    <svg class="scribble" id="doodle" viewBox="0 0 300 300" preserveAspectRatio="none"></svg>
+  </div>
+</header>
+
+<main>
+  <section class="c-rule wrap piece" style="--tilt:-1deg;--rot:-3deg;--tr:-5deg" data-claim="J03">
+    <img class="tp" src="assets/collage/tape-1.png" alt="">
+    <div class="p">
+      <span class="tag">01 먼저 정한 규칙</span>
+      <p class="quote">위협이 생기는 순간, 덮을 수 있는 칸이 있어야만 생긴다.</p>
+      <p class="src">공정성 규칙 · 나머지보다 먼저 정함</p>
+      <p class="then">덮을 칸이 없으면 그 위협은 <b>아예 만들지 않습니다.</b> 막을 수 없는 판은 처음부터 나오지 않게 했습니다.</p>
+    </div>
+  </section>
+
+  <section class="c-reframe wrap piece" style="--tilt:2deg;--rot:4deg;--tr:6deg" data-claim="J07">
+    <img class="tp" src="assets/collage/tape-2.png" alt="">
+    <div class="p kraft">
+      <span class="tag">02 다시 정한 문제</span>
+      <p class="x">재미를 숫자로 잰다</p>
+      <span class="arrow" aria-hidden="true">↓</span>
+      <p class="big">공정성만 기계로 재고, 재미는 직접 플레이해 보고 판단한다</p>
+      <p class="then">테스트 통과와 실제 화면 동작은 <b>따로</b> 확인했습니다.</p>
+    </div>
+  </section>
+
+  <section class="c-out wrap piece" style="--tilt:.6deg;--rot:2deg;--tr:-2deg" data-claim="J04 J05">
+    <img class="tp" src="assets/collage/tape-2.png" alt="">
+    <div class="p">
+      <span class="tag">03 실제로 나온 결과</span>
+      <span class="seal" aria-hidden="true">0건</span>
+      <ul class="outs">
+        <li class="zero" style="--lr:-.6deg"><span class="what">무작위로 둔 <em>500</em>판에서 덮을 수 없는 위협 <em>0</em>건</span><span class="why">정해진 시드 · 한 판 400수까지 · 사람이 둔 판은 아님</span></li>
+        <li style="--lr:.5deg"><span class="what">단위 테스트 <em>90</em>/90</span><span class="why">규칙 하나하나를 따로 검사</span></li>
+        <li style="--lr:-.4deg"><span class="what">화면 연결 테스트 <em>16</em>/16</span><span class="why">규칙이 화면에서도 그대로 도는지</span></li>
+        <li style="--lr:.7deg"><span class="what">같은 시드면 <em>100</em>% 재현</span><span class="why">화면 상태와 점수가 매번 같게 나옴</span></li>
+      </ul>
+      <p class="src">측정 기록 2026.09.07 · 재현 2026.07.05</p>
+    </div>
+  </section>
+
+  <section class="c-store wrap piece" style="--tilt:-1.5deg;--rot:-2deg;--tr:-3deg" data-claim="J08">
+    <img class="tp" src="assets/collage/tape-1.png" alt="">
+    <div class="p teal">
+      <span class="tag">04 스토어에서 배운 것</span>
+      <p class="quote">닫는 코드가 있다는 것과 실제로 닫힌다는 것은 다르다.</p>
+      <p class="src">ONE store 심사 1차 반려 사유 · 게임오버 뒤 「종료하기」를 눌러도 앱이 안 닫힘 · 2026.09</p>
+      <p class="then">→ 고친 판 <b>v1.0.1</b>로 바꿔 다시 냈습니다.</p>
+    </div>
+  </section>
+
+  <section class="c-who wrap piece" style="--tilt:1.5deg;--rot:3deg;--tr:5deg" data-claim="J02 J06">
+    <img class="tp" src="assets/collage/tape-2.png" alt="">
+    <div class="p kraft">
+      <span class="tag">05 누가 무엇을</span>
+      <p class="big">구현은 AI가 했습니다.</p>
+      <p class="then">기획, 플레이 피드백, 검증 기준은 <b>제가</b> 쥐었습니다. 12번 주고받았고 약 3일 걸렸습니다.</p>
+      <div class="chips"><span class="chip" style="--cr:-2deg">외부 라이브러리 0</span><span class="chip" style="--cr:1.5deg">HTML 한 장 118KB</span></div>
+    </div>
+  </section>
+
+  <section class="c-unk piece" style="--rot:3deg" data-claim="limits">
+    <div class="note">
+      <span class="tag">06 아직 모르는 것</span>
+      <ul>
+        <li>다른 사람이 플레이한 기록이 없습니다</li>
+        <li>500판은 무작위로 둔 것이라 사람이 두는 수와 다릅니다</li>
+        <li>스토어 재심사 결과는 아직 확인하지 못했습니다</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="stack" data-claim="J10"><span>게임은 브라우저에서 바로 열립니다. 이 페이지는 규칙을 정한 순서와 확인한 기록으로 만들었습니다.</span></div>
+  <div class="btns">
+    <a class="btn" href="../jelly-panic/">웹에서 바로 플레이</a>
+    <a class="btn" href="../">작품 모음으로</a>
+  </div>
+</footer>
+
+<script>
+const C = "assets/collage/", PAPERS = ["paper-cream.jpg", "paper-kraft.jpg", "paper-teal.jpg", "paper-blue.jpg"];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let seed = 23; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const pick = a => a[Math.floor(rnd() * a.length)];
+const wob = (v, a = 3) => (v + (rnd() - .5) * a).toFixed(1);
+/* 오린 글자 */
+document.querySelectorAll("[data-ransom]").forEach(el => {
+  const fonts = ['"Black Han Sans"', '"Noto Serif KR"', '"Pretendard"'];
+  [...el.dataset.ransom].forEach(ch => {
+    const sp = document.createElement("span"); sp.textContent = ch; const p = pick(PAPERS);
+    sp.style.backgroundImage = `url(${C}${p})`; sp.style.color = /teal|blue/.test(p) ? "#fff4e8" : "#1b1a17";
+    sp.style.fontFamily = pick(fonts); sp.style.fontWeight = 900;
+    sp.style.transform = `rotate(${((rnd() - .5) * 12).toFixed(1)}deg) translateY(${((rnd() - .5) * 6).toFixed(0)}px)`;
+    el.appendChild(sp);
+  });
+});
+/* 낙서 = 보드 칸 셋 + 덮는 호 + 예고 표시 (이 작품이 하는 일: 예고된 위협을 칸으로 덮는다) · 첫 페이지 카드와 같은 모양 */
+const sq = (x, y, r) => `M${wob(x)} ${wob(y)}L${wob(x + r)} ${wob(y)}L${wob(x + r)} ${wob(y + r)}L${wob(x)} ${wob(y + r)}Z`;
+const arc = (cx, cy, r, a0, a1) => { let d = ""; for (let k = 0; k <= 12; k++) { const a = a0 + (a1 - a0) * k / 12; d += (k ? "L" : "M") + wob(cx + Math.cos(a) * r) + " " + wob(cy + Math.sin(a) * r); } return d; };
+const doodle = [sq(32, 40, 16), sq(250, 30, 12), sq(262, 150, 15), arc(150, 112, 140, .35, 1.1), `M30 188L${wob(54)} ${wob(172)}M24 170L${wob(48)} ${wob(160)}`];
+const dsvg = document.getElementById("doodle");
+dsvg.innerHTML = doodle.map((d, i) => `<path pathLength="1" style="--i:${i}" d="${d}"/>`).join("");
+/* 흩어진 종이 조각 */
+const scraps = document.getElementById("scraps");
+for (let k = 0; k < 18; k++) {
+  const el = document.createElement("div"); const kind = pick(["paper", "paper", "dots", "tape"]); el.className = "scrap " + kind;
+  const side = k % 2 ? rnd() * 16 : 84 + rnd() * 16;
+  el.style.cssText = `left:${side.toFixed(1)}%;top:${(rnd() * 100).toFixed(1)}%;--r:${(rnd() * 70 - 35).toFixed(0)}deg;--d:${(8 + rnd() * 30).toFixed(0)};`;
+  if (kind === "paper") {
+    const poly = Array.from({ length: 7 }, (_, j) => { const a = j / 7 * Math.PI * 2; return `${(50 + Math.cos(a) * (38 + rnd() * 12)).toFixed(0)}% ${(50 + Math.sin(a) * (38 + rnd() * 12)).toFixed(0)}%`; }).join(",");
+    el.innerHTML = `<div class="in" style="--w:${(40 + rnd() * 80).toFixed(0)}px;--h:${(30 + rnd() * 60).toFixed(0)}px;--t:${(5 + rnd() * 5).toFixed(1)}s;background-image:url(${C}${pick(PAPERS)});clip-path:polygon(${poly})"></div>`;
+  } else if (kind === "dots") {
+    el.innerHTML = `<div class="in" style="--w:${(60 + rnd() * 70).toFixed(0)}px;--t:${(6 + rnd() * 4).toFixed(1)}s;--c:${pick(["#207878", "#9ff0c8", "#eee6d6", "#ffd84a"])}"></div>`;
+  } else {
+    el.innerHTML = `<img class="in" src="${C}tape-${1 + (k % 2)}.png" alt="" style="--w:${(70 + rnd() * 50).toFixed(0)}px;--t:${(5 + rnd() * 5).toFixed(1)}s">`;
+  }
+  scraps.appendChild(el);
+}
+/* 마우스 시차 */
+if (!reduce) addEventListener("pointermove", e => {
+  document.documentElement.style.setProperty("--mx", (e.clientX / innerWidth - .5).toFixed(3));
+  document.documentElement.style.setProperty("--my", (e.clientY / innerHeight - .5).toFixed(3));
+});
+/* 등장 · 머리는 차례로, 판 조각은 화면에 들어올 때 */
+const head = [...document.querySelectorAll("header .piece")];
+head.forEach((el, i) => setTimeout(() => el.classList.add("on"), reduce ? 0 : 120 + i * 140));
+setTimeout(() => dsvg.classList.add("on"), reduce ? 0 : 300);
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll("main .piece").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
