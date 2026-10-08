@@ -5,7 +5,7 @@ window.PORTFOLIO = {
   "works": [
     {
       "id": "08-cofathon",
-      "name": "Cofathon 2026",
+      "name": "Cofathon: AI Native Battlegrounds",
       "line": "비개발자 담당자에게 받은 판단 기준을 4시간 만에 코드가 검사하게 만든 인터뷰 연습 도구",
       "stage": "최우수 수상 · 개인 참가",
       "url": "cofathon/",
@@ -191,7 +191,7 @@ window.PORTFOLIO = {
       "meta": "수상 1 · 제출 3",
       "items": [
         {
-          "name": "Cofathon 2026 최우수 수상",
+          "name": "Cofathon: AI Native Battlegrounds 최우수 수상",
           "url": "cofathon/",
           "desc": "KRAFTON Forward Deployed Engineer 트랙 · 개인 참가"
         },
