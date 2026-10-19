@@ -12,20 +12,32 @@
 <meta property="og:url" content="https://ljhljh0703-cmd.github.io/">
 <meta property="og:image" content="https://ljhljh0703-cmd.github.io/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR:wght@900&display=swap">
 <style>
+  /* 값의 정본 — 글자·간격·색은 아래 변수만 쓴다 (토스·29CM 해체값, 2026-10-19). 서체 Wanted Sans = OFL 1.1, assets/fonts/WantedSans-OFL.txt */
   :root {
-    --bg: #121216; --ink: #1b1a17; --cream: #eee6d6; --red: #c0412a; --blue: #4b4ad1; --teal: #207878; --neon: #ffd84a;
+    --night: #151412; --ink: #1b1a17; --ink-2: #4a443b; --ink-3: #5e5647; --cream: #eee6d6; --cream-2: #a39c8e; --accent: #c0412a;
+    --red: #c0412a; --blue: #4b4ad1; --teal: #207878; --neon: #ffd84a; --on-color: #fff4e8;   /* 콜라주 재료색. --on-color = 주홍·인디고 종이 위 글자(4.7:1) */
+    --sans: "Wanted Sans Variable", "Wanted Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --display: "Black Han Sans", "Wanted Sans Variable", sans-serif;
+    --fs-meta: 14px; --fs-body: 17px; --fs-card: 21px; --fs-section: 27px; --fs-work: 33px; --fs-hero: 52px;
+    --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 80px; --s9: 120px;
+    --gutter: var(--s5); --section: var(--s9);
+    --print: 0 4px 0 rgba(0,0,0,.35);
     --card-w: min(300px, 64vw); --card-h: calc(var(--card-w) * 1.312);
     --mx: 0; --my: 0;
+  }
+  @media (max-width: 760px) { :root { --fs-hero: 36px; } }
+  @media (max-width: 600px) {
+    :root { --fs-meta: 13px; --fs-body: 16px; --fs-card: 19px; --fs-section: 24px; --fs-work: 27px; --gutter: var(--s4); --section: var(--s8); }
   }
   * { box-sizing: border-box; margin: 0; }
   html, body { overflow-x: clip; }
   body {
-    background: var(--bg); color: var(--cream); overflow-x: hidden; min-height: 100vh;
-    font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    background: var(--night); color: var(--cream); overflow-x: hidden; min-height: 100vh;
+    font-family: var(--sans); font-size: var(--fs-body); line-height: 1.65; letter-spacing: -.01em;
     -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: anywhere;
   }
   /* 종이 결 — 화면 전체에 아주 옅게 */
@@ -44,34 +56,34 @@
   @keyframes drift { to { transform: translateY(14px) rotate(3deg); } }
 
   /* ── 머리 ── */
-  header { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 54px 28px 0; }
-  .who { position: relative; display: inline-block; padding: 7px 16px; color: var(--ink); font-size: 13px; font-weight: 800; letter-spacing: .14em;
+  header { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: var(--s7) var(--gutter) 0; }
+  .who { position: relative; display: inline-block; padding: var(--s2) var(--s4); color: var(--ink); font-size: var(--fs-meta); font-weight: 800; line-height: 1.5; letter-spacing: 0;
     background: url(assets/collage/paper-kraft.jpg) center/160px; clip-path: polygon(0 8%, 6% 0, 50% 6%, 96% 0, 100% 60%, 97% 100%, 40% 94%, 3% 100%); }
-  h1 { margin-top: 18px; font-size: clamp(26px, 3.8vw, 44px); line-height: 1.55; font-weight: 800; letter-spacing: -.02em; }
-  .strip { display: inline-block; padding: .04em .32em .08em; margin: .08em .1em; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/180px;
-    clip-path: polygon(0 4%, 3% 0, 30% 6%, 62% 0, 97% 3%, 100% 40%, 98% 100%, 66% 94%, 31% 100%, 2% 96%); box-shadow: 0 6px 0 rgba(0,0,0,.35); }
-  .strip.red { color: #fff4e8; background-image: url(assets/collage/paper-red.jpg); }
-  .strip.blue { color: #fff4e8; background-image: url(assets/collage/paper-blue.jpg); }
-  .line { display: inline-flex; align-items: center; gap: .5em; flex-wrap: wrap; }
-  .ransom { position: relative; z-index: 2; display: inline-flex; gap: .08em; margin-left: .12em; }
-  .ransom span { display: inline-block; padding: .02em .16em; line-height: 1.15; background: center/150px; box-shadow: 0 4px 0 rgba(0,0,0,.35); }
-  .lede { position: relative; display: inline-block; max-width: 640px; margin-top: 18px; padding: 16px 22px; color: var(--ink); font-size: 15px; line-height: 1.7;
+  h1 { margin-top: var(--s4); font-size: var(--fs-hero); line-height: 1.2; font-weight: 800; letter-spacing: -.02em; }
+  .strip { display: inline-block; padding: var(--s1) var(--s4); margin: var(--s1) var(--s1); color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/180px;
+    clip-path: polygon(0 4%, 3% 0, 30% 6%, 62% 0, 97% 3%, 100% 40%, 98% 100%, 66% 94%, 31% 100%, 2% 96%); box-shadow: var(--print); }
+  .strip.red { color: var(--on-color); background-image: url(assets/collage/paper-red.jpg); }
+  .strip.blue { color: var(--on-color); background-image: url(assets/collage/paper-blue.jpg); }
+  .line { display: inline-flex; align-items: center; gap: var(--s5); flex-wrap: wrap; }
+  .ransom { position: relative; z-index: 2; display: inline-flex; gap: var(--s1); margin-left: var(--s1); }
+  .ransom span { display: inline-block; padding: 0 var(--s2); line-height: 1.2; background: center/150px; box-shadow: var(--print); }
+  .lede { position: relative; display: inline-block; max-width: 40em; margin-top: var(--s5); padding: var(--s4) var(--s5); color: var(--ink-2); font-size: var(--fs-body); line-height: 1.65;
     background: url(assets/collage/paper-cream.jpg) center/300px; clip-path: polygon(1% 3%, 40% 0, 99% 2%, 100% 55%, 98% 98%, 55% 100%, 2% 97%, 0 40%); transform: rotate(-.6deg); }
   .piece { opacity: 0; }
   .piece.on { animation: slapIn .42s steps(4, end) forwards; }
   @keyframes slapIn { 0% { opacity: 1; transform: scale(1.35) rotate(var(--rot, -3deg)); } 60% { opacity: 1; transform: scale(.96) rotate(calc(var(--rot, -3deg) * -.3)); } 100% { opacity: 1; transform: scale(1) rotate(calc(var(--rot, -3deg) * .25)); } }
 
   /* ── 카드 넘김 ── */
-  .carousel { position: relative; z-index: 2; margin-top: 46px; overflow-x: clip; height: calc(var(--card-h) + 250px); outline: none; touch-action: pan-y; user-select: none; }
+  .carousel { position: relative; z-index: 2; margin-top: var(--s7); overflow-x: clip; height: calc(var(--card-h) + 86px + 220px); outline: none; touch-action: pan-y; user-select: none; }
   .track { position: absolute; inset: 0; perspective: 1500px; }
   .slide { position: absolute; left: 50%; top: 86px; width: var(--card-w); height: var(--card-h); margin-left: calc(var(--card-w) / -2);
     transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2, .8, .2, 1), opacity .6s; cursor: pointer; }
   .sheet { position: absolute; inset: 0; background: center/100% 100% no-repeat; filter: drop-shadow(0 22px 24px rgba(0,0,0,.6)); transform: rotate(var(--tilt)); }
   .tape { position: absolute; width: 46%; top: -5%; left: 27%; transform: rotate(var(--tape-r)); z-index: 3; pointer-events: none; opacity: .92; }
-  .num { position: absolute; top: -58px; left: -46px; z-index: 7; display: flex; align-items: center; gap: 3px; transform: rotate(-6deg); }
-  .num b { display: inline-block; padding: 2px 7px; font: 26px/1.1 "Black Han Sans", sans-serif; color: var(--ink); background: center/120px; box-shadow: 0 3px 0 rgba(0,0,0,.4); }
+  .num { position: absolute; top: -58px; left: -46px; z-index: 7; display: flex; align-items: center; gap: var(--s1); transform: rotate(-6deg); }
+  .num b { display: inline-block; padding: 0 var(--s2); font: var(--fs-section)/1.2 var(--display); color: var(--ink); background: center/120px; box-shadow: var(--print); }
   .num b:nth-child(2) { transform: rotate(8deg); }
-  .num i { font: 600 13px/1 "Pretendard", sans-serif; font-style: normal; color: var(--cream); margin-left: 4px; letter-spacing: .1em; }
+  .num i { font: 400 var(--fs-meta)/1.5 var(--sans); font-style: normal; font-variant-numeric: tabular-nums; color: var(--cream); margin-left: var(--s1); }
   /* 대표 물건 = 인쇄 스티커. 겉 = 들어오기·시차 / 가운데 = 둥실 / 안 = 스톱모션 흔들림 */
   .obj { position: absolute; left: 50%; top: -20%; width: 110%; margin-left: -55%; aspect-ratio: 1; z-index: 5; pointer-events: none;
     transform: translate(calc(var(--mx) * -14px), calc(var(--my) * -10px)); transition: transform .25s ease-out; }
@@ -109,78 +121,80 @@
   @keyframes burst { 0% { transform: translate(-50%, -50%) rotate(0); opacity: 1; }
     100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--rr)); opacity: 0; } }
 
-  .meta { position: absolute; left: 50%; top: calc(86px + var(--card-h) + 26px); transform: translateX(-50%); width: min(560px, 92vw); text-align: center; }
-  .meta h2 { display: inline-block; font: 30px/1.25 "Black Han Sans", "Pretendard", sans-serif; letter-spacing: .01em; color: var(--cream); }
-  .meta p { margin-top: 8px; color: #c9c2b4; font-size: 14.5px; line-height: 1.6; min-height: 2.4em; }
-  .row { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 10px; }
-  .stamp { display: inline-block; padding: 4px 11px; border: 2.5px solid var(--red); color: #f08a72; font-weight: 800; font-size: 12.5px; letter-spacing: .06em;
-    transform: rotate(-4deg); border-radius: 4px; mask: radial-gradient(circle at 30% 40%, #000 60%, rgba(0,0,0,.75) 61%); }
-  .open { position: relative; display: inline-block; padding: 9px 18px 8px; color: var(--ink); font-weight: 800; font-size: 14px; line-height: 1.2; text-decoration: none;
-    background: url(assets/collage/paper-cream.jpg) center/160px; transform: rotate(2deg); box-shadow: 0 4px 0 rgba(0,0,0,.4);
+  /* 캡션은 카드 바로 아래 한 덩어리라 가운데 정렬 유지 */
+  .meta { position: absolute; left: 50%; top: calc(86px + var(--card-h) + var(--s5)); transform: translateX(-50%); width: min(40em, calc(100vw - var(--gutter) * 2)); text-align: center; }
+  .meta h2 { display: inline-block; font: var(--fs-work)/1.2 var(--display); letter-spacing: -.02em; color: var(--cream); }
+  .meta p { margin-top: var(--s2); color: var(--cream-2); font-size: var(--fs-body); line-height: 1.65; min-height: 3.3em; }
+  .row { display: flex; justify-content: center; align-items: center; gap: var(--s4); margin-top: var(--s3); }
+  .stamp { display: inline-block; padding: var(--s1) var(--s3); border: 2.5px solid var(--accent); color: var(--cream); font-weight: 800; font-size: var(--fs-meta); line-height: 1.5;
+    transform: rotate(-4deg); border-radius: 4px; mask: radial-gradient(circle at 30% 40%, var(--ink) 60%, rgba(27,26,23,.75) 61%); }
+  .open { position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: var(--s3) var(--s5); color: var(--ink); font-weight: 800; font-size: var(--fs-body); line-height: 1.2; text-decoration: none;
+    background: url(assets/collage/paper-cream.jpg) center/160px; transform: rotate(2deg); box-shadow: var(--print);
     clip-path: polygon(0 6%, 8% 0, 52% 5%, 97% 0, 100% 52%, 96% 100%, 45% 95%, 3% 100%); }
-  .open:hover, .open:focus-visible { background-image: url(assets/collage/paper-red.jpg); color: #fff4e8; }
+  .open:hover, .open:focus-visible { background-image: url(assets/collage/paper-red.jpg); color: var(--on-color); }
 
-  .dots { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: flex; gap: 12px; }
-  .dots button { width: 13px; height: 13px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: url(assets/collage/paper-kraft.jpg) center/60px; opacity: .55; }
-  .dots button[aria-current="true"] { background-image: url(assets/collage/paper-red.jpg); opacity: 1; transform: scale(1.25); }
-  .arrow { position: absolute; top: calc(86px + var(--card-h) / 2 - 26px); width: 52px; height: 52px; border: 0; cursor: pointer; z-index: 9;
-    font: 22px/1 "Black Han Sans", sans-serif; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/120px;
+  /* 점: 보이는 크기 13px 그대로, 누르는 칸 44px */
+  .dots { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: flex; gap: 0; }
+  .dots button { position: relative; width: 44px; height: 44px; padding: 0; border: 0; cursor: pointer; background: none; }
+  .dots button::before { content: ""; position: absolute; inset: 0; width: 13px; height: 13px; margin: auto; border-radius: 50%; background: url(assets/collage/paper-kraft.jpg) center/60px; opacity: .55; }
+  .dots button[aria-current="true"]::before { background-image: url(assets/collage/paper-red.jpg); opacity: 1; transform: scale(1.25); }
+  .arrow { position: absolute; top: calc(86px + var(--card-h) / 2 - 26px); width: 52px; height: 52px; padding: 0; border: 0; cursor: pointer; z-index: 9;
+    font: var(--fs-card)/1 var(--display); color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/120px;
     clip-path: polygon(8% 0, 100% 6%, 94% 100%, 0 92%); }
-  .arrow.prev { left: max(10px, calc(50% - var(--card-w) * 1.6)); transform: rotate(-6deg); }
-  .arrow.next { right: max(10px, calc(50% - var(--card-w) * 1.6)); transform: rotate(5deg); }
-  .arrow:focus-visible, .dots button:focus-visible, .carousel:focus-visible, .open:focus-visible { outline: 3px solid var(--neon); outline-offset: 4px; }
-  .hint { position: relative; z-index: 2; color: #9d968a; font-size: 12px; text-align: center; margin-top: 20px; }
-  footer { position: relative; z-index: 2; max-width: 1100px; margin: 48px auto 0; padding: 0 28px 48px; font-size: 13px; }
-  footer a { position: relative; z-index: 3; display: inline-block; padding: 6px 12px; color: var(--ink); font-weight: 800; text-decoration: none;
+  .arrow.prev { left: max(var(--s3), calc(50% - var(--card-w) * 1.6)); transform: rotate(-6deg); }
+  .arrow.next { right: max(var(--s3), calc(50% - var(--card-w) * 1.6)); transform: rotate(5deg); }
+  .arrow:focus-visible, .dots button:focus-visible, .carousel:focus-visible, .open:focus-visible, footer a:focus-visible, .kind li a:focus-visible { outline: 3px solid var(--neon); outline-offset: 4px; }
+  .hint { position: relative; z-index: 2; color: var(--cream-2); font-size: var(--fs-meta); line-height: 1.5; text-align: center; margin-top: var(--s5); }
+  footer { position: relative; z-index: 2; max-width: 1100px; margin: var(--s8) auto 0; padding: 0 var(--gutter) var(--s7); font-size: var(--fs-meta); }
+  footer a { position: relative; z-index: 3; display: inline-flex; align-items: center; min-height: 44px; padding: var(--s3) var(--s4); color: var(--ink); font-weight: 800; line-height: 1.2; text-decoration: none;
     background: url(assets/collage/paper-kraft.jpg) center/120px; transform: rotate(-2deg); }
 
-  @media (max-width: 600px) { .arrow { display: none; } header { padding-top: 38px; } .meta h2 { font-size: 24px; } .scraps { opacity: .4; } }
+  @media (max-width: 600px) { .arrow { display: none; } header { padding-top: var(--s6); } .scraps { opacity: .4; } .dots button { width: 36px; } }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .piece { opacity: 1; } .scribble path { stroke-dashoffset: 0; } .scribble path.fill { opacity: .92; }
     .scrap, .obj { transform: none; }
   }
 
-  /* 종류별 묶음 — 카드 목록 + 마우스를 올리면 미리보기 쪽지가 아래에서 올라옴 */
-  .kinds { position: relative; z-index: 2; max-width: 1080px; margin: 40px auto 30px; padding: 0 16px; }
-  .kinds-board { position: relative; padding: 40px 44px 30px; color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/420px; box-shadow: 0 18px 40px rgba(0,0,0,.45); transform: rotate(-.4deg); }
-  .kinds-board::before { content: ""; position: absolute; left: 0; right: 0; top: 18px; height: 8px; background: radial-gradient(circle at 6px -2px, transparent 6px, rgba(27,26,23,.18) 6.5px, transparent 7.5px) 0 0/12px 8px repeat-x; }
-  .kinds h2 { display: inline-block; margin: 6px 0 22px; padding: 4px 12px 6px; font: 26px/1.1 "Black Han Sans", sans-serif; color: var(--cream); background: var(--ink); transform: rotate(-1.2deg); }
-  .kinds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; align-items: start; }
-  .kcol { display: flex; flex-direction: column; gap: 6px; }
-  .kind { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 16px 14px 16px; border-radius: 14px; overflow: hidden; cursor: pointer; transition: background .25s; outline: none; }
-  .kind:hover, .kind:focus-visible, .kind.open { background: rgba(27,26,23,.07); }
-  .kind .ico { width: 56px; height: 56px; border-radius: 12px; display: grid; place-items: center; background: rgba(27,26,23,.08); transition: background .25s, transform .25s; }
-  .kind:hover .ico, .kind.open .ico { background: var(--k); transform: rotate(-6deg); }
-  .kind .ico svg { width: 26px; height: 26px; fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: stroke .25s; }
-  .kind:hover .ico svg, .kind.open .ico svg { stroke: #fff; }
-  .kind h3 { font-size: 18px; font-weight: 800; margin-top: 2px; }
-  .kind p { margin-top: 5px; font-size: 14.5px; line-height: 1.55; color: rgba(27,26,23,.78); max-width: 30em; }
-  .kind .kmeta { display: flex; align-items: center; gap: 7px; margin-top: 9px; font-size: 13px; color: rgba(27,26,23,.55); }
-  .kind .kmeta svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-  .peek { position: absolute; right: 14px; bottom: -14px; width: 214px; padding: 12px 14px 14px; background: #fffdf8; border: 1px solid rgba(27,26,23,.14); border-radius: 10px;
-    box-shadow: 0 10px 24px rgba(0,0,0,.18); transform: translateY(105%) rotate(4deg); transition: transform .45s cubic-bezier(.2,.9,.25,1.15); pointer-events: none; }
+  /* 종류별 묶음 — 29CM 상품 칸 순서: 썸네일 스티커 → 이름 → 설명 → 개수. 누르면 목록이 열리고, 마우스를 올리면 미리보기 쪽지가 올라옴 */
+  .kinds { position: relative; z-index: 2; max-width: 1080px; margin: var(--section) auto 0; padding: 0 var(--gutter); }
+  .kinds-board { position: relative; padding: var(--s7) var(--s6) var(--s5); color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/420px; box-shadow: var(--print); transform: rotate(-.4deg); }
+  .kinds-board::before { content: ""; position: absolute; left: 0; right: 0; top: var(--s4); height: 8px; background: radial-gradient(circle at 6px -2px, transparent 6px, rgba(27,26,23,.18) 6.5px, transparent 7.5px) 0 0/12px 8px repeat-x; }
+  .kinds h2 { display: inline-block; margin: 0 0 var(--s6); padding: var(--s1) var(--s3) var(--s2); font: var(--fs-section)/1.2 var(--display); color: var(--cream); background: var(--ink); transform: rotate(-1.2deg); }
+  /* 칸 안쪽 여백이 칸 사이 간격을 겸한다: 보이는 간격 가로 32 · 세로 48 */
+  .kinds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: start; }
+  .kcol { display: flex; flex-direction: column; gap: 0; }
+  .kind { position: relative; display: block; padding: var(--s5) var(--s4); overflow: hidden; cursor: pointer; outline: none; }
+  .kind:focus-visible { outline: 3px solid var(--ink); outline-offset: 0; }
+  .kind .thumb { display: block; width: 96px; height: 96px; margin-bottom: var(--s3); object-fit: contain; filter: drop-shadow(4px 4px 0 var(--ink)); transform: rotate(-3deg); transition: transform .2s ease-out; }
+  .kind:hover .thumb, .kind.open .thumb { transform: rotate(3deg) scale(1.04); }
+  .kind h3 { font-size: var(--fs-card); font-weight: 800; line-height: 1.4; letter-spacing: -.02em; color: var(--ink); }
+  .kind:hover h3 { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .kind p { margin-top: var(--s1); font-size: var(--fs-body); line-height: 1.65; color: var(--ink-2); max-width: 30em; }
+  .kind .kmeta { margin-top: var(--s2); font-size: var(--fs-meta); line-height: 1.5; letter-spacing: 0; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .peek { position: absolute; right: var(--s4); bottom: calc(var(--s4) * -1); width: 214px; padding: var(--s3) var(--s4) var(--s4); background: url(assets/collage/paper-kraft.jpg) center/160px;
+    box-shadow: var(--print); transform: translateY(105%) rotate(4deg); transition: transform .45s cubic-bezier(.2,.9,.25,1.15); pointer-events: none; }
   .kind:hover .peek, .kind:focus-visible .peek { transform: translateY(0) rotate(4deg); }
   .kind.open .peek { transform: translateY(105%) rotate(4deg); }
-  .peek b { display: block; font-size: 14px; font-weight: 800; margin-bottom: 8px; }
-  .peek i { display: flex; align-items: center; gap: 7px; font-style: normal; font-size: 12px; font-weight: 600; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .peek i::before { content: ""; flex: none; width: 13px; height: 13px; border-radius: 3px; border: 1.5px solid rgba(27,26,23,.3); }
-  .peek i.on::before { border-color: var(--k); background: var(--k) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.2 4.7-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center/11px no-repeat; }
-  .kind ul { grid-column: 2; list-style: none; padding: 0; display: grid; gap: 2px; max-height: 0; overflow: hidden; transition: max-height .4s ease; }
-  .kind.open ul { max-height: 420px; margin-top: 4px; }
-  .kind li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 7px 0; border-top: 1px dashed rgba(27,26,23,.18); font-size: 14px; }
-  .kind li a { color: var(--ink); font-weight: 800; text-decoration: underline; text-decoration-color: var(--k); text-underline-offset: 3px; text-decoration-thickness: 2px; }
-  .kind li span.n { font-weight: 800; }
-  .kind li em { font-style: normal; font-size: 12.5px; color: rgba(27,26,23,.6); }
+  .peek b { display: block; font-size: var(--fs-meta); font-weight: 800; line-height: 1.5; margin-bottom: var(--s2); }
+  .peek i { display: flex; align-items: center; gap: var(--s2); font-style: normal; font-size: var(--fs-meta); font-weight: 400; line-height: 1.5; margin-top: var(--s1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .peek i::before { content: ""; flex: none; width: 13px; height: 13px; border: 1.5px solid var(--ink); }
+  .peek i.on::before { background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.2 4.7-5' fill='none' stroke='%23eee6d6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center/11px no-repeat; }
+  .kind ul { list-style: none; padding: 0; display: grid; gap: 0; max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .kind.open ul { max-height: 900px; margin-top: var(--s3); }
+  .kind li { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--s3); padding: var(--s1) 0; border-top: 1px dashed var(--ink-3); font-size: var(--fs-body); line-height: 1.4; }
+  .kind li a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 800; text-decoration: underline; text-decoration-color: var(--ink-3); text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .kind li span.n { display: inline-flex; align-items: center; min-height: 44px; font-weight: 800; }
+  .kind li em { font-style: normal; font-size: var(--fs-meta); line-height: 1.5; color: var(--ink-3); }
   @media (max-width: 760px) {
-    .kinds-board { padding: 34px 14px 20px; transform: none; }
-    .kinds-grid { display: flex; flex-direction: column; gap: 6px; }
+    .kinds-board { padding: var(--s7) var(--s4) var(--s5); transform: none; }
+    .kinds-grid { display: flex; flex-direction: column; gap: 0; }
     .kcol { display: contents; }
-    .kind { grid-template-columns: 46px 1fr; gap: 12px; padding: 14px 8px; }
-    .kind .ico { width: 46px; height: 46px; }
+    .kind { padding: var(--s5) var(--s2); }
+    .kind .thumb { width: 80px; height: 80px; }
     .peek { display: none; }
   }
-  @media (prefers-reduced-motion: reduce) { .peek, .kind ul, .kind .ico { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .peek, .kind ul, .kind .thumb { transition: none; } }
 </style>
 </head>
 <body>
@@ -321,11 +335,11 @@ car.addEventListener("pointerup", e => {
 
 /* 오린 글자 */
 document.querySelectorAll("[data-ransom]").forEach(el => {
-  const fonts = ['"Black Han Sans"', '"Noto Serif KR"', '"Pretendard"'];
+  const fonts = ['"Black Han Sans"', '"Noto Serif KR"', '"Wanted Sans Variable"'];
   [...el.dataset.ransom].forEach(ch => {
     const sp = document.createElement("span"); sp.textContent = ch;
     const p = pick(PAPERS); sp.style.backgroundImage = paperBg(p);
-    sp.style.color = /red|blue/.test(p) ? "#fff4e8" : "#1b1a17";
+    sp.style.color = /red|blue/.test(p) ? "var(--on-color)" : "var(--ink)";
     sp.style.fontFamily = pick(fonts); sp.style.fontWeight = 900;
     sp.style.transform = `rotate(${((rnd() - .5) * 12).toFixed(1)}deg) translateY(${((rnd() - .5) * 6).toFixed(0)}px)`;
     el.appendChild(sp);
@@ -376,16 +390,9 @@ render(0);
 /* 종류별 묶음 데이터 — on = 공개되어 바로 볼 수 있음 */
 (() => {
 const G = "https://ljhljh0703-cmd.github.io/";
-const IC = {
-  game: '<rect x="3" y="7" width="18" height="11" rx="4"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".6"/><circle cx="17.5" cy="13.8" r=".6"/>',
-  ai: '<path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>',
-  sys: '<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/>',
-  cup: '<path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 13v4M8.5 20h7"/>',
-  work: '<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M9 7V5h6v2M3 12h18"/>',
-  pen: '<path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/>',
-};
+/* 칸마다 대표 작품의 인쇄 스티커(카드와 같은 그림). 묶음 안에서 카드로 올라간 첫 작품을 쓰고, 없으면 글만 둔다 */
+const stickerOf = c => { const hit = c.items.map(it => it.url && window.PORTFOLIO.works.find(w => w.url === it.url)).find(Boolean); return hit ? `assets/collage/sticker-${hit.id}.webp` : null; };
 const KINDS = window.PORTFOLIO.kinds;
-const clock = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 const box = document.getElementById("kinds");
 const cols = [0, 1].map(() => box.appendChild(Object.assign(document.createElement("div"), { className: "kcol" })));
 KINDS.forEach((c, i) => {
@@ -394,8 +401,8 @@ KINDS.forEach((c, i) => {
   el.style.setProperty("--k", c.k); el.style.order = i;
   const url = u => u && (u.startsWith("http") ? u : G + u);
   el.innerHTML = `
-    <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true">${IC[c.ico]}</svg></div>
-    <div><h3>${c.name}</h3><p>${c.desc}</p><div class="kmeta">${clock}${c.meta} · ${c.items.length}개</div></div>
+    ${stickerOf(c) ? `<img class="thumb" src="${stickerOf(c)}" alt="" loading="lazy">` : ""}
+    <h3>${c.name}</h3><p>${c.desc}</p><div class="kmeta">${c.meta} · ${c.items.length}개</div>
     <ul>${c.items.map(({ name: n, url: u, desc: d }) => `<li>${u ? `<a href="${url(u)}">${n}</a>` : `<span class="n">${n}</span>`}<em>${d}</em></li>`).join("")}</ul>
     <div class="peek" aria-hidden="true"><b>${c.en}</b>${c.items.slice(0, 3).map(({ name: n, url: u }) => `<i class="${u ? "on" : ""}">${n}</i>`).join("")}</div>`;
   const toggle = e => { if (e.target.closest("a")) return; const o = el.classList.toggle("open"); el.setAttribute("aria-expanded", o); };
