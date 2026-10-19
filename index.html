@@ -390,8 +390,8 @@ render(0);
 /* 종류별 묶음 데이터 — on = 공개되어 바로 볼 수 있음 */
 (() => {
 const G = "https://ljhljh0703-cmd.github.io/";
-/* 칸마다 대표 작품의 인쇄 스티커(카드와 같은 그림). 묶음 안에서 카드로 올라간 첫 작품을 쓰고, 없으면 글만 둔다 */
-const stickerOf = c => { const hit = c.items.map(it => it.url && window.PORTFOLIO.works.find(w => w.url === it.url)).find(Boolean); return hit ? `assets/collage/sticker-${hit.id}.webp` : null; };
+/* 칸마다 대표 작품의 인쇄 스티커(카드와 같은 그림). 묶음 안에서 카드로 올라간 첫 작품을 쓰고, 없으면 묶음에 지정한 스티커(kinds.sticker), 그것도 없으면 글만 둔다 */
+const stickerOf = c => { if (c.sticker) return `assets/collage/sticker-${c.sticker}.webp`; const hit = c.items.map(it => it.url && window.PORTFOLIO.works.find(w => w.url === it.url)).find(Boolean); return hit ? `assets/collage/sticker-${hit.id}.webp` : null; };
 const KINDS = window.PORTFOLIO.kinds;
 const box = document.getElementById("kinds");
 const cols = [0, 1].map(() => box.appendChild(Object.assign(document.createElement("div"), { className: "kcol" })));

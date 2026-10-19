@@ -63,6 +63,8 @@ def main():
     for c in kinds:
         for k in ("ico", "k", "name", "en", "desc", "meta", "items"):
             if not c.get(k): errors.append(f"묶음 {c.get('name')}: {k} 비어 있음")
+        if c.get("sticker") and not (ROOT / "assets/collage" / f"sticker-{c['sticker']}.webp").is_file():
+            errors.append(f"묶음 {c['name']}: 그림 없음 assets/collage/sticker-{c['sticker']}.webp")
         for it in c["items"]:
             if not it.get("name") or not it.get("desc"): errors.append(f"묶음 {c['name']}: 항목 이름·설명 빠짐")
             check_url(it.get("url"), f"묶음 {c['name']} · {it.get('name')}", online)

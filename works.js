@@ -1,6 +1,7 @@
 /* 작품 모음 정본 데이터 — 카드(works)와 종류별 묶음(kinds)은 이 파일만 고치면 페이지에 반영된다.
    url: 이 사이트 안이면 상대 경로, 바깥이면 https 전체 주소, 공개 페이지가 없으면 null.
-   works.id = assets/collage/card-<id>.webp · sticker-<id>.webp 파일 이름과 같아야 한다. 고친 뒤 python3 tools/check.py */
+   works.id = assets/collage/card-<id>.webp · sticker-<id>.webp 파일 이름과 같아야 한다.
+   kinds.sticker(선택) = 카드 작품이 없는 묶음에 붙일 스티커, assets/collage/sticker-<sticker>.webp. 고친 뒤 python3 tools/check.py */
 window.PORTFOLIO = {
   "works": [
     {
@@ -214,6 +215,7 @@ window.PORTFOLIO = {
     },
     {
       "ico": "work",
+      "sticker": "kind-work",
       "k": "#1b1a17",
       "name": "실무 경력",
       "en": "Work",
@@ -239,6 +241,7 @@ window.PORTFOLIO = {
     },
     {
       "ico": "pen",
+      "sticker": "kind-pen",
       "k": "#8a5a2b",
       "name": "창작·글",
       "en": "Writing",
