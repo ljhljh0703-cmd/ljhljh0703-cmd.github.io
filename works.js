@@ -210,7 +210,7 @@ window.PORTFOLIO = {
         {
           "name": "AX 전환",
           "url": "ax-case/",
-          "desc": "인증 사회적기업 · 지금도 쓰는 중"
+          "desc": "인증 사회적기업 · LLM 위키 구축 · AI 직원 8명"
         },
         {
           "name": "트루빈스",

@@ -1,38 +1,45 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AX 전환 | 이주형</title>
-<meta name="description" content="인증 사회적기업의 업무 문서화와 자료 위키를 구축하고 업무에 AI 단계를 넣은 AX 전환 사례. 지금 AI 에이전트가 지원사업 서류, 홍보 문구, 반복 사무에 쓰인다.">
+<meta name="description" content="인증 사회적기업의 흩어진 문서·DB·메일·통화를 LLM 위키 하나로 구축한 AX 전환 사례. 그 위에서 AI 직원 8명이 일하고, 사람 몫으로 남은 티켓은 32%.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap">
 <link rel="stylesheet" href="case/case-paper.css">
 <link rel="stylesheet" href="case/case-easy.css">
 <style>
-/* 이 페이지에만: 그림 없는 첫 화면 */
+/* 이 페이지에만: 그림 없는 첫 화면 · 다섯 단계 연표 · 업무표 */
 .cp-hero.solo{grid-template-columns:minmax(0,1fr)}
-.cp-hero.solo .cp-lead{max-width:44em}
+.cp-hero.solo .cp-lead{max-width:46em}
+.cp-steps.five{grid-template-columns:repeat(5,minmax(0,1fr));gap:30px}
+.cp-steps.five li.mine{background:var(--slip);outline:1.5px solid var(--accent);outline-offset:8px}
+@media(max-width:900px){.cp-steps.five{grid-template-columns:1fr;gap:28px}.cp-steps.five li+li::after{content:none}}
+.ax-table-wrap{overflow-x:auto}
+.ax-table-wrap .cp-table{min-width:720px}
+.ax-table-wrap td:first-child{font-weight:800;white-space:nowrap}
+.ax-table-wrap td:nth-child(2){color:var(--ink-2,#5e5647)}
 </style>
 </head>
 <body class="cp" data-ink="teal">
 <a class="cp-skip" href="#top">본문으로</a>
 <nav class="cp-nav" aria-label="작품 탐색"><div class="cp-shell">
 <a class="cp-back" href="../" data-portfolio-back="12-ax-case">작품 모음으로</a>
-<div class="cp-links"><a class="opt" href="#flow">어떻게 도왔나</a><a href="#result">결과</a><a href="#deep-read">자세히 읽기</a><button type="button" class="easy-open" data-easy-open aria-haspopup="dialog" aria-controls="easy">쉽게 읽기</button></div>
+<div class="cp-links"><a class="opt" href="#flow">바뀐 과정</a><a href="#result">결과</a><a class="opt" href="#work">업무별 변화</a><a href="#deep-read">자세히 읽기</a><button type="button" class="easy-open" data-easy-open aria-haspopup="dialog" aria-controls="easy">쉽게 읽기</button></div>
 </div></nav>
 
 <main class="cp-shell" id="top">
 <header class="cp-hero solo">
 <div>
-<p class="cp-kicker"><b>AX 전환</b>인증 사회적기업 · 2026.07~ · 지금도 쓰는 중</p>
-<h1 class="cp-h1">업무 문서와 자료를 <b>위키</b>로 바꾸고<br>AI 에이전트가 세 업무를 맡게 했습니다</h1>
-<p class="cp-lead">인증 사회적기업 담당자가 가장 버거워한 일은 지원사업·보고 서류, 홍보 문구, 반복 사무였습니다. 업무를 문서로 정리하고 흩어진 자료를 데이터베이스 위키(마크다운·GitHub)로 구축한 뒤, 업무 중간에 AI가 맡는 단계를 넣었습니다. 이 위에서 그 조직이 AI 에이전트를 만들어 세 업무 모두에 쓰고 있습니다.</p>
-<p class="cp-result"><strong>AI 에이전트가 세 업무를 맡음</strong><span>지원사업·보고 서류 · 홍보·마케팅 문구 · 반복 사무·자료 정리 · 담당자가 지금도 사용 · 2026년 10월 기준</span></p>
+<p class="cp-kicker"><b>AX 전환</b>인증 사회적기업 · 공동창업자 3명 · 2026.07~</p>
+<h1 class="cp-h1">흩어진 문서를 <b>LLM 위키</b> 하나로 모은 뒤<br>AI 직원 8명이 일하는 조직이 됐습니다</h1>
+<p class="cp-lead">같은 사실이 노션 DB 200개 넘게, 시트, 메일, 통화에 흩어져 어느 값이 지금 맞는지 알 수 없던 조직입니다. 2026년 8~9월에 노션 DB·메일·통화를 원문 그대로 한 곳의 LLM 위키로 옮겨 AI가 근거로 읽게 구축했습니다. 그 조직은 이 위에서 DB를 원본으로 정하고 지라와 AI 직원 8명을 붙였습니다.</p>
+<p class="cp-result"><strong>사람 몫으로 남은 티켓 32%</strong><span>AI 직원 8명 · 11일 동안 완료 티켓 170개 · 사람이 시키지 않고 시작한 실행 96% · 그 조직이 잰 값, 2026.10.6~16 지라 414개</span></p>
 <dl class="cp-who">
 <div><dt>내가 정한 것</dt><dd>AI를 넣을 업무 고르기, 업무 절차 재설계안, 참고할 사례</dd></div>
-<div><dt>내가 구축한 것</dt><dd>업무 문서화, 자료 데이터베이스 위키(마크다운·GitHub), 업무 중간의 AI 단계</dd></div>
-<div><dt>그 조직이 이어 받은 것</dt><dd>AI 에이전트 구현과 운영(그 조직 개발자)</dd></div>
+<div><dt>내가 구축한 것</dt><dd>업무 문서화, 노션 DB·메일·통화를 원문으로 옮긴 LLM 위키(마크다운·GitHub), 업무 중간의 AI 단계</dd></div>
+<div><dt>그 조직이 이어 만든 것</dt><dd>DB를 원본으로 정리, 지라와 AI 직원 8명, 업무별 자동화</dd></div>
 </dl>
-<p class="cp-meta"><b>이주형</b>AX 전환 · 2026.07~ · 지금은 유지보수를 돕는 중 · 조직 이름과 화면은 싣지 않았습니다</p>
+<p class="cp-meta"><b>이주형</b>AX 전환 · 지금은 유지보수를 돕는 중 · 숫자는 그 조직이 10월 사내 세미나에서 정리한 값 · 조직 이름과 화면은 싣지 않았습니다</p>
 <div class="cp-actions">
 <button type="button" class="easy-hero" data-easy-open aria-haspopup="dialog" aria-controls="easy"><span class="easy-hero-k">처음이라면</span>카드 5장으로 쉽게 읽기</button>
 <a class="cp-btn primary" href="mailto:ljhljh0703@gmail.com">자세한 이야기는 메일로</a>
@@ -41,33 +48,61 @@
 </header>
 
 <section class="cp-section" id="flow" aria-labelledby="flow-h">
-<div class="cp-head"><h2 id="flow-h">어떻게 도왔나</h2><p>담당자 병목 → 그 조직의 AI 에이전트</p></div>
-<ol class="cp-steps">
-<li><h3>병목 고르기</h3><p>담당자가 꼽은 1순위는 지원사업·보고 서류였고, 홍보 문구와 반복 사무가 뒤를 이었습니다.</p></li>
-<li><h3>사례와 방법 건네기</h3><p>참고할 사례를 보여 주고, 기획 의도와 방법을 물어 오면 뜯어 가며 설명했습니다.</p></li>
-<li><h3>문서화와 위키 구축<span class="tag">내가 구축</span></h3><p>업무를 문서로 정리하고, 흩어진 자료를 데이터베이스 위키로 만들어 GitHub에서 관리하게 했습니다.</p></li>
-<li><h3>AI 단계 넣기<span class="tag">내가 구축</span></h3><p>서류, 홍보 문구, 반복 사무의 중간에 AI가 맡는 단계를 넣었고, 그 조직이 이를 AI 에이전트로 이어 만들어 세 업무에 씁니다.</p></li>
+<div class="cp-head"><h2 id="flow-h">문제는 최신성과 정합성이었습니다</h2><p>도구를 세 번 바꾼 끝에 정리</p></div>
+<ol class="cp-steps five">
+<li><h3>노션</h3><p>2020~2025. DB가 200개 넘게 생기고, 같은 이름 복제본이 사회공헌 템플릿 11개, 지원사업 보드 7개. 어느 게 원본인지 모름.</p></li>
+<li><h3>스프레드시트</h3><p>2026.1~7. 기업별 관리 시트가 늘고 「통합 일정 마스터」가 3개 생기기도 함.</p></li>
+<li class="mine"><h3>LLM 위키<span class="tag">내가 구축</span></h3><p>2026.8~9. 문서를 한곳에 모으고, 노션 DB·메일·통화를 원문으로 옮겨 AI가 근거로 읽게 함.</p></li>
+<li><h3>DB가 원본</h3><p>10월 초. 사회공헌·공연 데이터는 DB 하나가 원본, 시트는 보는 화면으로만.</p></li>
+<li><h3>지라 + AI 직원</h3><p>10월 중순. 정한 일은 지라 하나에. AI 직원 8명이 처리하고 결과를 다시 지라에.</p></li>
 </ol>
 </section>
 
 <section class="cp-section" id="result" aria-labelledby="result-h">
-<div class="cp-head"><h2 id="result-h">결과</h2><p>2026년 10월 기준</p></div>
+<div class="cp-head"><h2 id="result-h">결과</h2><p>지라 414개 · 2026.10.6~16 · 그 조직이 잰 값</p></div>
 <div class="cp-stats">
-<div><b>3개 업무</b><span>AI 에이전트가 맡는 일: 지원사업·보고 서류, 홍보·마케팅 문구, 반복 사무·자료 정리</span></div>
-<div><b>사용 중</b><span>담당자가 지금도 직접 쓰고, 저는 유지보수를 돕습니다</span></div>
-<div><b>출판사 2곳</b><span>같은 방식으로 가진 자료를 마크다운 자산으로 정리</span></div>
+<div><b>32%</b><span>사람 몫으로 남은 티켓 (결정·승인·외근·발송)</span></div>
+<div><b>170개</b><span>11일 동안 완료한 티켓, 모두 AI가 상태를 옮김</span></div>
+<div><b>96%</b><span>사람이 시키지 않았는데 시작한 실행 (2,479번 중 2,378번)</span></div>
+<div><b>1/3</b><span>반복 업무 한 번 돌린 뒤 다음 공연 티켓 (42건 → 10~14건)</span></div>
 </div>
+<p class="cp-note">사람 기준으로 바꾸면 하루 8시간 기준 약 3명분이라고 그 조직이 계산했지만, 사람 시간을 일부만 재 두어 오차가 큽니다.</p>
+</section>
+
+<section class="cp-section" id="work" aria-labelledby="work-h">
+<div class="cp-head"><h2 id="work-h">업무별로 바뀐 것</h2><p>9월 초 → 10월 중순, 실제 운영 중</p></div>
+<div class="ax-table-wrap">
+<table class="cp-table">
+<thead><tr><th>업무</th><th>전</th><th>후</th><th>사람이 하는 일</th></tr></thead>
+<tbody>
+<tr><td>회의 녹음</td><td>녹음만 남고 회의록은 사람이 직접 씀</td><td>새 녹음 받아쓰기·화자 구분 → 회의록 초안 → 할 일은 지라 티켓으로</td><td>초안 검토</td></tr>
+<tr><td>업무 통화</td><td>통화 내용은 기억과 메모에만</td><td>통화별 받아쓰기 원문이 거래처별로 모임(378건)</td><td>통화만 하면 됨</td></tr>
+<tr><td>업무 메일</td><td>4개 계정 메일함을 각자 확인</td><td>20분마다 수집 → 위키 원문 → AI가 담당에게 분배</td><td>분배 결과 확인</td></tr>
+<tr><td>공연 판매</td><td>판매 사이트마다 로그인해 예약 확인</td><td>예약을 ERP로 자동 수집</td><td>판매 오픈 결정</td></tr>
+<tr><td>세금계산서</td><td>정산 메일을 읽고 금액을 맞춰 직접 발급</td><td>발급할지 판단 → 모자란 자료 재요청 초안 → 발급·입금 자동 매칭</td><td>재요청 메일 보내기, 발급 승인</td></tr>
+<tr><td>일감 나누기</td><td>회의에서 각자 가져감, 담당·기한이 안 남음</td><td>글·메일·녹음에서 정한 일을 AI가 지라 티켓으로(1주 562번)</td><td>기한·우선순위 조정</td></tr>
+<tr><td>열린 티켓 정리</td><td>끝난 일도 열린 채로 남음</td><td>밤사이 열린 티켓 213건을 메일·녹음·DB와 대조해 끝난 건 닫음</td><td>없음</td></tr>
+<tr><td>자막 감수</td><td>감수자가 한 줄씩 검토</td><td>자막을 구간으로 나눠 감수, 고칠 줄과 수정안만 냄(672줄 1회)</td><td>최종 확인</td></tr>
+</tbody>
+</table>
+</div>
+<p class="cp-note">표의 자동화는 그 조직이 만들었습니다. 메일·통화·녹음 원문이 모이는 곳이 제가 구축한 위키입니다.</p>
 </section>
 
 <section class="cp-section" id="deep-read" aria-labelledby="deep-h">
 <div class="cp-head"><h2 id="deep-h">궁금한 부분을 더 자세히</h2><button type="button" class="cp-expand" data-expand-all>모두 펼치기</button></div>
 <details class="cp-detail" id="scope"><summary><div><b>내가 구축한 것과 그 조직이 이어 만든 것</b><span>넘겨 준 방식</span></div></summary>
 <div class="cp-body">
-<p>제가 구축한 것은 업무 문서, 자료 데이터베이스 위키(마크다운·GitHub 관리), 업무 중간의 AI 단계입니다. 그 조직 개발자가 이 위에서 AI 에이전트를 구현해 운영하고, 담당자는 기획 의도와 방법을 물어 가며 직접 씁니다.</p>
+<p>제가 구축한 것은 업무 문서, 노션 DB·메일·통화를 원문으로 옮긴 LLM 위키(마크다운·GitHub 관리), 업무 중간의 AI 단계입니다. 그 조직은 이 위에서 DB를 원본으로 정리하고, 지라와 AI 직원 8명, 업무별 자동화를 만들어 운영합니다.</p>
+</div></details>
+<details class="cp-detail" id="repeat"><summary><div><b>반복 업무가 줄어든 모양</b><span>첫 공연 42건 → 이후 10~14건</span></div></summary>
+<div class="cp-body">
+<p>같은 일을 공연·기업마다 되풀이할수록 사람이 일을 시작하기 전의 허들이 컸습니다. 공연 번역·다국어 표기 27건, 소싱 회신 추적 20건, 기업 제안·견적 17건 같은 일입니다.</p>
+<p>첫 공연 오픈은 티켓 42건이었고, 그때 만든 번역 스킬과 상품 요약 틀을 쓴 다음 공연들은 10~14건이었습니다. 사람에게는 결정, 승인, 현장, 대외 발송이 남았습니다.</p>
 </div></details>
 <details class="cp-detail" id="others"><summary><div><b>같은 방식으로 도운 곳</b><span>출판사 두 곳</span></div></summary>
 <div class="cp-body">
-<p>제가 책을 낸 출판사 두 곳에는 가진 자료를 마크다운 자산으로 정리해 드렸습니다.</p>
+<p>제가 책을 낸 출판사 두 곳에도 가진 자료를 마크다운 자산으로 정리해 드렸습니다.</p>
 </div></details>
 </section>
 
@@ -79,23 +114,24 @@
 <div class="easy-top"><button type="button" class="easy-close" data-easy-close>원래대로 읽기</button><span class="easy-who">이주형 · AX 전환</span></div>
 <header class="easy-head">
 <div>
-<h2 id="easy-title" class="ez-h"><span class="ez-strip">문서와 자료를</span><br><span class="ez-strip accent">위키</span><span class="ez-strip">로</span></h2>
-<p class="ez-lede">인증 사회적기업의 업무 문서와 자료 위키를 구축하고 업무에 AI 단계를 넣었습니다. 지금 AI 에이전트가 서류, 홍보 문구, 반복 사무를 맡습니다.</p>
+<h2 id="easy-title" class="ez-h"><span class="ez-strip">흩어진 문서를</span><br><span class="ez-strip accent">LLM 위키</span><span class="ez-strip">하나로</span></h2>
+<p class="ez-lede">인증 사회적기업의 노션 DB·메일·통화를 한 곳의 위키로 구축했고, 그 위에서 AI 직원 8명이 일합니다.</p>
 <div class="ez-play"><a class="ez-btn main" href="mailto:ljhljh0703@gmail.com">메일 보내기</a></div>
 </div>
 </header>
 <div class="ez-grid">
-<section class="ez-card wide" style="--tilt:-.6deg"><span class="ez-tag">01 어떻게 도왔나</span>
-<ol class="ez-flow"><li>병목 고르기</li><li>사례와 방법 건네기</li><li class="mine">문서화·위키 구축<b>내가 구축</b></li><li class="mine">AI 단계 넣기<b>내가 구축</b></li></ol></section>
-<section class="ez-card kraft" style="--tilt:.8deg"><span class="ez-tag">02 담당자 병목</span>
-<ul class="ez-list"><li>지원사업·보고 서류</li><li>홍보·마케팅 문구</li><li>반복 사무·자료 정리</li></ul></section>
-<section class="ez-card accent" style="--tilt:-.9deg"><span class="ez-tag">03 내 몫</span>
-<ul class="ez-list"><li>AI를 넣을 업무 고르기</li><li>업무 절차 재설계안</li><li>업무 문서화</li><li>자료 데이터베이스 위키</li><li>업무 중간의 AI 단계</li></ul></section>
-<section class="ez-card wide" style="--tilt:.4deg"><span class="ez-tag">04 결과</span><span class="ez-stamp">사용 중</span>
-<p class="ez-band">AI 에이전트가 <b>세 업무</b>를 맡습니다</p>
-<p class="ez-small">지원사업·보고 서류 · 홍보 문구 · 반복 사무</p></section>
-<section class="ez-card wide ez-row" style="--tilt:-.5deg"><span class="ez-tag">05 같은 방식으로</span>
-<p>출판사 두 곳에도 가진 자료를 마크다운 자산으로 정리해 드렸습니다.</p></section>
+<section class="ez-card wide" style="--tilt:-.6deg"><span class="ez-tag">01 바뀐 과정</span>
+<ol class="ez-flow"><li>노션 DB 200개+</li><li>스프레드시트</li><li class="mine">LLM 위키<b>내가 구축</b></li><li>DB가 원본</li><li>지라 + AI 직원 8명</li></ol></section>
+<section class="ez-card kraft" style="--tilt:.8deg"><span class="ez-tag">02 진짜 문제</span>
+<p class="ez-old">도구가 모자람</p><p class="ez-down" aria-hidden="true">↓</p>
+<p class="ez-new">어느 값이 지금 맞는지 모름</p></section>
+<section class="ez-card accent" style="--tilt:-.9deg"><span class="ez-tag">03 내가 구축한 것</span>
+<ul class="ez-list"><li>업무 문서화</li><li>DB·메일·통화 원문 위키</li><li>업무 중간의 AI 단계</li></ul></section>
+<section class="ez-card wide" style="--tilt:.4deg"><span class="ez-tag">04 결과</span><span class="ez-stamp">32%</span>
+<p class="ez-band">사람 몫으로 남은 티켓 <b>32%</b></p>
+<p class="ez-small">11일 동안 완료 170개 · 시키지 않고 시작한 실행 96% · 그 조직이 잰 값</p></section>
+<section class="ez-card wide ez-row" style="--tilt:-.5deg"><span class="ez-tag">05 사람에게 남은 일</span>
+<p>결정, 승인, 현장, 대외 발송. 반복 업무는 한 번 돌린 뒤 1/3로 줄었습니다.</p></section>
 </div>
 <div class="easy-foot"><p>조직 이름과 화면은 싣지 않았습니다.</p><button type="button" class="ez-btn" data-easy-close>원래대로 읽기</button></div>
 </dialog>
