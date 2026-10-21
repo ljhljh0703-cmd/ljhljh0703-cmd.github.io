@@ -50,6 +50,14 @@ window.PORTFOLIO = {
       "stage": "플레이 가능 · Android",
       "url": "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html",
       "ink": "#c0412a"
+    },
+    {
+      "id": "13-penelope",
+      "name": "Penelope",
+      "line": "이야기가 무너지는 조건을 정하고, 그 조건을 규칙과 시험으로 옮긴 이야기 세계 엔진",
+      "stage": "공개 라이브 데모 · OpenAI Build Week 제출",
+      "url": "penelope/",
+      "ink": "#4b4ad1"
     }
   ],
   "kinds": [
