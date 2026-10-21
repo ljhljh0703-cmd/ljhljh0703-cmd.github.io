@@ -278,7 +278,7 @@
       "when": "2026.07",
       "name": "카투사 해커톤 · 투자 에이전트 안전 기준",
       "kind": "대회",
-      "role": "제출",
+      "role": "참가",
       "stage": "제출",
       "url": "https://github.com/ljhljh0703-cmd/katousa-agent-harness"
     },
@@ -347,7 +347,7 @@
       "url": "hyunsoo-bot/portfolio.html"
     },
     {
-      "when": "2026.05~",
+      "when": "2026",
       "name": "회귀자는 탑을 오른다",
       "kind": "게임",
       "role": "개인",
