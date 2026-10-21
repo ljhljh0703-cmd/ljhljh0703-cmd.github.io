@@ -208,7 +208,7 @@ window.PORTFOLIO = {
           "desc": "AI 엔지니어 인턴 · 기획 문서 탐색 AI 스킬 · 재직 중"
         },
         {
-          "name": "AX 전환 코칭",
+          "name": "AX 전환",
           "url": "ax-case/",
           "desc": "인증 사회적기업 · 지금도 쓰는 중"
         },
