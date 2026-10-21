@@ -180,7 +180,7 @@ window.PORTFOLIO = {
         },
         {
           "name": "Vibe Design Studio",
-          "url": "VDS/",
+          "url": "VDS/case.html",
           "desc": "바이브 코더용 디자인 시스템"
         },
         {
