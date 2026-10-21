@@ -23,7 +23,7 @@ window.PORTFOLIO = {
     {
       "id": "01-bookemon",
       "name": "북켓몬",
-      "line": "질문과 취향을 반영해 책을 추천하고, 독서 기록과 캐릭터 성장을 연결한 서비스",
+      "line": "질문과 취향으로 책을 추천하고, 부적합 추천을 15.56%에서 2.22%로 줄인 서비스",
       "stage": "데모 · 오프라인 평가 완료",
       "url": "AI-Book-Curation/portfolio.html",
       "ink": "#4b4ad1",
