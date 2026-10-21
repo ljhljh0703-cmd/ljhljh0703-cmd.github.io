@@ -23,15 +23,15 @@ window.PORTFOLIO = {
     {
       "id": "01-bookemon",
       "name": "북켓몬",
-      "line": "질문과 취향으로 책을 추천하고, 부적합 추천을 15.56%에서 2.22%로 줄인 서비스",
+      "line": "18개 질의 오프라인 평가에서 필터 규칙으로 부적합 추천을 15.56%에서 2.22%로 줄인 도서 추천 서비스",
       "stage": "데모 · 오프라인 평가 완료",
       "url": "AI-Book-Curation/portfolio.html",
       "ink": "#4b4ad1",
-      "role": "팀장 · 기획 리드 · AI 추천 설계·평가",
+      "role": "팀 프로젝트 · 팀장 · 기획 리드 · AI 추천 설계·평가",
       "flow": [
         "질문 입력",
         "후보 검색",
-        "추천 조정",
+        "순위 조정",
         "책 선택"
       ]
     },
@@ -136,7 +136,7 @@ window.PORTFOLIO = {
         {
           "name": "북켓몬",
           "url": "AI-Book-Curation/portfolio.html",
-          "desc": "AI 도서 큐레이션"
+          "desc": "AI 도서 추천"
         },
         {
           "name": "알려줄고양",
