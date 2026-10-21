@@ -183,8 +183,8 @@ window.PORTFOLIO = {
         },
         {
           "name": "OpenAI Build Week",
-          "url": null,
-          "desc": "Penelope · 제출"
+          "url": "penelope/",
+          "desc": "Penelope · 이야기 세계 엔진 · 제출"
         },
         {
           "name": "SKT 모두의 promp.T",

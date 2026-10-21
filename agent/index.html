@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="../assets/view.css">
 </head>
 <body class="v" data-view="agent">
-<nav class="v-nav" aria-label="직무별 보기"><a href="../">작품 모음 처음</a><a href="../platform/">플랫폼 · 서버 프로그래밍</a><a href="../ai/">AI 엔지니어</a><a href="../fde/">현장 AI 배치 (FDE)</a><a href="../game/">게임 개발</a><a href="../agent/" aria-current="page">AI 에이전트 · 자동화</a><a href="../all/">전체 목록</a></nav>
+<nav class="v-nav" aria-label="직무별 보기"><a href="../">작품 모음 처음</a><a href="../platform/">플랫폼 · 서버 프로그래밍</a><a href="../ai/">AI 엔지니어</a><a href="../fde/">현장 AI 배치 (FDE)</a><a href="../game/">게임 개발</a><a href="../agent/" aria-current="page">AI 에이전트 · 자동화</a><a href="../story/">AI 스토리텔링 · 캐릭터 챗</a><a href="../all/">전체 목록</a></nav>
 <main class="v-sheet">
 <header class="v-head">
   <p class="v-name">이주형</p>
@@ -39,18 +39,17 @@
     <p class="v-links"><a class="go" href="../game-ops/">사례 보기</a><a href="https://github.com/ljhljh0703-cmd/game-ops-platform">코드</a></p>
   </div>
 </article>
-<article class="v-item" id="agentforge">
+<article class="v-item" id="penelope">
   <div class="v-body">
-    <h2>Agent Forge</h2>
-    <p class="v-kind">개인<span>작동 프로토타입</span></p>
-    <p class="v-problem">아이디어 한 줄로 기획서·그림·게임 코드·검사가 차례로 도는 파이프라인입니다. 만든 게임을 화면 없는 브라우저에서 직접 조작해 검사합니다.</p>
-    <p class="v-result">멈춘 가짜 게임 3번 중 3번 차단 (플레이 검사를 넣은 뒤 생성 3회)</p>
+    <h2>Penelope · 이야기 세계 엔진</h2>
+    <p class="v-kind">개인 · OpenAI Build Week 제출 · 2026.07<span>공개 라이브 데모</span></p>
+    <p class="v-problem">AI가 쓴 문장은 매끄러워도 이야기를 깰 수 있습니다. 비밀이 엉뚱한 인물에게 새고, 앞서 고른 선택의 대가가 사라집니다. 이야기 세계의 설정표를 문장과 따로 두고, 선택이 들어오면 세계 상태를 먼저 계산한 뒤 문장을 쓰게 했습니다.</p>
+    <p class="v-result">자동 시험 893개 모두 통과 (108개 파일 · 인물별 지식 시험 7개 · 창작자 판정 시험 21개 포함)</p>
     <dl class="v-who">
-      <div><dt>내가 정한 것</dt><dd>통과 기준(움직임·점수 변화·승패 도달), 엔진이 할 수 있는 것 14가지와 못 하는 것 12가지</dd></div>
-      <div><dt>AI가 짠 것</dt><dd>생성 6회의 기획서·캐릭터 그림·게임 코드</dd></div>
-      <div><dt>내가 확인한 것</dt><dd>일부러 멈춘 가짜 게임을 매 생성에 넣어 검사기가 거르는지 시험</dd></div>
+      <div><dt>내가 정한 것</dt><dd>이야기가 무너지는 네 조건, 선택의 결과로 이야기를 움직이는 원칙, 세계를 통제하는 규칙, 문장 판단 기준, 최종 범위</dd></div>
+      <div><dt>AI가 짠 것</dt><dd>Codex가 그 판단을 규칙 코드, 화면, 자동 시험, 배포 전 검사로 구현</dd></div>
     </dl>
-    <p class="v-links"><a class="go" href="../agent-forge/portfolio.html">사례 보기</a><a href="https://github.com/ljhljh0703-cmd/agent-forge">코드</a></p>
+    <p class="v-links"><a class="go" href="../penelope/">사례 보기</a><a href="https://penelope-ontology.vercel.app">라이브 데모</a><a href="https://github.com/ljhljh0703-cmd/penelope-ontology">코드</a></p>
   </div>
 </article>
 <article class="v-item" id="cofathon">

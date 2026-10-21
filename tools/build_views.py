@@ -59,7 +59,7 @@ def item_block(key, n):
     it = ITEMS[key]
     links = []
     if it.get("url"): links.append(f'<a class="go" href="{e(link(it["url"]))}">사례 보기</a>')
-    if it.get("play"): links.append(f'<a href="{e(it["play"])}">바로 플레이</a>')
+    if it.get("play"): links.append(f'<a href="{e(it["play"])}">{e(it.get("play_label", "바로 플레이"))}</a>')
     if it.get("repo"): links.append(f'<a href="{e(it["repo"])}">코드</a>')
     second = ("AI가 짠 것", it["ai"]) if it.get("ai") else ("팀원이 맡은 것", it["team"]) if it.get("team") else None
     rows = it.get("who") or [["내가 정한 것", it["decided"]]] + ([list(second)] if second else []) + [["내가 확인한 것", it["checked"]]]
@@ -85,7 +85,7 @@ def view_page(key, v):
 {nav(key)}
 <main class="v-sheet">
 {person_block(v['lead'])}
-<p class="v-intro">{e(P['intro'])}</p>
+<p class="v-intro">{e(v.get('intro', P['intro']))}</p>
 <section class="v-list" aria-label="대표 작업">
 {items}
 </section>
