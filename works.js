@@ -7,7 +7,7 @@ window.PORTFOLIO = {
     {
       "id": "08-cofathon",
       "name": "Cofathon 2026",
-      "line": "비개발자 담당자에게 받은 판단 기준을 4시간 만에 코드가 검사하게 만든 인터뷰 연습 도구",
+      "line": "판정 기준을 비개발자 담당자가 직접 고치게 만든 AI 연습 도구",
       "stage": "최우수 수상 · 개인 참가",
       "url": "cofathon/",
       "ink": "#c0412a"
@@ -15,7 +15,7 @@ window.PORTFOLIO = {
     {
       "id": "10-game-ops",
       "name": "게임 운영 플랫폼",
-      "line": "직접 만든 게임의 디스코드 버그 제보를 분류해 깃허브 이슈로 넘기고, 고친 PR이 합쳐지면 제보자에게 답장까지 보내는 서버",
+      "line": "플레이어 제보가 그대로 개발 지시서가 되는 라이브 운영 자동화",
       "stage": "작동 데모 · 개인",
       "url": "game-ops/",
       "ink": "#207878"
@@ -23,7 +23,7 @@ window.PORTFOLIO = {
     {
       "id": "01-bookemon",
       "name": "북켓몬",
-      "line": "18개 질의 오프라인 평가에서 순위 규칙으로 부적합 추천을 15.56%에서 2.22%로 줄인 도서 추천 서비스",
+      "line": "질문의 뜻에 맞는 책만 위로 올려 엉뚱한 추천을 줄인 도서 검색·추천",
       "stage": "데모 · 오프라인 평가 완료",
       "url": "AI-Book-Curation/portfolio.html",
       "ink": "#4b4ad1",
@@ -38,7 +38,7 @@ window.PORTFOLIO = {
     {
       "id": "09-jelly-panic",
       "name": "지켜줘! 젤리 패닉",
-      "line": "피할 수 없는 위협이 한 판도 안 나오는지 500판을 돌려 확인한 수읽기 퍼즐 디펜스",
+      "line": "재미 규칙을 먼저 정하고, 무작위 500판으로 그 규칙을 증명한 수읽기 퍼즐 디펜스",
       "stage": "웹에서 바로 플레이",
       "url": "jelly-panic-case/",
       "ink": "#207878"
@@ -46,7 +46,7 @@ window.PORTFOLIO = {
     {
       "id": "07-hwigi-tower",
       "name": "회귀자는 탑을 오른다",
-      "line": "죽어도 끝나지 않는 탑, 동료 AI와 함께 오르는 로그라이크",
+      "line": "강화학습 AI가 플레이어보다 먼저 전투의 밸런스 빈틈을 찾고, 그 답을 동료의 행동 규칙으로 옮긴 로그라이크",
       "stage": "플레이 가능 · Android",
       "url": "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html",
       "ink": "#c0412a"

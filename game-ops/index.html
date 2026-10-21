@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>게임 운영 플랫폼 | 이주형</title>
-<meta name="description" content="젤리 패닉 · 보석타워 · 무브퓨의 디스코드 버그 제보를 분류하고 묶어 슬랙에 올리고, 개발 지시서와 고친 PR을 거쳐 제보자 답장까지 잇는 운영 도구.">
+<meta name="description" content="디스코드 버그 제보를 분류하고 묶어, 버튼 하나로 게임 저장소의 개발 지시서로 만드는 라이브 운영 자동화. 고친 코드가 합쳐지면 해결로 바뀌고 제보자에게 답장이 갑니다. 실제 플레이어 제보 6건 → 개발 지시서 1건.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap">
@@ -40,15 +40,15 @@
 <a class="cp-skip" href="#top">본문으로</a>
 <nav class="cp-nav" aria-label="작품 탐색"><div class="cp-shell">
 <a class="cp-back" href="../" data-portfolio-back="10-game-ops">작품 모음으로</a>
-<div class="cp-links"><a class="opt" href="#flow">흐름</a><a href="#result">결과</a><a href="#deep-read">자세히 읽기</a><button type="button" class="easy-open" data-easy-open aria-haspopup="dialog" aria-controls="easy">쉽게 읽기</button></div>
+<div class="cp-links"><a class="opt" href="#flow">흐름</a><a href="#fit">운영팀에서</a><a href="#result">결과</a><a href="#deep-read">자세히 읽기</a><button type="button" class="easy-open" data-easy-open aria-haspopup="dialog" aria-controls="easy">쉽게 읽기</button></div>
 </div></nav>
 
 <main class="cp-shell" id="top">
 <header class="cp-hero">
 <div>
-<p class="cp-kicker"><b>게임 운영 플랫폼</b>버그 제보 처리 도구 · 1인 개발</p>
-<h1 class="cp-h1">디스코드 버그 제보를<br>바로 고칠 수 있는 <b>티켓</b>으로</h1>
-<p class="cp-lead">젤리 패닉 · 보석타워 · 무브퓨 세 게임의 디스코드 버그 제보를 서버 한 대가 받아 분류하고, 같은 문제끼리 묶어 게임별 슬랙 채널에 올립니다. 개발 AI에게 넘길지와 고친 코드를 합칠지는 사람이 정하고, 코드가 합쳐지면 제보한 플레이어에게 답장이 갑니다.</p>
+<p class="cp-kicker"><b>게임 운영 플랫폼</b>라이브 운영 자동화 · 1인 개발</p>
+<h1 class="cp-h1">플레이어 제보가 그대로<br><b>개발 지시서</b>가 됩니다</h1>
+<p class="cp-lead">디스코드에 흩어진 버그 제보를 서버가 분류하고 같은 문제끼리 묶은 뒤, 슬랙 버튼 하나로 게임 저장소에 개발 지시서를 만듭니다. 지시서에는 한 줄 요약, 고칠 것(급하고 제보가 많은 것부터), 이슈마다 플레이어 글 세 개, 완료 기준이 들어갑니다. 고친 코드가 합쳐지면 운영 이슈가 해결로 바뀌고 제보한 플레이어에게 답장이 갑니다. 젤리 패닉 · 보석타워 · 무브퓨 세 게임을 서버 한 대로 돌립니다.</p>
 <p class="cp-result"><strong>실제 플레이어 제보 6건 → 개발 지시서 1건</strong><span>보석타워 · 2026-10-21 · 깃허브 이슈 1건으로 넘긴 뒤, 고친 PR을 합치자 운영 이슈가 해결로 바뀌고 디스코드 답장이 가는 것까지 확인</span></p>
 <p class="cp-mine"><span>내 몫</span>기획 · 설계 판단 · 검증 (코드는 AI 코딩 에이전트가 작성)</p>
 <dl class="cp-who">
@@ -73,7 +73,7 @@
 </section>
 
 <section class="cp-section" id="flow" aria-labelledby="flow-h">
-<div class="cp-head"><h2 id="flow-h">제보가 답장이 되기까지</h2><p>일곱 단계 · 사람이 정하는 곳 두 군데</p></div>
+<div class="cp-head"><h2 id="flow-h">제보가 지시서와 답장이 되기까지</h2><p>일곱 단계 · 사람이 정하는 곳 두 군데</p></div>
 <ol class="cp-flow">
 <li><h3>디스코드 제보</h3><p>게임별 채널 글이나 /report. 같은 메시지는 한 번만 저장합니다.</p><span class="who">플레이어</span></li>
 <li><h3>분류 · 묶기</h3><p>제보 종류를 나누고, 비슷한 제보는 이슈 하나로 묶습니다.</p><span class="who">서버</span></li>
@@ -84,6 +84,16 @@
 <li><h3>해결 · 답장</h3><p>서버가 20초마다 합쳐진 PR을 읽어 해결로 바꾸고 제보자에게 「고쳤어요」.</p><span class="who">서버</span></li>
 </ol>
 <p class="cp-note">QA가 있는 팀을 위해 6과 7 사이에 「QA 확인 대기」를 두는 설정도 만들었습니다(사람 ③ 고쳐졌는지). 이 단계와 Jira 버그 티켓 연결은 시험으로만 확인했습니다.</p>
+</section>
+
+<section class="cp-section" id="fit" aria-labelledby="fit-h">
+<div class="cp-head"><h2 id="fit-h">게임사 운영팀에 붙인다면</h2><p>이 도구가 맡을 수 있는 일</p></div>
+<div class="cp-three">
+<div class="cp-card"><span class="k">라이브 운영</span><h4>제보 정리를 서버가 맡습니다</h4><p>디스코드 제보를 종류별로 나누고 같은 문제끼리 묶어 게임별 슬랙 채널에 올립니다. 제보 수 · 심각도 · 상태는 서버 기록에서 채웁니다.</p></div>
+<div class="cp-card"><span class="k">개발팀</span><h4>개발 AI가 바로 읽는 지시서</h4><p>지시서에는 한 줄 요약, 고칠 것, 완료 기준이 들어갑니다. 게임 폴더의 개발 AI에게 「넘어온 피드백 처리해」라고 하면 재현 · 계획 · 사람 확인을 거쳐 고칩니다.</p></div>
+<div class="cp-card"><span class="k">QA</span><h4>QA가 먼저 묻는 네 가지를 미리 받습니다</h4><p>버전 · 기기 · 재현 방법 · 스크린샷을 제보와 함께 받고, 빠진 것만 접수 답장에서 다시 묻습니다. QA 확인 단계와 Jira 버그 티켓도 붙일 수 있습니다(시험으로만 확인).</p></div>
+</div>
+<p class="cp-note">실제 게임사 팀이 써 본 적은 아직 없고, 제보가 몰리는 상황도 아직 겪지 않았습니다.</p>
 </section>
 
 <section class="cp-section" id="split" aria-labelledby="split-h">
@@ -222,20 +232,19 @@
 <div class="easy-top"><button type="button" class="easy-close" data-easy-close>원래대로 읽기</button><span class="easy-who">이주형 · 게임 운영 플랫폼</span></div>
 <header class="easy-head">
 <div>
-<h2 id="easy-title" class="ez-h"><span class="ez-strip">디스코드 버그 제보를</span><br><span class="ez-strip">고칠 수 있는</span><span class="ez-strip accent">티켓으로</span></h2>
-<p class="ez-lede">세 게임의 디스코드 버그 제보를 서버가 분류하고 묶어 슬랙에 올립니다. 개발 AI에게 넘길지, 고친 코드를 합칠지는 사람이 정합니다.</p>
+<h2 id="easy-title" class="ez-h"><span class="ez-strip">플레이어 제보가</span><br><span class="ez-strip">그대로</span><span class="ez-strip accent">개발 지시서로</span></h2>
+<p class="ez-lede">세 게임의 디스코드 버그 제보를 서버가 분류하고 묶은 뒤, 버튼 하나로 게임 저장소에 개발 지시서를 만듭니다. 고친 코드가 합쳐지면 제보한 플레이어에게 답장이 갑니다.</p>
 <div class="ez-play"><a class="ez-btn main" href="https://github.com/ljhljh0703-cmd/game-ops-platform" target="_blank" rel="noopener noreferrer">저장소 보기</a><a class="ez-btn" href="../" data-portfolio-back="10-game-ops">작품 모음으로</a></div>
 </div>
 <figure class="ez-obj"><img src="case/sticker-game-ops.webp" alt="" width="699" height="720"></figure>
 </header>
 <div class="ez-grid">
-<section class="ez-card wide" style="--tilt:-.6deg"><span class="ez-tag">01 제보가 답장이 되기까지</span>
+<section class="ez-card wide" style="--tilt:-.6deg"><span class="ez-tag">01 제보가 지시서가 되기까지</span>
 <ol class="ez-flow"><li>디스코드 제보</li><li>슬랙 카드와 보고서</li><li class="mine">개발 지시서<b>넘길지</b></li><li class="mine">합치기 · 답장<b>합칠지</b></li></ol>
 <p class="ez-small">게임 3개를 서버 한 대로 · 자세한 일곱 단계는 원래 페이지에 있습니다</p></section>
-<section class="ez-card kraft" style="--tilt:.8deg"><span class="ez-tag">02 바꾼 것</span>
-<p class="ez-old">사람이 슬랙에서 [해결]을 누름</p><p class="ez-down" aria-hidden="true">↓</p>
-<p class="ez-new">고친 PR이 합쳐지면 해결, 제보자에게 답장</p>
-<p class="ez-small">시연 흐름을 따라가다 고치기 전에 해결을 누를 수 있는 구멍을 찾았습니다.</p></section>
+<section class="ez-card kraft" style="--tilt:.8deg"><span class="ez-tag">02 지시서에 들어가는 것</span>
+<ul class="ez-list"><li>한 줄 요약</li><li>고칠 것 · 급하고 제보 많은 것부터</li><li>이슈마다 플레이어 글 세 개</li><li>완료 기준</li></ul>
+<p class="ez-small">고친 PR이 합쳐지면 해결로 바뀌고 제보자에게 답장이 갑니다.</p></section>
 <section class="ez-card accent" style="--tilt:-.9deg"><span class="ez-tag">03 내가 맡은 것</span>
 <ul class="ez-list"><li>문제 정의와 흐름 설계</li><li>설계 결정 고르기</li><li>평가 문장과 합격선</li><li>실제 디스코드 · 슬랙 · 깃허브 시험</li></ul>
 <p class="ez-small">코드는 AI 코딩 에이전트(Claude)가 짰습니다.</p></section>

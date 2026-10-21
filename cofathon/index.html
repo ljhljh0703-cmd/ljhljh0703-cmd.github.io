@@ -4,10 +4,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>담당자의 기준을 코드가 검사하게 만들었습니다 · 이주형</title>
-<meta name="description" content="Cofathon 2026 최우수 수상 — 4시간 안에 비개발자 담당자를 인터뷰해 만든 선수 인터뷰 연습 도구">
-<meta property="og:title" content="담당자의 기준을 코드가 검사하게 만들었습니다 · 이주형">
-<meta property="og:description" content="Cofathon 2026 최우수 수상 — 4시간 안에 비개발자 담당자를 인터뷰해 만든 선수 인터뷰 연습 도구">
+<title>판정 기준을 담당자가 직접 고치는 AI · 이주형</title>
+<meta name="description" content="판정 기준 네 가지를 비개발자 현업 담당자가 직접 고치는 파일로 뺀 AI 연습 도구. 답변 속 문장을 인용하지 못한 지적은 화면에 내보내지 않습니다. Cofathon 2026 KRAFTON FDE 트랙 최우수 수상.">
+<meta property="og:title" content="판정 기준을 담당자가 직접 고치는 AI · 이주형">
+<meta property="og:description" content="판정 기준 네 가지를 비개발자 현업 담당자가 직접 고치는 파일로 뺀 AI 연습 도구. 답변 속 문장을 인용하지 못한 지적은 화면에 내보내지 않습니다. Cofathon 2026 KRAFTON FDE 트랙 최우수 수상.">
 <meta property="og:type" content="article">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,6 +103,13 @@
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .chip { padding: 4px 11px; font-size: 13.5px; font-weight: 700; color: var(--ink); background: url(assets/collage/paper-kraft.jpg) center/100px; transform: rotate(var(--cr, -1deg)); }
 
+  .c-fit { grid-column: 1 / span 12; }
+  .fit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 4px; }
+  .fit-grid > div { padding: 16px 18px; background: url(assets/collage/paper-cream.jpg) center/220px; color: var(--ink); clip-path: polygon(0 4%, 50% 0, 100% 3%, 99% 96%, 45% 100%, 1% 97%); }
+  .fit-grid h3 { font-size: 17px; font-weight: 800; line-height: 1.45; margin-bottom: 6px; }
+  .fit-grid p { font-size: 15px; line-height: 1.6; }
+  .fit-grid .k { display: inline-block; margin-bottom: 6px; font: 14px/1 "Black Han Sans", sans-serif; letter-spacing: .04em; color: var(--red); }
+
   .x { font-size: 17px; text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 3px; opacity: .65; }
   .arrow { display: block; margin: 8px 0; font: 26px/1 "Black Han Sans", sans-serif; color: var(--red); }
   .big { font: 800 21px/1.5 "Pretendard", sans-serif; }
@@ -147,7 +154,7 @@
     .hero-obj { width: min(300px, 78vw); order: -1; margin-bottom: -10px; }
     main { grid-template-columns: 1fr; gap: 46px; margin-top: 46px; }
     main > * { grid-column: 1 / -1 !important; }
-    .out-grid { grid-template-columns: 1fr; }
+    .out-grid, .fit-grid { grid-template-columns: 1fr; }
     .out-arrow { transform: rotate(90deg); justify-self: center; }
     .cuts li { flex-direction: column; gap: 2px; }
     .cuts .what { white-space: normal; }
@@ -170,17 +177,17 @@
 
 <div class="top">
   <a class="back" href="https://ljhljh0703-cmd.github.io/">← 작품 모음</a>
-  <span class="who">이주형 · COFATHON 2026</span>
+  <span class="who">이주형 · 담당자가 고치는 AI</span>
 </div>
 
 <header>
   <div>
-    <h1 aria-label="담당자의 기준을 코드가 검사하게 만들었습니다">
-      <span class="strip piece" style="--rot:-2deg" aria-hidden="true">담당자의 기준을</span><br>
-      <span class="line" aria-hidden="true"><span class="ransom piece" style="--rot:3deg" data-ransom="코드가"></span><span class="strip piece" style="--rot:-1deg">검사하게</span></span><br>
-      <span class="strip red piece" style="--rot:2deg" aria-hidden="true">만들었습니다</span>
+    <h1 aria-label="판정 기준을 담당자가 직접 고치는 AI 연습 도구">
+      <span class="strip piece" style="--rot:-2deg" aria-hidden="true">판정 기준을</span><br>
+      <span class="line" aria-hidden="true"><span class="ransom piece" style="--rot:3deg" data-ransom="담당자가"></span><span class="strip piece" style="--rot:-1deg">직접 고치는</span></span><br>
+      <span class="strip red piece" style="--rot:2deg" aria-hidden="true">AI 연습 도구</span>
     </h1>
-    <p class="lede piece" style="--rot:-1.5deg" data-claim="C02 C03 C05">선수 인터뷰 연습 도구입니다. 4시간 안에 비개발자 현업 담당자를 인터뷰하고, 그 사람의 판단 기준대로 움직이게 만들었습니다.</p>
+    <p class="lede piece" style="--rot:-1.5deg" data-claim="C02 C03 C05">AI를 들여온 뒤 현업의 판단 기준이 바뀌면 보통은 개발자가 코드를 다시 고쳐야 합니다. 이 선수 인터뷰 연습 도구는 판정 기준 네 가지(직접성, 구체성, 존중, 비공개 정보 지키기)를 코드에 박지 않고, 비개발자 현업 담당자가 직접 고치는 파일로 뺐습니다. 그 기준은 4시간 안에 담당자를 인터뷰해서 받아 냈습니다.</p>
     <div class="award piece" style="--rot:-4deg" data-claim="C01 C13">
       <span class="stamp">최우수 수상</span>
       <small>KRAFTON Forward Deployed Engineer 트랙 · 개인 참가 · 2026.07<br>심사는 결과물보다 문제를 파악하고 정리한 과정을 봤습니다.</small>
@@ -234,7 +241,7 @@
     <div class="p kraft">
       <span class="tag">04 누가 무엇을</span>
       <dl class="mine">
-        <div><dt>내가 정한 것</dt><dd>인터뷰로 받은 판정 기준, 고칠 곳 2개만 짚는 구조, 버릴 기능 5개</dd></div>
+        <div><dt>내가 정한 것</dt><dd>인터뷰로 받은 판정 기준, 그 기준을 담당자가 고치는 파일로 빼는 구조, 고칠 곳 2개만 짚는 구조, 버릴 기능 5개</dd></div>
         <div><dt>AI가 짠 것</dt><dd>도구 코드</dd></div>
         <div><dt>내가 확인한 것</dt><dd>1차·2차 답변이 달라졌는지, 근거 없는 지적이 걸러지는지</dd></div>
       </dl>
@@ -275,6 +282,18 @@
         <li>질문과 답변은 연습용 예시입니다</li>
         <li>음성 인식이 오류로 멈춰, 글자 입력으로 검증했습니다</li>
       </ul>
+    </div>
+  </section>
+  <section class="c-fit wrap piece" style="--tilt:-.5deg;--rot:-2deg;--tr:3deg">
+    <img class="tp" src="assets/collage/tape-1.png" alt="">
+    <div class="p kraft">
+      <span class="tag">08 사내 AI 도입에 붙인다면</span>
+      <div class="fit-grid">
+        <div><span class="k">기준이 자주 바뀌는 판정</span><h3>담당자가 파일에서 기준을 고칩니다</h3><p>응대 연습이나 검수처럼 담당자 눈으로 판정하는 업무에서, 판정 기준을 코드 밖 파일로 빼 두면 기준을 바꿀 때 개발자를 거치지 않아도 됩니다.</p></div>
+        <div><span class="k">믿을 수 있는 지적</span><h3>근거를 못 대는 지적은 버립니다</h3><p>AI의 지적은 답변 속 문장을 인용해야 화면에 나옵니다. 대회 중에는 인용하지 못한 지적 2개를 버렸습니다.</p></div>
+        <div><span class="k">현장 인터뷰로 시작</span><h3>담당자의 말로 범위를 정합니다</h3><p>4시간 안에 담당자를 인터뷰해 판정 기준과 다시 말해 보기 횟수(2번까지)를 받았고, 버릴 기능 5개도 그 인터뷰로 정했습니다.</p></div>
+      </div>
+      <p class="src">실제 사내 조직에 붙여 쓴 적은 아직 없고, 담당자가 기준 파일을 고치는 데 걸리는 시간도 재지 않았습니다.</p>
     </div>
   </section>
 </main>
