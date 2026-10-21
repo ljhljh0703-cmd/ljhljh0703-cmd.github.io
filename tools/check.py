@@ -54,7 +54,7 @@ def check_views(html, online):
     items = cur["items"]
     need = {"name", "url", "kind", "stage", "problem", "result", "decided", "checked"}
     for k, it in items.items():
-        miss = [f for f in need if not it.get(f)]
+        miss = [f for f in (need - {"decided", "checked"} if it.get("who") else need) if not it.get(f)]
         if miss: errors.append(f"curation {k}: {', '.join(miss)} 비어 있음")
         check_url(it.get("url"), f"curation {k}", online)
     for k in cur["picks"]:
