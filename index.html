@@ -195,6 +195,15 @@
     .peek { display: none; }
   }
   @media (prefers-reduced-motion: reduce) { .peek, .kind ul, .kind .thumb { transition: none; } }
+
+  /* 북켓몬 파일럿: 작품 설명과 담당 범위는 포인터 조작 없이 읽는다. */
+  .carousel.has-overview { height: calc(var(--card-h) + 86px + 330px); }
+  .meta .m-role { min-height: 0; margin-top: 8px; color: var(--cream); font-size: 14px; line-height: 1.65; }
+  .m-flow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; list-style: none; padding: 0; margin: 13px 0 5px; color: var(--cream-2); font-size: 12px; }
+  .m-flow li { display: flex; align-items: center; gap: 10px; }
+  .m-flow svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+  .meta [hidden] { display: none; }
+  @media(max-width:600px) { .carousel.has-overview { height: calc(var(--card-h) + 86px + 365px); } .meta .m-role { font-size: 12px; } .m-flow { font-size: 11px; gap: 7px; } .m-flow li { gap: 7px; } }
 </style>
 </head>
 <body>
@@ -218,7 +227,9 @@
   <div class="meta" aria-live="polite">
     <h2 id="m-name"></h2>
     <p id="m-line"></p>
-    <div class="row"><span class="stamp" id="m-stage"></span><a class="open" id="m-open" href="#">작품 보기 →</a></div>
+    <p class="m-role" id="m-role" hidden></p>
+    <ol class="m-flow" id="m-flow" aria-label="작동 흐름" hidden></ol>
+    <div class="row"><span class="stamp" id="m-stage"></span><a class="open" id="m-open" data-return-key="m-open" href="#">작품 보기 →</a></div>
   </div>
   <div class="dots" id="dots" role="tablist" aria-label="작품 선택"></div>
 </section>
@@ -234,8 +245,9 @@
 <footer><a href="https://github.com/ljhljh0703-cmd">GitHub</a></footer>
 
 <script src="works.js"></script>
+<script src="portfolio-return.js"></script>
 <script>
-const B = "https://ljhljh0703-cmd.github.io/", C = "assets/collage/";
+const B = new URL("./", location.href).href, C = "assets/collage/";
 const WORKS = window.PORTFOLIO.works.map(w => ({ ...w, url: w.url.startsWith("http") ? w.url : B + w.url }));
 const PAPERS = ["paper-cream.jpg", "paper-kraft.jpg", "paper-red.jpg", "paper-blue.jpg"];
 const N = WORKS.length, track = document.getElementById("track"), dots = document.getElementById("dots");
@@ -244,7 +256,7 @@ let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 21474836
 const pick = a => a[Math.floor(rnd() * a.length)];
 const paperBg = p => `url(${C}${p})`;
 const pad = n => String(n).padStart(2, "0");
-let cur = 0;
+let cur = Math.max(0, WORKS.findIndex(w => w.id === window.PortfolioReturn.initialWorkId));
 
 /* 작품별 낙서 — 그 작품이 하는 일을 손그림 표시로(색도 작품마다). 좌표 = 300×220, 물건 중심 ≈ (150,112) */
 const wob = (v, a = 2.2) => (v + (rnd() - .5) * a).toFixed(1);
@@ -283,7 +295,7 @@ WORKS.forEach((w, i) => {
     <img class="tape" src="${C}tape-${1 + (i % 2)}.png" alt="">
     <svg class="scribble" viewBox="0 0 300 220" preserveAspectRatio="none" aria-hidden="true" style="--dc:${doodleOf(w.id).c}">${doodleSvg(w.id)}</svg>
     <div class="obj"><div class="float"><div class="boil" style="animation-delay:-${(rnd() * .5).toFixed(2)}s"><img src="${C}sticker-${w.id}.webp" alt=""></div></div></div>`;
-  s.addEventListener("click", () => { if (moved) return; i === cur ? location.href = w.url : go(i); });
+  s.addEventListener("click", () => { if (moved) return; if (i === cur) { window.PortfolioReturn.capture(); location.href = window.PortfolioReturn.destination(w.url); } else go(i); });
   track.appendChild(s);
   const d = document.createElement("button"); d.setAttribute("role", "tab"); d.setAttribute("aria-label", `${i + 1}번째 작품: ${w.name}`);
   d.addEventListener("click", () => go(i)); dots.appendChild(d);
@@ -313,6 +325,18 @@ function render(dir) {
   document.getElementById("m-line").textContent = w.line;
   document.getElementById("m-stage").textContent = w.stage;
   document.getElementById("m-open").href = w.url;
+  const role = document.getElementById("m-role"), flow = document.getElementById("m-flow");
+  role.textContent = w.role || ""; role.hidden = !w.role;
+  flow.replaceChildren(); flow.hidden = !w.flow;
+  (w.flow || []).forEach((step, index) => {
+    const item = document.createElement("li"); item.appendChild(document.createTextNode(step));
+    if (index < w.flow.length - 1) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); svg.setAttribute("viewBox", "0 0 24 24"); svg.setAttribute("aria-hidden", "true");
+      const path = document.createElementNS(svg.namespaceURI, "path"); path.setAttribute("d", "M4 12h16m-6-6 6 6-6 6"); svg.appendChild(path); item.appendChild(svg);
+    }
+    flow.appendChild(item);
+  });
+  document.getElementById("carousel").classList.toggle("has-overview", !!w.role);
   if (dir) burst();
 }
 function go(i) { const dir = Math.sign(rel(i)) || 1; cur = (i + N) % N; render(dir); }
@@ -322,7 +346,7 @@ const car = document.getElementById("carousel");
 car.addEventListener("keydown", e => {
   if (e.key === "ArrowRight") { go(cur + 1); e.preventDefault(); }
   if (e.key === "ArrowLeft") { go(cur - 1); e.preventDefault(); }
-  if (e.key === "Enter" && e.target === car) location.href = WORKS[cur].url;
+  if (e.key === "Enter" && e.target === car) { window.PortfolioReturn.capture(); location.href = window.PortfolioReturn.destination(WORKS[cur].url); }
 });
 let x0 = null, moved = false;
 car.addEventListener("pointerdown", e => { x0 = e.clientX; moved = false; });
@@ -389,7 +413,7 @@ render(0);
 <script>
 /* 종류별 묶음 데이터 — on = 공개되어 바로 볼 수 있음 */
 (() => {
-const G = "https://ljhljh0703-cmd.github.io/";
+const G = new URL("./", location.href).href;
 /* 칸마다 대표 작품의 인쇄 스티커(카드와 같은 그림). 묶음 안에서 카드로 올라간 첫 작품을 쓰고, 없으면 묶음에 지정한 스티커(kinds.sticker), 그것도 없으면 글만 둔다 */
 const stickerOf = c => { if (c.sticker) return `assets/collage/sticker-${c.sticker}.webp`; const hit = c.items.map(it => it.url && window.PORTFOLIO.works.find(w => w.url === it.url)).find(Boolean); return hit ? `assets/collage/sticker-${hit.id}.webp` : null; };
 const KINDS = window.PORTFOLIO.kinds;
@@ -397,20 +421,21 @@ const box = document.getElementById("kinds");
 const cols = [0, 1].map(() => box.appendChild(Object.assign(document.createElement("div"), { className: "kcol" })));
 KINDS.forEach((c, i) => {
   const el = document.createElement("div");
-  el.className = "kind"; el.tabIndex = 0; el.setAttribute("role", "button"); el.setAttribute("aria-expanded", "false");
+  el.className = "kind"; el.dataset.kindName = c.name; el.tabIndex = 0; el.setAttribute("role", "button"); el.setAttribute("aria-expanded", "false");
   el.style.setProperty("--k", c.k); el.style.order = i;
   const url = u => u && (u.startsWith("http") ? u : G + u);
   el.innerHTML = `
     ${stickerOf(c) ? `<img class="thumb" src="${stickerOf(c)}" alt="" loading="lazy">` : ""}
     <h3>${c.name}</h3><p>${c.desc}</p><div class="kmeta">${c.meta} · ${c.items.length}개</div>
-    <ul>${c.items.map(({ name: n, url: u, desc: d }) => `<li>${u ? `<a href="${url(u)}">${n}</a>` : `<span class="n">${n}</span>`}<em>${d}</em></li>`).join("")}</ul>
+    <ul>${c.items.map(({ name: n, url: u, desc: d }) => `<li>${u ? `<a data-return-key="kind-${i}-${c.items.findIndex(item => item.name === n)}" href="${url(u)}">${n}</a>` : `<span class="n">${n}</span>`}<em>${d}</em></li>`).join("")}</ul>
     <div class="peek" aria-hidden="true"><b>${c.en}</b>${c.items.slice(0, 3).map(({ name: n, url: u }) => `<i class="${u ? "on" : ""}">${n}</i>`).join("")}</div>`;
   const toggle = e => { if (e.target.closest("a")) return; const o = el.classList.toggle("open"); el.setAttribute("aria-expanded", o); };
   el.addEventListener("click", toggle);
-  el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); } });
+  el.addEventListener("keydown", e => { if (e.target.closest("a")) return; if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); } });
   cols[i % 2].appendChild(el);
 });
 })();
 </script>
+<script>window.PortfolioReturn.init({ getWorkId: () => WORKS[cur].id });</script>
 </body>
 </html>

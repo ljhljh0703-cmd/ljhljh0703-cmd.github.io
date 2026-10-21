@@ -23,10 +23,17 @@ window.PORTFOLIO = {
     {
       "id": "01-bookemon",
       "name": "북켓몬",
-      "line": "부적합 추천을 15.56%에서 2.22%로 줄인 AI 개인화 도서 큐레이션",
+      "line": "질문과 취향을 반영해 책을 추천하고, 독서 기록과 캐릭터 성장을 연결한 서비스",
       "stage": "데모 · 오프라인 평가 완료",
       "url": "AI-Book-Curation/portfolio.html",
-      "ink": "#4b4ad1"
+      "ink": "#4b4ad1",
+      "role": "팀장 · 기획 리드 · AI 추천 설계·평가",
+      "flow": [
+        "질문 입력",
+        "후보 검색",
+        "추천 조정",
+        "책 선택"
+      ]
     },
     {
       "id": "02-starlink",
