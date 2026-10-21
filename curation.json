@@ -121,7 +121,7 @@
   "items": {
     "game-ops": {
       "name": "게임 운영 플랫폼",
-      "url": "game-ops/",
+      "url": "game-ops-platform/portfolio/",
       "repo": "https://github.com/ljhljh0703-cmd/game-ops-platform",
       "kind": "개인 · 2026.10",
       "stage": "작동 데모",
@@ -170,7 +170,7 @@
     },
     "jelly": {
       "name": "지켜줘! 젤리 패닉",
-      "url": "jelly-panic-case/",
+      "url": "jelly-panic/portfolio.html",
       "repo": "https://github.com/ljhljh0703-cmd/jelly-panic",
       "play": "https://ljhljh0703-cmd.github.io/jelly-panic/",
       "kind": "개인 · 2026.07–09",
@@ -286,7 +286,7 @@
     },
     "penelope": {
       "name": "Penelope · 이야기 생성 엔진",
-      "url": "penelope/",
+      "url": "penelope-ontology/portfolio/",
       "repo": "https://github.com/ljhljh0703-cmd/penelope-ontology",
       "play": "https://penelope-ontology.vercel.app",
       "play_label": "라이브 데모",
@@ -318,7 +318,7 @@
       "kind": "운영 도구",
       "role": "개인",
       "stage": "작동 데모",
-      "url": "game-ops/"
+      "url": "game-ops-platform/portfolio/"
     },
     {
       "when": "2026.08~",
@@ -342,7 +342,7 @@
       "kind": "게임",
       "role": "개인",
       "stage": "웹 플레이 · 스토어 심사 제출",
-      "url": "jelly-panic-case/"
+      "url": "jelly-panic/portfolio.html"
     },
     {
       "when": "2026.07",
@@ -366,7 +366,7 @@
       "kind": "AI 서비스",
       "role": "개인",
       "stage": "OpenAI Build Week 제출 · 라이브 데모",
-      "url": "penelope/"
+      "url": "penelope-ontology/portfolio/"
     },
     {
       "when": "2026.07",

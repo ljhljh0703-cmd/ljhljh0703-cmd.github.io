@@ -17,7 +17,7 @@ window.PORTFOLIO = {
       "name": "게임 운영 플랫폼",
       "line": "플레이어 제보가 그대로 개발 지시서가 되는 라이브 운영 자동화",
       "stage": "작동 데모 · 개인",
-      "url": "game-ops/",
+      "url": "game-ops-platform/portfolio/",
       "ink": "#207878"
     },
     {
@@ -40,7 +40,7 @@ window.PORTFOLIO = {
       "name": "지켜줘! 젤리 패닉",
       "line": "재미 규칙을 먼저 정하고, 무작위 500판으로 그 규칙을 증명한 수읽기 퍼즐 디펜스",
       "stage": "웹에서 바로 플레이",
-      "url": "jelly-panic-case/",
+      "url": "jelly-panic/portfolio.html",
       "ink": "#207878"
     },
     {
@@ -56,7 +56,7 @@ window.PORTFOLIO = {
       "name": "Penelope",
       "line": "선택 하나에 세계 속 인물이 모두 움직이는 이야기 생성 엔진",
       "stage": "공개 라이브 데모 · OpenAI Build Week 제출",
-      "url": "penelope/",
+      "url": "penelope-ontology/portfolio/",
       "ink": "#4b4ad1"
     }
   ],
@@ -71,7 +71,7 @@ window.PORTFOLIO = {
       "items": [
         {
           "name": "지켜줘! 젤리 패닉",
-          "url": "jelly-panic-case/",
+          "url": "jelly-panic/portfolio.html",
           "desc": "수읽기 퍼즐 디펜스 · 스토어 심사 제출"
         },
         {
@@ -146,7 +146,7 @@ window.PORTFOLIO = {
       "items": [
         {
           "name": "게임 운영 플랫폼",
-          "url": "game-ops/",
+          "url": "game-ops-platform/portfolio/",
           "desc": "게임 버그 제보를 분류해 이슈와 답장까지 잇는 서버"
         },
         {
@@ -191,7 +191,7 @@ window.PORTFOLIO = {
         },
         {
           "name": "OpenAI Build Week",
-          "url": "penelope/",
+          "url": "penelope-ontology/portfolio/",
           "desc": "Penelope · 이야기 생성 엔진 · 제출"
         },
         {
