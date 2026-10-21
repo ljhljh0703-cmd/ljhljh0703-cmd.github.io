@@ -1,0 +1,64 @@
+/* 직무 주소·전체 목록 공용 모양. 첫 페이지와 같은 재료(밤색 바탕 + 크림 종이 + 주홍 띠)를 쓰되 읽기 쉬운 한 장으로 */
+:root {
+  --night: #151412; --ink: #1b1a17; --ink-2: #4a443b; --ink-3: #5e5647; --cream: #eee6d6; --red: #c0412a; --on-color: #fff4e8;
+  --sans: "Wanted Sans Variable", "Wanted Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --display: "Black Han Sans", "Wanted Sans Variable", sans-serif;
+  --gutter: 24px;
+}
+@media (max-width: 600px) { :root { --gutter: 16px; } }
+* { box-sizing: border-box; margin: 0; }
+html, body { overflow-x: clip; }
+body.v { background: var(--night); color: var(--ink); font: 17px/1.7 var(--sans); letter-spacing: -.01em; -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: anywhere; padding-bottom: 80px; }
+a { color: inherit; }
+a:focus-visible { outline: 3px solid #ffd84a; outline-offset: 2px; }
+
+.v-nav { max-width: 920px; margin: 0 auto; padding: 20px var(--gutter) 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.v-nav a { padding: 6px 12px; color: var(--ink); font-size: 14px; font-weight: 700; text-decoration: none; background: url(collage/paper-kraft.jpg) center/160px; }
+.v-nav a:first-child { color: var(--cream); background: transparent; box-shadow: inset 0 0 0 1px rgba(238,230,214,.4); }
+.v-nav a[aria-current] { color: var(--on-color); background-image: url(collage/paper-red.jpg); }
+
+.v-sheet { max-width: 920px; margin: 20px auto 0; padding: 48px 56px 40px; background: url(collage/paper-cream.jpg) center/420px; box-shadow: 0 4px 0 rgba(0,0,0,.35); }
+@media (max-width: 600px) { .v-sheet { margin: 16px var(--gutter) 0; padding: 32px 20px 28px; } }
+
+.v-name { font-size: 14px; font-weight: 800; color: var(--ink-3); }
+.v-head h1 { margin-top: 6px; font: 40px/1.25 var(--display); letter-spacing: -.01em; text-shadow: 3px 2px 0 rgba(192,65,42,.45); }
+@media (max-width: 600px) { .v-head h1 { font-size: 29px; } }
+.v-lead { margin-top: 14px; font-size: 19px; font-weight: 700; max-width: 36em; }
+.v-contact { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 15px; font-weight: 700; }
+.v-contact a { text-underline-offset: 3px; }
+.v-intro { margin-top: 24px; padding-top: 18px; border-top: 2px solid var(--ink); color: var(--ink-2); font-size: 16px; max-width: 42em; }
+
+.v-list { margin-top: 36px; display: grid; gap: 44px; }
+.v-item h2 { font: 27px/1.3 var(--display); }
+.v-kind { margin-top: 4px; font-size: 14px; color: var(--ink-3); font-weight: 700; }
+.v-kind span { margin-left: 10px; padding: 1px 8px; color: var(--ink); border: 1.5px solid var(--ink); }
+.v-problem { margin-top: 12px; max-width: 42em; }
+.v-result { display: inline-block; margin-top: 12px; padding: 6px 14px; color: var(--on-color); font-weight: 800; background: url(collage/paper-red.jpg) center/200px; box-shadow: 0 3px 0 rgba(0,0,0,.25); }
+.v-who { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+.v-who div { padding: 10px 14px 12px 0; }
+.v-who div + div { padding-left: 14px; border-left: 1px dashed rgba(27,26,23,.45); }
+.v-who dt { font-size: 13px; font-weight: 800; color: var(--red); }
+.v-who dd { margin-top: 2px; font-size: 15px; line-height: 1.6; }
+@media (max-width: 700px) { .v-who { grid-template-columns: 1fr; } .v-who div + div { padding-left: 0; border-left: 0; border-top: 1px dashed rgba(27,26,23,.45); } }
+.v-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; font-weight: 700; }
+.v-links a { text-underline-offset: 3px; }
+.v-links a.go { padding: 4px 12px; color: var(--cream); background: var(--ink); text-decoration: none; }
+.v-more { margin-top: 44px; color: var(--ink-2); font-size: 15px; }
+
+.v-sheet.wide { max-width: 1040px; }
+.v-table-wrap { margin-top: 32px; overflow-x: auto; }
+.v-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.v-table caption { text-align: left; font-weight: 800; padding-bottom: 8px; }
+.v-table th, .v-table td { text-align: left; vertical-align: top; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(27,26,23,.25); }
+.v-table thead th { font-size: 13px; color: var(--ink-3); border-bottom: 2px solid var(--ink); }
+.v-table tbody th { font-weight: 800; }
+.v-table td:first-child { white-space: nowrap; color: var(--ink-3); }
+@media (max-width: 700px) {
+  .v-table thead { display: none; }
+  .v-table tr { display: grid; grid-template-columns: auto 1fr; gap: 0 12px; padding: 10px 0; border-bottom: 1px solid rgba(27,26,23,.25); }
+  .v-table th, .v-table td { border: 0; padding: 0; }
+  .v-table tbody th { grid-column: 2; grid-row: 1; }
+  .v-table td:first-child { grid-column: 1; grid-row: 1 / span 4; }
+  .v-table td { grid-column: 2; color: var(--ink-2); font-size: 14px; }
+}
+.v-who:has(> div:nth-child(2):last-child) { grid-template-columns: repeat(2, 1fr); }

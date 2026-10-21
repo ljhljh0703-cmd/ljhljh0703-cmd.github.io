@@ -48,6 +48,37 @@ def check_url(url, where, online):
     except Exception as e:
         warnings.append(f"{where}: 이 환경에서 확인 불가({e.__class__.__name__}) {url}")
 
+def check_views(html, online):
+    """직무 주소·전체 목록·역량 지도가 curation.json 과 맞는지. 어긋나면 build_views.py 를 다시 돌리라고 알린다."""
+    cur = json.loads((ROOT / "curation.json").read_text(encoding="utf-8"))
+    items = cur["items"]
+    need = {"name", "url", "kind", "stage", "problem", "result", "decided", "checked"}
+    for k, it in items.items():
+        miss = [f for f in need if not it.get(f)]
+        if miss: errors.append(f"curation {k}: {', '.join(miss)} 비어 있음")
+        check_url(it.get("url"), f"curation {k}", online)
+    for k in cur["picks"]:
+        if k not in items or not items[k].get("short"): errors.append(f"curation picks: {k} 없음 또는 short 빠짐")
+    for v, view in cur["views"].items():
+        for k in view["items"]:
+            if k not in items: errors.append(f"curation views.{v}: 없는 작품 {k}")
+    for a in cur["axes"]:
+        for k in a["items"]:
+            if k not in items: errors.append(f"curation axes.{a['id']}: 없는 작품 {k}")
+    for r in cur["all"]:
+        check_url(r.get("url"), f"전체 목록 · {r['name']}", online)
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("bv", ROOT / "tools/build_views.py"); bv = importlib.util.module_from_spec(spec); spec.loader.exec_module(bv)
+    want = {f"{k}/index.html": bv.view_page(k, v) for k, v in cur["views"].items()}
+    want["all/index.html"] = bv.all_page()
+    for rel, body in want.items():
+        f = ROOT / rel
+        if not f.is_file() or f.read_text(encoding="utf-8") != body:
+            errors.append(f"{rel}: curation.json 과 다름 → python3 tools/build_views.py")
+    if bv.axes_html() not in html or bv.picks_html() not in html:
+        errors.append("index.html: 역량 지도·대표 목록이 curation.json 과 다름 → python3 tools/build_views.py")
+
+
 def main():
     online = "--online" in sys.argv
     d = load_data()
@@ -71,6 +102,9 @@ def main():
     html = (ROOT / "index.html").read_text(encoding="utf-8")
     for n in re.findall(r"작품 (\d+)개", html):
         if int(n) != len(works): errors.append(f"index.html: 「작품 {n}개」 문구와 실제 카드 {len(works)}개가 다름")
+    for n in re.findall(r"대표 작업 (\d+)개", html):
+        if int(n) != len(works): errors.append(f"index.html: 「대표 작업 {n}개」 문구와 실제 카드 {len(works)}개가 다름")
+    check_views(html, online)
     pages = [ROOT / "index.html", ROOT / "works.js"] + sorted(ROOT.glob("*/index.html"))
     for p in pages:
         t = p.read_text(encoding="utf-8", errors="ignore")

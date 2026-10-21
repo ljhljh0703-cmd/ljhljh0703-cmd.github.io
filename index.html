@@ -1,13 +1,13 @@
-<!-- 포트폴리오 첫 페이지 — 작품 9개 콜라주 카드 넘김: 찢긴 종이 인쇄 카드 + 테이프 + 인쇄 스티커 대표 물건 + 스톱모션 흔들림·시차·부스러기(작가 「콜라주 기법 응용해서 모션도 적용해」). -->
+<!-- 포트폴리오 첫 페이지 — 대표 작업 콜라주 카드 넘김: 찢긴 종이 인쇄 카드 + 테이프 + 인쇄 스티커 대표 물건 + 스톱모션 흔들림·시차·부스러기(작가 「콜라주 기법 응용해서 모션도 적용해」). -->
 <!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>이주형 · 포트폴리오</title>
-<meta name="description" content="기획 역량으로 도메인별 특화 AI 하네스를 설계하는 AI 엔지니어 — 직접 만들고 검증한 작품 9개">
+<meta name="description" content="현장의 문제를 정의하고 AI로 해결하는 엔지니어. 대표 작업 5개와 직무별 보기">
 <meta property="og:title" content="이주형 · 포트폴리오">
-<meta property="og:description" content="기획 역량으로 도메인별 특화 AI 하네스를 설계하는 AI 엔지니어 — 직접 만들고 검증한 작품 9개">
+<meta property="og:description" content="현장의 문제를 정의하고 AI로 해결하는 엔지니어. 대표 작업 5개와 직무별 보기">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ljhljh0703-cmd.github.io/">
 <meta property="og:image" content="https://ljhljh0703-cmd.github.io/assets/og.jpg">
@@ -204,6 +204,33 @@
   .m-flow svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
   .meta [hidden] { display: none; }
   @media(max-width:600px) { .carousel.has-overview { height: calc(var(--card-h) + 86px + 365px); } .meta .m-role { font-size: 12px; } .m-flow { font-size: 11px; gap: 7px; } .m-flow li { gap: 7px; } }
+  /* 연락처와 대표 작업 목록 — 첫 화면에서 이름·결과·연락처가 한 번에 보이게 */
+  .contact { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
+  .contact a { display: inline-flex; align-items: center; min-height: 44px; padding: var(--s2) var(--s4); color: var(--ink); font-weight: 800; text-decoration: none; background: url(assets/collage/paper-kraft.jpg) center/160px; box-shadow: var(--print); }
+  .contact a:first-child { color: var(--on-color); background-image: url(assets/collage/paper-red.jpg); }
+  .picks { display: block; max-width: 44em; margin-top: var(--s5); padding: var(--s4) var(--s5) var(--s3); color: var(--ink); background: url(assets/collage/paper-cream.jpg) center/300px; box-shadow: var(--print); }
+  .picks h2 { font: var(--fs-card)/1.3 var(--display); }
+  .picks ul { list-style: none; padding: 0; margin-top: var(--s2); }
+  .picks li a { display: flex; flex-wrap: wrap; gap: 0 var(--s4); justify-content: space-between; padding: var(--s2) 0; border-top: 1px dashed rgba(27,26,23,.4); color: inherit; text-decoration: none; }
+  .picks li a:hover b, .picks li a:focus-visible b { text-decoration: underline; }
+  .picks li b { font-weight: 800; }
+  .picks li span { color: var(--ink-2); font-size: var(--fs-meta); font-weight: 700; }
+  /* 역량 지도 — 네 칸에 근거 작업을 꽂는다. 직무별 주소로 가는 길 */
+  .axes { position: relative; z-index: 2; max-width: 1080px; margin: var(--section) auto 0; padding: 0 var(--gutter); }
+  .axes-board { padding: var(--s6) var(--s6) var(--s5); color: var(--ink); background: url(assets/collage/paper-kraft.jpg) center/300px; box-shadow: var(--print); transform: rotate(.3deg); }
+  .axes h2 { display: inline-block; margin-bottom: var(--s5); padding: var(--s1) var(--s3) var(--s2); font: var(--fs-section)/1.2 var(--display); color: var(--on-color); background: var(--red); transform: rotate(-1deg); }
+  .axes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4); }
+  .axis { padding: var(--s4); background: url(assets/collage/paper-cream.jpg) center/300px; }
+  .axis h3 { font-size: var(--fs-body); font-weight: 800; line-height: 1.4; }
+  .axis p { margin-top: var(--s1); color: var(--ink-3); font-size: var(--fs-meta); line-height: 1.5; }
+  .axis ul { list-style: none; padding: 0; margin-top: var(--s3); }
+  .axis li { padding: var(--s1) 0; border-top: 1px dashed rgba(27,26,23,.35); font-size: var(--fs-meta); font-weight: 700; }
+  .axis a { color: inherit; text-underline-offset: 3px; }
+  .axes-views { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin-top: var(--s5); }
+  .axes-views span { margin-right: var(--s2); font-weight: 800; }
+  .axes-views a { display: inline-flex; align-items: center; min-height: 40px; padding: var(--s1) var(--s3); color: var(--cream); font-size: var(--fs-meta); font-weight: 800; text-decoration: none; background: var(--ink); }
+  @media (max-width: 860px) { .axes-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .axes-grid { grid-template-columns: 1fr; } .axes-board { padding: var(--s5) var(--s4); transform: none; } }
 </style>
 </head>
 <body>
@@ -212,12 +239,16 @@
 
 <header>
   <div class="who piece" style="--rot:-4deg">이주형 · LEE JU HYEONG</div>
-  <h1 aria-label="기획 역량으로 도메인별 특화 AI 하네스를 설계하는 AI 엔지니어">
-    <span class="strip piece" style="--rot:-2deg" aria-hidden="true">기획 역량으로 도메인별 특화</span><br>
-    <span class="line"><span class="ransom piece" style="--rot:3deg" data-ransom="AI하네스" aria-hidden="true"></span><span class="strip piece" style="--rot:-1deg" aria-hidden="true">를 설계하는</span></span><br>
-    <span class="strip red piece" style="--rot:2deg" aria-hidden="true">AI 엔지니어</span>
+  <h1 aria-label="현장의 문제를 정의하고 AI로 해결하는 엔지니어">
+    <span class="strip piece" style="--rot:-2deg" aria-hidden="true">현장의 문제를 정의하고</span><br>
+    <span class="line"><span class="ransom piece" style="--rot:3deg" data-ransom="AI" aria-hidden="true"></span><span class="strip piece" style="--rot:-1deg" aria-hidden="true">로 해결하는</span></span><br>
+    <span class="strip red piece" style="--rot:2deg" aria-hidden="true">엔지니어</span>
   </h1>
-  <p class="lede piece" style="--rot:-1.5deg">Cofathon 2026 최우수 수상. 지금은 위메이드엑스알에서 AI 엔지니어 인턴으로 일합니다. 17억 매출을 만든 제안 PM의 판단을 AI 시스템으로 옮기고, 기준을 먼저 정한 뒤 결과를 잽니다. 직접 만들고 검증한 작품 9개를 넘겨 보세요.</p>
+  <p class="lede piece" style="--rot:-1.5deg">Cofathon 2026(크래프톤 FDE 트랙) 최우수 수상. 지금은 위메이드엑스알에서 AI 엔지니어 인턴으로 일합니다. 제안 PM으로 참여한 제안의 누적 매출 17억, 그때처럼 쓰는 사람의 기준을 먼저 받아 와 AI가 그 기준대로 움직이게 만들고 결과를 잽니다. 대표 작업 5개를 넘겨 보세요.</p>
+  <p class="contact piece" style="--rot:-.5deg"><a href="mailto:ljhljh0703@gmail.com">ljhljh0703@gmail.com</a><a href="https://github.com/ljhljh0703-cmd">GitHub</a></p>
+  <!-- picks:start (tools/build_views.py 가 curation.json 으로 만든다) -->
+  <div class="picks piece" style="--rot:.6deg"><h2>대표 작업 5개</h2><ul><li><a href="cofathon/" data-return-key="pick-cofathon"><b>Cofathon 2026 · 선수 인터뷰 연습 도구</b><span>KRAFTON FDE 트랙 최우수 수상</span></a></li><li><a href="game-ops/" data-return-key="pick-game-ops"><b>게임 운영 플랫폼</b><span>서버 테스트 214건 · 실제 제보 6건 → 지시서 1건</span></a></li><li><a href="AI-Book-Curation/portfolio.html" data-return-key="pick-bookemon"><b>북켓몬 · AI 도서 추천</b><span>부적합 추천 15.56% → 2.22%</span></a></li><li><a href="jelly-panic-case/" data-return-key="pick-jelly"><b>지켜줘! 젤리 패닉</b><span>무작위 500판, 막을 수 없는 위협 0건</span></a></li><li><a href="hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html" data-return-key="pick-hwigi"><b>회귀자는 탑을 오른다</b><span>평균 보상 점수 1.54 → 2.10</span></a></li></ul></div>
+  <!-- picks:end -->
 </header>
 
 <section class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" aria-label="작품 모음">
@@ -234,6 +265,16 @@
   <div class="dots" id="dots" role="tablist" aria-label="작품 선택"></div>
 </section>
 <p class="hint">끌어서 넘기기 · 화살표 키 · 점 누르기</p>
+
+<!-- axes:start (tools/build_views.py 가 curation.json 으로 만든다. 손으로 고치지 않는다) -->
+<section class="axes" aria-labelledby="axes-h">
+  <div class="axes-board">
+    <h2 id="axes-h">무엇을 할 수 있는지</h2>
+    <div class="axes-grid"><div class="axis"><h3>운영 도구를 만들어 실제로 돌림</h3><p>사용자 수 · 처리 흐름 · 실패 처리</p><ul><li><a href="game-ops/" data-return-key="axis-ops-game-ops">게임 운영 플랫폼</a></li><li><a href="doc-search/" data-return-key="axis-ops-doc-search">기획 문서 탐색 AI 스킬</a></li></ul></div><div class="axis"><h3>현업 판단을 규칙과 코드로 옮김</h3><p>담당자 말 → 판정 기준 → 코드</p><ul><li><a href="cofathon/" data-return-key="axis-rules-cofathon">Cofathon 2026 · 선수 인터뷰 연습 도구</a></li><li><a href="AI-Book-Curation/portfolio.html" data-return-key="axis-rules-bookemon">북켓몬 · AI 도서 추천</a></li></ul></div><div class="axis"><h3>AI 답을 기준표로 걸러 냄</h3><p>평가표 · 비교 실험 · 실패 기록</p><ul><li><a href="AI-Book-Curation/portfolio.html" data-return-key="axis-eval-bookemon">북켓몬 · AI 도서 추천</a></li><li><a href="Medical-Chatbot/portfolio.html" data-return-key="axis-eval-medical">알려줄고양 · 내과 자문 챗봇</a></li><li><a href="ai-npc-social-reasoning-harness/" data-return-key="axis-eval-werewolf">늑대인간 게임 AI 추리 연구</a></li><li><a href="hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html" data-return-key="axis-eval-hwigi">회귀자는 탑을 오른다</a></li></ul></div><div class="axis"><h3>출시하고 배포함</h3><p>스토어 제출 · APK · 웹 플레이</p><ul><li><a href="jelly-panic-case/" data-return-key="axis-ship-jelly">지켜줘! 젤리 패닉</a></li><li><a href="hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html" data-return-key="axis-ship-hwigi">회귀자는 탑을 오른다</a></li><li><a href="StarLink/portfolio.html" data-return-key="axis-ship-starlink">StarLink · 실시간 통역</a></li></ul></div></div>
+    <p class="axes-views"><span>직무별로 보기</span><a href="platform/" data-return-key="view-platform">플랫폼 · 서버 프로그래밍</a><a href="ai/" data-return-key="view-ai">AI 엔지니어</a><a href="fde/" data-return-key="view-fde">현장 AI 배치 (FDE)</a><a href="game/" data-return-key="view-game">게임 개발</a><a href="agent/" data-return-key="view-agent">AI 에이전트 · 자동화</a><a href="all/" data-return-key="view-all">전체 목록</a></p>
+  </div>
+</section>
+<!-- axes:end -->
 
 <section class="kinds" aria-label="종류별 묶음">
   <div class="kinds-board">
@@ -268,6 +309,7 @@ const heart = (x, y, r) => `M${x} ${y + r}C${x - r * 1.6} ${y - r * .2} ${x - r 
 const qmark = (x, y, s) => [`M${x - 8 * s} ${y - 6 * s}Q${x - 8 * s} ${y - 18 * s} ${x + 2 * s} ${y - 18 * s}Q${x + 12 * s} ${y - 18 * s} ${x + 12 * s} ${y - 8 * s}Q${x + 12 * s} ${y} ${x + 2 * s} ${y + 3 * s}L${x + 2 * s} ${y + 10 * s}`, { fill: true, d: `M${x + 2 * s} ${y + 16 * s}m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0` }];
 const DOODLES = {
   "08-cofathon": { c: "#ffd84a", p: () => [`M${wob(26)} ${wob(58)}L${wob(40)} ${wob(72)}L${wob(64)} ${wob(40)}`, `M${wob(240)} ${wob(40)}L${wob(252)} ${wob(52)}L${wob(274)} ${wob(24)}`, `M${wob(236)} ${wob(176)}L${wob(250)} ${wob(192)}L${wob(278)} ${wob(156)}`, arc(150, 112, 132, -2.6, -2.0)] },
+  "10-game-ops": { c: "#6fd3d3", p: () => [`M${wob(22)} ${wob(40)}L${wob(62)} ${wob(40)}L${wob(62)} ${wob(66)}L${wob(36)} ${wob(66)}L${wob(26)} ${wob(76)}L${wob(28)} ${wob(66)}L${wob(22)} ${wob(66)}Z`, `M${wob(238)} ${wob(30)}L${wob(274)} ${wob(30)}L${wob(274)} ${wob(56)}L${wob(238)} ${wob(56)}Z`, `M${wob(242)} ${wob(166)}L${wob(254)} ${wob(180)}L${wob(278)} ${wob(150)}`, arc(150, 112, 136, .3, 1.0)] },
   "09-jelly-panic": { c: "#9ff0c8", p: () => [[32, 40, 16], [250, 30, 12], [262, 150, 15]].map(([x, y, r]) => `M${wob(x)} ${wob(y)}L${wob(x + r)} ${wob(y)}L${wob(x + r)} ${wob(y + r)}L${wob(x)} ${wob(y + r)}Z`).concat([arc(150, 112, 140, .35, 1.1), `M30 188L${wob(54)} ${wob(172)}M24 170L${wob(48)} ${wob(160)}`]) },
   "01-bookemon": { c: "#ffd84a", p: () => [star4(38, 42, 13), star4(266, 54, 10), star4(258, 176, 14), ...[0, 1, 2, 3, 4, 5].map(k => ray(150, 156, -Math.PI / 2 + (k - 2.5) * .5, 46, 62)), `M58 212Q150 ${wob(198, 8)} 246 210`] },
   "02-starlink": { c: "#6fd3d3", p: () => [arc(176, 104, 116, -.75, .75), arc(176, 104, 134, -.6, .6), arc(176, 104, 152, -.45, .45), `M24 98L44 98M18 116L42 116`] },

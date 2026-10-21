@@ -87,12 +87,17 @@
   .c-heard { grid-column: 1 / span 7; }
   .c-reframe { grid-column: 8 / span 5; align-self: center; }
   .c-cut { grid-column: 2 / span 6; }
+  .c-mine { grid-column: 8 / span 5; align-self: center; }
   .c-out { grid-column: 1 / span 12; }
   .c-gap { grid-column: 1 / span 5; }
   .c-unk { grid-column: 7 / span 6; align-self: start; }
 
   .quote { font: 900 clamp(20px, 2.3vw, 27px)/1.45 "Noto Serif KR", serif; letter-spacing: -.02em; }
   .quote::before { content: "“"; } .quote::after { content: "”"; }
+  .mine div { padding: 8px 0; border-top: 1.5px dashed rgba(27,26,23,.4); }
+  .mine div:first-child { border-top: 0; }
+  .mine dt { font-size: 13px; font-weight: 800; color: var(--red); }
+  .mine dd { margin: 2px 0 0; font-size: 17px; font-weight: 700; line-height: 1.5; }
   .then { margin-top: 16px; font-size: 16px; font-weight: 600; }
   .then b { display: inline-block; padding: 0 .3em; background: rgba(192,65,42,.16); }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
@@ -216,7 +221,7 @@
       <span class="tag">03 버린 것 5개</span>
       <ul class="cuts">
         <li style="--lr:-.8deg"><span class="what">모범답안 보여주기</span><span class="why">담당자가 안 하는 방식</span></li>
-        <li style="--lr:.6deg"><span class="what">점수·등급 매기기</span><span class="why">평가가 아니라 비교가 목적</span></li>
+        <li style="--lr:.6deg"><span class="what">점수·등급 매기기</span><span class="why">목적은 두 답변 비교</span></li>
         <li style="--lr:-.4deg"><span class="what">끝없이 다시 하기</span><span class="why">답을 외우게 됨</span></li>
         <li style="--lr:.9deg"><span class="what">질문 자동 생성</span><span class="why">실제 질문을 담당자가 줌</span></li>
         <li class="mine" style="--lr:-.6deg"><span class="what">여론 대응 연결</span><span class="why">제가 낸 안이었지만, 담당자가 연습 경험을 먼저 하자고 해서 뺐습니다</span></li>
@@ -224,10 +229,22 @@
     </div>
   </section>
 
+  <section class="c-mine wrap piece" style="--tilt:1.5deg;--rot:3deg;--tr:5deg" data-claim="C07">
+    <img class="tp" src="assets/collage/tape-2.png" alt="">
+    <div class="p kraft">
+      <span class="tag">04 누가 무엇을</span>
+      <dl class="mine">
+        <div><dt>내가 정한 것</dt><dd>인터뷰로 받은 판정 기준, 고칠 곳 2개만 짚는 구조, 버릴 기능 5개</dd></div>
+        <div><dt>AI가 짠 것</dt><dd>도구 코드</dd></div>
+        <div><dt>내가 확인한 것</dt><dd>1차·2차 답변이 달라졌는지, 근거 없는 지적이 걸러지는지</dd></div>
+      </dl>
+    </div>
+  </section>
+
   <section class="c-out wrap piece" style="--tilt:.6deg;--rot:2deg;--tr:-2deg" data-claim="C09 C10">
     <img class="tp" src="assets/collage/tape-2.png" alt="">
     <div class="p">
-      <span class="tag">04 실제로 나온 결과</span>
+      <span class="tag">05 실제로 나온 결과</span>
       <span class="changed" aria-hidden="true">달라졌다</span>
       <div class="out-grid">
         <div class="ans"><span class="n">1차 답변</span><p>“다음 패치 때 로스터를 바꾸는 얘기가…”</p></div>
@@ -243,7 +260,7 @@
   <section class="c-gap wrap piece" style="--tilt:-2deg;--rot:-4deg;--tr:4deg" data-claim="C08">
     <img class="tp" src="assets/collage/tape-1.png" alt="">
     <div class="p red">
-      <span class="tag">05 담당자가 짚은 빈 곳</span>
+      <span class="tag">06 담당자가 짚은 빈 곳</span>
       <p class="quote">잘된 부분을 먼저 말하는 게 빠져 있어요.</p>
       <p class="then">→ 잘된 점 1개를 맨 위에 올렸습니다. 억지로 만들지 않고, 없으면 비워 둡니다.</p>
     </div>
@@ -251,7 +268,7 @@
 
   <section class="c-unk piece" style="--rot:3deg" data-claim="C11">
     <div class="note">
-      <span class="tag">06 아직 모르는 것</span>
+      <span class="tag">07 아직 모르는 것</span>
       <ul>
         <li>실제 선수가 써 본 적은 없습니다</li>
         <li>전과 비교할 수치가 없습니다</li>

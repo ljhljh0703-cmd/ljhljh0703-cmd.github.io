@@ -1,0 +1,398 @@
+{
+  "_": "직무 주소(/platform/ 등)와 전체 목록(/all/)의 정본 데이터. 고친 뒤 python3 tools/build_views.py 로 페이지를 다시 만들고 python3 tools/check.py 로 검사한다. 문장은 각 작품 페이지와 이력서 재료(resume-data.yml)에 있는 값만 쓴다.",
+  "person": {
+    "name": "이주형",
+    "line": "현장의 문제를 정의하고 AI로 해결하는 엔지니어",
+    "email": "ljhljh0703@gmail.com",
+    "github": "https://github.com/ljhljh0703-cmd",
+    "intro": "Cofathon 2026(크래프톤 FDE 트랙) 최우수 수상. 지금은 위메이드엑스알에서 AI 엔지니어 인턴으로 일합니다. 제안 PM으로 참여한 제안의 누적 매출 17억, 그때처럼 쓰는 사람의 기준을 먼저 받아 와 AI가 그 기준대로 움직이게 만들고 결과를 잽니다."
+  },
+  "picks": [
+    "cofathon",
+    "game-ops",
+    "bookemon",
+    "jelly",
+    "hwigi"
+  ],
+  "axes": [
+    {
+      "id": "ops",
+      "name": "운영 도구를 만들어 실제로 돌림",
+      "proof": "사용자 수 · 처리 흐름 · 실패 처리",
+      "items": [
+        "game-ops",
+        "doc-search"
+      ]
+    },
+    {
+      "id": "rules",
+      "name": "현업 판단을 규칙과 코드로 옮김",
+      "proof": "담당자 말 → 판정 기준 → 코드",
+      "items": [
+        "cofathon",
+        "bookemon"
+      ]
+    },
+    {
+      "id": "eval",
+      "name": "AI 답을 기준표로 걸러 냄",
+      "proof": "평가표 · 비교 실험 · 실패 기록",
+      "items": [
+        "bookemon",
+        "medical",
+        "werewolf",
+        "hwigi"
+      ]
+    },
+    {
+      "id": "ship",
+      "name": "출시하고 배포함",
+      "proof": "스토어 제출 · APK · 웹 플레이",
+      "items": [
+        "jelly",
+        "hwigi",
+        "starlink"
+      ]
+    }
+  ],
+  "views": {
+    "platform": {
+      "title": "플랫폼 · 서버 프로그래밍",
+      "lead": "운영·사내 도구를 만들어 실제로 돌린 작업부터 보여 드립니다.",
+      "items": [
+        "game-ops",
+        "doc-search",
+        "cofathon",
+        "starlink"
+      ]
+    },
+    "ai": {
+      "title": "AI 엔지니어",
+      "lead": "AI의 답을 기준표로 재고 걸러 낸 작업부터 보여 드립니다.",
+      "items": [
+        "bookemon",
+        "medical",
+        "cofathon",
+        "werewolf"
+      ]
+    },
+    "fde": {
+      "title": "현장 AI 배치 (FDE)",
+      "lead": "현업의 판단 기준을 받아 와 AI가 그대로 움직이게 만든 작업부터 보여 드립니다.",
+      "items": [
+        "cofathon",
+        "doc-search",
+        "game-ops",
+        "medical"
+      ]
+    },
+    "game": {
+      "title": "게임 개발",
+      "lead": "직접 만들어 내놓은 게임과 게임을 운영하는 도구부터 보여 드립니다.",
+      "items": [
+        "jelly",
+        "hwigi",
+        "game-ops",
+        "cofathon"
+      ]
+    },
+    "agent": {
+      "title": "AI 에이전트 · 자동화",
+      "lead": "여러 AI가 기준대로 일하게 만들고 그 결과를 검사한 작업부터 보여 드립니다.",
+      "items": [
+        "game-ops",
+        "agentforge",
+        "cofathon",
+        "quant"
+      ]
+    }
+  },
+  "items": {
+    "game-ops": {
+      "name": "게임 운영 플랫폼",
+      "url": "game-ops/",
+      "repo": "https://github.com/ljhljh0703-cmd/game-ops-platform",
+      "kind": "개인 · 2026.10",
+      "stage": "작동 데모",
+      "problem": "직접 만든 게임 세 개의 디스코드 버그 제보를 분류하고 묶어 슬랙 보고서와 깃허브 이슈로 넘기고, 고친 PR이 합쳐지면 제보자에게 답장까지 보냅니다.",
+      "result": "서버 테스트 214건 통과 · 실제 플레이어 제보 6건 → 개발 지시서 1건",
+      "decided": "문제 정의, 제보부터 답장까지의 흐름, 설계 결정 고르기, 분류 평가 기준과 판정",
+      "ai": "서버·디스코드 봇·슬랙 앱·플러그인 코드",
+      "checked": "테스트, 실제 디스코드·슬랙·깃허브 시험, 코드를 안 쓴 AI의 별도 검토",
+      "short": "서버 테스트 214건 · 실제 제보 6건 → 지시서 1건"
+    },
+    "doc-search": {
+      "name": "기획 문서 탐색 AI 스킬",
+      "url": "doc-search/",
+      "kind": "위메이드엑스알 인턴 · 2026.08~",
+      "stage": "사내 파일럿 배포",
+      "problem": "기획자가 묻는 말을 풀어 여러 기획 문서를 찾고, 지금 유효한 내용인지 가려 근거와 함께 답합니다. 회사 자료라 화면은 싣지 않았습니다.",
+      "result": "신작개발팀 기획자 4명 실무 사용 · 비교 시험 12문항 모두 정답 · 토큰 12.7% 적게",
+      "decided": "과제 범위 좁히기, 문서 탐색을 1단계로, 유효한 문서를 가리는 규칙",
+      "ai": "스킬과 설치·제거·되돌리기 도구의 코드",
+      "checked": "일반 AI와 같은 질문 12개 비교, 고칠 때마다 이전 질문 다시 돌리기"
+    },
+    "cofathon": {
+      "name": "Cofathon 2026 · 선수 인터뷰 연습 도구",
+      "url": "cofathon/",
+      "kind": "대회 · 개인 참가 · 2026.07",
+      "stage": "최우수 수상",
+      "problem": "4시간 안에 비개발자 현업 담당자를 인터뷰하고, 그 사람의 판단 기준대로 움직이는 연습 도구를 만들었습니다.",
+      "result": "KRAFTON FDE 트랙 최우수 수상 · 판정 기준 네 가지를 담당자가 직접 고치는 파일로",
+      "decided": "인터뷰로 받은 판정 기준, 고칠 곳 2개만 짚는 구조, 버릴 기능 5개",
+      "ai": "도구 코드",
+      "checked": "1차·2차 답변이 달라졌는지, 근거 없는 지적이 걸러지는지",
+      "short": "KRAFTON FDE 트랙 최우수 수상"
+    },
+    "bookemon": {
+      "name": "북켓몬 · AI 도서 추천",
+      "url": "AI-Book-Curation/portfolio.html",
+      "repo": "https://github.com/ljhljh0703-cmd/AI-Book-Curation",
+      "kind": "4인 팀 · 팀장 · 2026.03–05",
+      "stage": "데모 · 오프라인 평가",
+      "problem": "인기·신간 점수가 커져 사용자 맞춤이 사라진 추천을, 질문의 뜻을 중심에 둔 순위 규칙으로 다시 짰습니다.",
+      "result": "부적합 추천 90권 중 14권 → 2권 (15.56% → 2.22%) · 18개 질의 · 팀원 4명 직접 채점",
+      "decided": "문장 뜻 점수를 중심에 둔 순위 계산, 0·1·2점 채점 기준",
+      "team": "FE·BE·AI 세 직군으로 나눈 서비스 구현, 18개 질의 채점(팀원 4명)",
+      "checked": "규칙을 끈 목록과 켠 목록을 18개 질의의 상위 5권(90권)으로 비교",
+      "short": "부적합 추천 15.56% → 2.22%"
+    },
+    "jelly": {
+      "name": "지켜줘! 젤리 패닉",
+      "url": "jelly-panic-case/",
+      "repo": "https://github.com/ljhljh0703-cmd/jelly-panic",
+      "play": "https://ljhljh0703-cmd.github.io/jelly-panic/",
+      "kind": "개인 · 2026.07–09",
+      "stage": "웹 플레이 · 스토어 심사 제출",
+      "problem": "모든 위협은 덮을 칸이 있을 때만 생긴다는 공정성 규칙을 먼저 정하고, 그 규칙을 기계로 검사한 수읽기 퍼즐 디펜스입니다.",
+      "result": "무작위 500판에서 막을 수 없는 위협 0건 · 단위 테스트 90/90 · 스토어 반려 원인 고쳐 다시 제출",
+      "decided": "공정성 규칙, 검증 기준, 플레이 피드백",
+      "ai": "게임 코드(HTML 한 장)",
+      "checked": "무작위 500판 시뮬레이션, 단위 테스트 90개와 화면 연결 테스트 16개, 스토어 반려 원인 수정",
+      "short": "무작위 500판, 막을 수 없는 위협 0건"
+    },
+    "hwigi": {
+      "name": "회귀자는 탑을 오른다",
+      "url": "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html",
+      "kind": "개인 · Unity 6 · Android",
+      "stage": "플레이 가능한 프로토타입",
+      "problem": "강화학습을 게임 기능으로 넣지 않고 전투 규칙의 빈틈을 찾는 실험에 썼고, 찾은 결과를 동료의 행동 규칙으로 옮겼습니다.",
+      "result": "4차 실험 평균 보상 점수: 연타 정책 1.54 → 상황 규칙 2.10 (정책마다 1,000판)",
+      "decided": "전투 규칙과 동료의 판단 규칙, 구현 전에 쓴 결정 문서",
+      "ai": "결정 문서대로 맡긴 구현 묶음, 목표 화면 그림 3장",
+      "checked": "정책마다 1,000판 돌린 전투 실험 판정, 묶음마다 만든 APK를 실제 폰에서 확인",
+      "short": "평균 보상 점수 1.54 → 2.10"
+    },
+    "starlink": {
+      "name": "StarLink · 실시간 통역",
+      "url": "StarLink/portfolio.html",
+      "repo": "https://github.com/ljhljh0703-cmd/StarLink",
+      "kind": "개인 · iOS",
+      "stage": "작동 프로토타입",
+      "problem": "청각장애 당사자로서 겪은 불편에서 시작했습니다. 주변 외국어를 한국어 음성으로 바꿔 에어팟이나 보청기로 바로 들려줍니다.",
+      "result": "약 20초 뒤 멈추던 통역 → 계속 이어지는 통역 (실기기 데모, 지연 시간은 따로 재지 않음)",
+      "decided": "말 끊김 감지를 끄고 소리를 끊지 않고 흘려 넣는 방식, 자막 언어를 서버에서 판단",
+      "ai": "iOS 앱과 통역 서버의 초안 코드",
+      "checked": "통역을 멈춘 오류 3가지의 원인 추적, 블루투스 소리 실기기 확인"
+    },
+    "medical": {
+      "name": "알려줄고양 · 내과 자문 챗봇",
+      "url": "Medical-Chatbot/portfolio.html",
+      "repo": "https://github.com/ljhljh0703-cmd/Medical-Chatbot",
+      "kind": "4인 팀 · 팀장",
+      "stage": "데모",
+      "problem": "내과 증상을 물으면 의학 문서를 찾아 답하는 자문 챗봇에서, 위험한 질문을 모델 앞에서 걸러 내는 부분을 맡았습니다.",
+      "result": "응급 문구 13가지는 모델을 거치지 않고 119 안내 · 경고 단어 37개는 경고 뒤 답변",
+      "decided": "응급 판단을 모델 앞 규칙 두 단계로 나눔, 단정하는 말을 권하는 말로 바꾸기",
+      "team": "모델 추가 학습, 키워드 검색 색인, 평가 지표와 실행, 채점용 용어 사전",
+      "checked": "시연 영상 4편으로 응급 경고부터 요약까지 흐름 확인"
+    },
+    "werewolf": {
+      "name": "늑대인간 게임 AI 추리 연구",
+      "url": "ai-npc-social-reasoning-harness/",
+      "kind": "개인 · 탐색 연구",
+      "stage": "탐색 연구",
+      "problem": "인문학 시선을 준 AI와 주지 않은 AI를 같은 판 20개씩으로 비교하고, 말이 망가진 판을 걸러 같은 조건에서 다시 쟀습니다.",
+      "result": "출력 품질 통과 20판 중 10판 → 20판 중 20판 · 역할 추리 차이 +0.066 (미리 정한 기준 +0.10 미달)",
+      "decided": "역할 추리 차이 +0.10을 넘어야 나아졌다고 쓰는 기준, 말 품질과 성능을 따로 세기",
+      "ai": "설명용 개념도 그림 4장",
+      "checked": "품질 검사를 못 넘은 10판을 성능 근거에서 뺌, 5판 시험 뒤 20판으로 늘림"
+    },
+    "quant": {
+      "name": "QuantLeap · 자동매매 연구",
+      "url": "hyunsoo-bot/portfolio.html",
+      "kind": "개인",
+      "stage": "작동 프로토타입 · 모의 실행",
+      "problem": "AI(Gemini)에게는 거래 방향 제안만 맡기고, 들어갈지는 통계 관문과 위험 규칙이 정하게 했습니다.",
+      "result": "모의 실행 위험 규칙 위반 0건 · 손절·익절 주문 진입 3회 중 3회 (실주문·수익률 아님)",
+      "decided": "AI는 방향만 제안하고 진입은 통계 관문과 위험 규칙이 정하는 구조",
+      "checked": "모의 실행에서 위험 규칙을 지켰는지, 같은 조건 두 번에 같은 결정이 나오는지"
+    },
+    "agentforge": {
+      "name": "Agent Forge",
+      "url": "agent-forge/portfolio.html",
+      "repo": "https://github.com/ljhljh0703-cmd/agent-forge",
+      "kind": "개인",
+      "stage": "작동 프로토타입",
+      "problem": "아이디어 한 줄로 기획서·그림·게임 코드·검사가 차례로 도는 파이프라인입니다. 만든 게임을 화면 없는 브라우저에서 직접 조작해 검사합니다.",
+      "result": "멈춘 가짜 게임 3번 중 3번 차단 (플레이 검사를 넣은 뒤 생성 3회)",
+      "decided": "통과 기준(움직임·점수 변화·승패 도달), 엔진이 할 수 있는 것 14가지와 못 하는 것 12가지",
+      "ai": "생성 6회의 기획서·캐릭터 그림·게임 코드",
+      "checked": "일부러 멈춘 가짜 게임을 매 생성에 넣어 검사기가 거르는지 시험"
+    }
+  },
+  "all": [
+    {
+      "when": "2026.10",
+      "name": "게임 운영 플랫폼",
+      "kind": "운영 도구",
+      "role": "개인",
+      "stage": "작동 데모",
+      "url": "game-ops/"
+    },
+    {
+      "when": "2026.08~",
+      "name": "기획 문서 탐색 AI 스킬",
+      "kind": "사내 AI 도구",
+      "role": "인턴 · 설계·배포",
+      "stage": "사내 파일럿",
+      "url": "doc-search/"
+    },
+    {
+      "when": "2026.07–09",
+      "name": "지켜줘! 젤리 패닉",
+      "kind": "게임",
+      "role": "개인",
+      "stage": "웹 플레이 · 스토어 심사 제출",
+      "url": "jelly-panic-case/"
+    },
+    {
+      "when": "2026.07",
+      "name": "Cofathon 2026 · 선수 인터뷰 연습 도구",
+      "kind": "대회",
+      "role": "개인 참가",
+      "stage": "최우수 수상",
+      "url": "cofathon/"
+    },
+    {
+      "when": "2026.07",
+      "name": "카투사 해커톤 · 투자 에이전트 안전 기준",
+      "kind": "대회",
+      "role": "제출",
+      "stage": "제출",
+      "url": "https://github.com/ljhljh0703-cmd/katousa-agent-harness"
+    },
+    {
+      "when": "2026.07",
+      "name": "Codex Asset Forge",
+      "kind": "AI 파이프라인",
+      "role": "개인",
+      "stage": "케이스 스터디 초안",
+      "url": "codex-asset-forge/"
+    },
+    {
+      "when": "2026.07",
+      "name": "Bone Trail",
+      "kind": "게임",
+      "role": "개인",
+      "stage": "프로토타입",
+      "url": "bone-trail/"
+    },
+    {
+      "when": "2026.06~07",
+      "name": "BackRoom Level 0",
+      "kind": "게임",
+      "role": "개인",
+      "stage": "프로토타입",
+      "url": "backroom-level-0-godot/portfolio.html"
+    },
+    {
+      "when": "2026.06~07",
+      "name": "늑대인간 게임 AI 추리 연구",
+      "kind": "AI 연구",
+      "role": "개인",
+      "stage": "탐색 연구",
+      "url": "ai-npc-social-reasoning-harness/"
+    },
+    {
+      "when": "2026.06~10",
+      "name": "Learning Atlas",
+      "kind": "공부 기록",
+      "role": "개인",
+      "stage": "매주 공개",
+      "url": "learning-atlas/"
+    },
+    {
+      "when": "2026.06~07",
+      "name": "Vibe Design Studio",
+      "kind": "디자인 도구",
+      "role": "개인",
+      "stage": "공개 도구",
+      "url": "VDS/case.html"
+    },
+    {
+      "when": "2026.06~07",
+      "name": "StarLink · 실시간 통역",
+      "kind": "AI 서비스",
+      "role": "개인",
+      "stage": "작동 프로토타입",
+      "url": "StarLink/portfolio.html"
+    },
+    {
+      "when": "2026.06",
+      "name": "QuantLeap · 자동매매 연구",
+      "kind": "AI 에이전트",
+      "role": "개인",
+      "stage": "모의 실행",
+      "url": "hyunsoo-bot/portfolio.html"
+    },
+    {
+      "when": "2026.05~",
+      "name": "회귀자는 탑을 오른다",
+      "kind": "게임",
+      "role": "개인",
+      "stage": "플레이 가능 · APK",
+      "url": "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html"
+    },
+    {
+      "when": "2026.04~07",
+      "name": "Agent Forge",
+      "kind": "AI 파이프라인",
+      "role": "개인",
+      "stage": "작동 프로토타입",
+      "url": "agent-forge/portfolio.html"
+    },
+    {
+      "when": "2026.04",
+      "name": "알려줄고양 · 내과 자문 챗봇",
+      "kind": "AI 서비스",
+      "role": "4인 팀 · 팀장",
+      "stage": "데모",
+      "url": "Medical-Chatbot/portfolio.html"
+    },
+    {
+      "when": "2026.03–05",
+      "name": "북켓몬 · AI 도서 추천",
+      "kind": "AI 서비스",
+      "role": "4인 팀 · 팀장",
+      "stage": "데모 · 오프라인 평가",
+      "url": "AI-Book-Curation/portfolio.html"
+    },
+    {
+      "when": "2022–2024",
+      "name": "트루빈스 · B2B 제안 PM",
+      "kind": "경력",
+      "role": "제안 PM",
+      "stage": "참여한 제안의 누적 매출 17억",
+      "url": null
+    },
+    {
+      "when": "2024",
+      "name": "장편소설 「초파리」",
+      "kind": "글",
+      "role": "작가",
+      "stage": "출판",
+      "url": null
+    }
+  ]
+}

@@ -99,6 +99,11 @@
   .then { margin-top: 16px; font-size: 16px; font-weight: 600; }
   .then b { display: inline-block; padding: 0 .3em; background: rgba(32,120,120,.18); }
   .p.teal .then b, .p.blue .then b, .p.red .then b { background: rgba(255,244,232,.18); }
+  .mine { margin-top: 4px; }
+  .mine div { padding: 8px 0; border-top: 1.5px dashed rgba(27,26,23,.4); }
+  .mine div:first-child { border-top: 0; }
+  .mine dt { font-size: 13px; font-weight: 800; color: #c0412a; }
+  .mine dd { margin: 2px 0 0; font-size: 17px; font-weight: 700; line-height: 1.5; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .chip { padding: 4px 11px; font-size: 13.5px; font-weight: 700; color: var(--ink); background: url(assets/collage/paper-kraft.jpg) center/100px; transform: rotate(var(--cr, -1deg)); }
   .p.kraft .chip { background-image: url(assets/collage/paper-cream.jpg); }
@@ -232,8 +237,12 @@
     <img class="tp" src="assets/collage/tape-2.png" alt="">
     <div class="p kraft">
       <span class="tag">05 누가 무엇을</span>
-      <p class="big">구현은 AI가 했습니다.</p>
-      <p class="then">기획, 플레이 피드백, 검증 기준은 <b>제가</b> 쥐었습니다. 12번 주고받았고 약 3일 걸렸습니다.</p>
+      <dl class="mine">
+        <div><dt>내가 정한 것</dt><dd>공정성 규칙, 검증 기준, 플레이 피드백</dd></div>
+        <div><dt>AI가 짠 것</dt><dd>게임 코드(HTML 한 장)</dd></div>
+        <div><dt>내가 확인한 것</dt><dd>무작위 500판 시뮬레이션, 테스트 106개, 스토어 반려 원인 수정</dd></div>
+      </dl>
+      <p class="then">AI와 12번 주고받았고 약 3일 걸렸습니다.</p>
       <div class="chips"><span class="chip" style="--cr:-2deg">외부 라이브러리 0</span><span class="chip" style="--cr:1.5deg">HTML 한 장 118KB</span></div>
     </div>
   </section>
@@ -251,7 +260,7 @@
 </main>
 
 <footer>
-  <div class="stack" data-claim="J10"><span>게임은 브라우저에서 바로 열립니다. 이 페이지는 규칙을 정한 순서와 확인한 기록으로 만들었습니다.</span></div>
+  <div class="stack" data-claim="J10"><span>게임은 브라우저에서 바로 열립니다. 이 페이지는 정한 규칙과 확인한 기록으로 만들었습니다.</span></div>
   <div class="btns">
     <a class="btn" href="../jelly-panic/">웹에서 바로 플레이</a>
     <a class="btn" href="../">작품 모음으로</a>

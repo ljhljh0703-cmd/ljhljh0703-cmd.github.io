@@ -13,11 +13,11 @@ window.PORTFOLIO = {
       "ink": "#c0412a"
     },
     {
-      "id": "09-jelly-panic",
-      "name": "지켜줘! 젤리 패닉",
-      "line": "피할 수 없는 위협이 한 판도 안 나오는지 500판을 돌려 확인한 수읽기 퍼즐 디펜스",
-      "stage": "웹에서 바로 플레이",
-      "url": "jelly-panic-case/",
+      "id": "10-game-ops",
+      "name": "게임 운영 플랫폼",
+      "line": "직접 만든 게임의 디스코드 버그 제보를 분류해 깃허브 이슈로 넘기고, 고친 PR이 합쳐지면 제보자에게 답장까지 보내는 서버",
+      "stage": "작동 데모 · 개인",
+      "url": "game-ops/",
       "ink": "#207878"
     },
     {
@@ -36,44 +36,12 @@ window.PORTFOLIO = {
       ]
     },
     {
-      "id": "02-starlink",
-      "name": "StarLink",
-      "line": "무선 이어폰 하나로 듣는 실시간 동시통역 iOS 앱",
-      "stage": "작동 프로토타입",
-      "url": "StarLink/portfolio.html",
+      "id": "09-jelly-panic",
+      "name": "지켜줘! 젤리 패닉",
+      "line": "피할 수 없는 위협이 한 판도 안 나오는지 500판을 돌려 확인한 수읽기 퍼즐 디펜스",
+      "stage": "웹에서 바로 플레이",
+      "url": "jelly-panic-case/",
       "ink": "#207878"
-    },
-    {
-      "id": "03-medical-cat",
-      "name": "알려줄고양",
-      "line": "내과 데이터로 직접 파인튜닝한 의료 자문 RAG 챗봇",
-      "stage": "데모",
-      "url": "Medical-Chatbot/portfolio.html",
-      "ink": "#c0412a"
-    },
-    {
-      "id": "04-werewolf-table",
-      "name": "로켓단",
-      "line": "인문학을 학습한 AI는 늑대인간 게임에서 더 잘 추리할까",
-      "stage": "탐색적 연구 · 20회",
-      "url": "ai-npc-social-reasoning-harness/",
-      "ink": "#1b1a17"
-    },
-    {
-      "id": "05-quant-gate",
-      "name": "QuantLeap",
-      "line": "통계 게이트가 진입을 막고 AI가 방향을 읽는 자동매매",
-      "stage": "작동 프로토타입 · 모의 실행",
-      "url": "hyunsoo-bot/portfolio.html",
-      "ink": "#4b4ad1"
-    },
-    {
-      "id": "06-agent-forge",
-      "name": "Agent Forge",
-      "line": "아이디어 한 줄을 넣으면 파이프라인이 게임을 만든다",
-      "stage": "작동 프로토타입",
-      "url": "agent-forge/portfolio.html",
-      "ink": "#4b4ad1"
     },
     {
       "id": "07-hwigi-tower",
@@ -169,6 +137,11 @@ window.PORTFOLIO = {
       "meta": "매일 직접 운영 중",
       "items": [
         {
+          "name": "게임 운영 플랫폼",
+          "url": "game-ops/",
+          "desc": "게임 버그 제보를 분류해 이슈와 답장까지 잇는 서버"
+        },
+        {
           "name": "Sub brain",
           "url": null,
           "desc": "여러 AI가 함께 쓰는 지식·작업 운영 체계 · 매일 운영"
@@ -231,13 +204,13 @@ window.PORTFOLIO = {
       "items": [
         {
           "name": "위메이드엑스알",
-          "url": null,
-          "desc": "AI 엔지니어 인턴 · 기획 직군 AI 도구 · 재직 중"
+          "url": "doc-search/",
+          "desc": "AI 엔지니어 인턴 · 기획 문서 탐색 AI 스킬 · 재직 중"
         },
         {
           "name": "트루빈스",
           "url": null,
-          "desc": "제안 PM · 누적 매출 17억 · 2022~2024"
+          "desc": "제안 PM · 참여한 제안의 누적 매출 17억 · 2022~2024"
         },
         {
           "name": "기업 홍보 영상 기획",
