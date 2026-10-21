@@ -54,7 +54,7 @@ window.PORTFOLIO = {
     {
       "id": "13-penelope",
       "name": "Penelope",
-      "line": "이야기가 무너지는 조건을 정하고, 그 조건을 규칙과 시험으로 옮긴 이야기 세계 엔진",
+      "line": "선택 하나에 세계 속 인물이 모두 움직이는 이야기 생성 엔진",
       "stage": "공개 라이브 데모 · OpenAI Build Week 제출",
       "url": "penelope/",
       "ink": "#4b4ad1"
@@ -192,7 +192,7 @@ window.PORTFOLIO = {
         {
           "name": "OpenAI Build Week",
           "url": "penelope/",
-          "desc": "Penelope · 이야기 세계 엔진 · 제출"
+          "desc": "Penelope · 이야기 생성 엔진 · 제출"
         },
         {
           "name": "SKT 모두의 promp.T",
