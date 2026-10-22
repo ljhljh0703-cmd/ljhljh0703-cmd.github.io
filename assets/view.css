@@ -2,7 +2,7 @@
 :root {
   --night: #151412; --ink: #1b1a17; --ink-2: #4a443b; --ink-3: #5e5647; --cream: #eee6d6; --red: #c0412a; --on-color: #fff4e8;
   --sans: "Wanted Sans Variable", "Wanted Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --display: "Black Han Sans", "Wanted Sans Variable", sans-serif;
+  --display: "Wanted Sans Variable", sans-serif;
   --gutter: 24px;
 }
 @media (max-width: 600px) { :root { --gutter: 16px; } }
