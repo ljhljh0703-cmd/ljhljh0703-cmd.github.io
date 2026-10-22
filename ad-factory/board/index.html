@@ -50,6 +50,7 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .flow .arrow{padding-top:4px;color:var(--muted)}
 .checks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .note{font-size:.84em;color:var(--muted);margin-top:12px}
+.note a,#reaction a{color:var(--accent)}
 footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px solid var(--line)}
 @media(max-width:600px){.flow{grid-template-columns:1fr}.flow .arrow{display:none}}
 </style>
@@ -57,7 +58,7 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px s
 <body>
 <nav aria-label="기록판 안"><div class="shell">
 <a class="back" href="../">광고 소재 자동화로</a>
-<a href="#acc">정확도</a><a href="#regress">회귀</a><a href="#items">소재 판정</a><a href="#review">사람 검토</a><a href="#publish">게시 승인</a>
+<a href="#acc">정확도</a><a href="#regress">회귀</a><a href="#items">소재 판정</a><a href="#review">사람 검토</a><a href="#publish">게시 승인</a><a href="#reaction">게시 반응</a>
 </div></nav>
 <main class="shell">
 <header>
@@ -100,6 +101,12 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px s
 <div class="cards" id="publish-cards"></div>
 <p class="note" id="audit"></p>
 </section>
+
+<section id="reaction" aria-labelledby="reaction-h">
+<h2 id="reaction-h">게시 반응</h2>
+<p class="sub">승인한 광고를 인스타그램 릴스에 올린 뒤의 반응입니다. 왼쪽은 인스타그램이 주는 숫자, 오른쪽은 광고 링크로 들어온 사람이 게임 안에서 한 일입니다. 시작한 판이 30판보다 적으면 숫자만 보여 주고 결론은 내리지 않습니다.</p>
+<div id="reaction-body"></div>
+</section>
 </main>
 <footer><div class="shell" id="foot"></div></footer>
 <script src="data.js"></script>
@@ -109,7 +116,7 @@ const D = window.ADF_BOARD;
 const $ = (s) => document.querySelector(s);
 const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const pct = (x) => x == null ? '' : (x * 100).toFixed(1).replace(/\.0$/, '') + '%';
-const badge = (s) => { const c = {'통과':'b-ok','승인대기':'b-wait','승인':'b-ok','연습완료':'b-ok','게시됨':'b-ok','반려':'b-bad','점검실패':'b-bad','사람 확인':'b-wait','처리':'b-ok','대기':'b-wait','막음':'b-bad'}[s] || 'b-muted'; return `<span class="badge ${c}">${esc(s)}</span>`; };
+const badge = (s) => { const c = {'통과':'b-ok','승인대기':'b-wait','승인':'b-ok','연습완료':'b-ok','게시됨':'b-ok','반려':'b-bad','점검실패':'b-bad','사람 확인':'b-wait','처리':'b-ok','대기':'b-wait','막음':'b-bad','표본 작음':'b-wait','충분':'b-ok'}[s] || 'b-muted'; return `<span class="badge ${c}">${esc(s)}</span>`; };
 const setLabel = (s) => ({dev:'연습 묶음', holdout:'숨긴 묶음', holdout2:'새 숨긴 묶음', review:'사람 검토 묶음'}[s] || `생성분 ${s}`);
 if (!D) { $('#meta').textContent = '기록을 불러오지 못했습니다.'; return; }
 
@@ -172,6 +179,16 @@ $('#review-cards').innerHTML = D['사람_검토'].map((q) => `<article class="ca
 $('#publish-cards').innerHTML = D['광고'].map((a) => `<article class="card"><div class="row">${badge(a['상태'])}<span>${esc(a['광고'])}</span><span>${esc(a['채널'] || '')}</span></div><h3>${esc(a['제목'] || '')}</h3><div class="subs">${esc(a['글'] || '')}</div><div class="checks">${Object.entries(a['점검'] || {}).map(([k, v]) => `<span class="badge ${v ? 'b-ok' : 'b-bad'}">${v ? '✓' : '✗'} ${esc(k)}</span>`).join('')}</div></article>`).join('');
 const au = D['감사'] || {};
 $('#audit').textContent = `게시 기록 ${au['줄'] ?? 0}줄 · 중간에 고친 줄 ${au['온전함'] ? '없음' : '있음'}`;
+const reacted = D['광고'].filter((a) => a['반응']);
+if (!reacted.length) {
+  $('#reaction-body').innerHTML = `<div class="card"><div class="row">${badge('대기')}<span>아직 올리기 전</span></div><p class="subs" style="margin-top:8px">게임 전용 인스타그램 계정을 연 뒤 승인한 광고를 올리면, 이 칸에 광고별 재생·좋아요·댓글·공유·저장과 광고 링크로 들어온 사람의 첫 수·다시 하기 비율이 들어옵니다.</p></div>`;
+} else {
+  const n = (x) => x == null ? '' : Number(x).toLocaleString('ko-KR');
+  const rows = reacted.map((a) => { const r = a['반응'], p = r['플랫폼'] || {}, g = r['게임'] || {}; const small = g['표본'] && g['표본'] !== '충분';
+    return `<tr><td>${esc(a['광고'])}<div class="note" style="margin:0">${esc((r['게시_때'] || '').slice(0, 10))}${r['주소'] ? ` · <a href="${esc(r['주소'])}" rel="noopener">게시물</a>` : ''}</div></td><td class="num">${n(p['재생'])}</td><td class="num">${n(p['좋아요'])}</td><td class="num">${n(p['댓글'])}</td><td class="num">${n(p['공유'])}</td><td class="num">${n(p['저장'])}</td><td class="num">${n(g['들어온_사람'])}</td><td class="num">${n(g['시작한_판'])}</td><td class="num">${pct(g['첫_수_둔_비율'])}</td><td class="num">${pct(g['다시_하기_비율'])}</td><td>${small ? badge('표본 작음') : badge('충분')}</td></tr>`; }).join('');
+  const sum = D['성과'] || {};
+  $('#reaction-body').innerHTML = `<div class="tablewrap"><table><thead><tr><th>광고</th><th>재생</th><th>좋아요</th><th>댓글</th><th>공유</th><th>저장</th><th>들어온 사람</th><th>시작한 판</th><th>첫 수</th><th>다시 하기</th><th>표본</th></tr></thead><tbody>${rows}</tbody></table></div>${sum['기간'] ? `<p class="note">기간 ${esc(sum['기간'])}${sum['받은_때'] ? ` · 받은 때 ${esc(sum['받은_때'].replace('T', ' ').slice(0, 16))}` : ''}</p>` : ''}${(sum['다음에_바꿀_것'] || []).length ? `<div class="card" style="margin-top:12px"><h3>다음에 바꿀 것</h3><ul>${sum['다음에_바꿀_것'].map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}`;
+}
 $('#foot').innerHTML = `자료 꼴 ${esc(D['판'])} · 승인한 사람 이름, 열쇠, 채널 계정은 공개용 묶음에 넣지 않습니다.`;
 })();
 </script>
