@@ -10,6 +10,9 @@
 .cp-steps.five{grid-template-columns:repeat(5,minmax(0,1fr));gap:30px}
 .cp-steps.five li.done{background:var(--slip);outline:1.5px solid var(--accent);outline-offset:8px}
 @media(max-width:900px){.cp-steps.five{grid-template-columns:1fr;gap:28px}.cp-steps.five li+li::after{content:none}}
+.cp-video{margin:0}
+.cp-video video{display:block;width:100%;height:auto;background:var(--ink);border:1.5px solid var(--ink)}
+.cp-video figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
 .wip{display:inline-block;margin-left:.5em;padding:.1em .55em;border:1.5px solid var(--accent);font-size:.8em;font-weight:800}
 </style>
 </head>
@@ -17,7 +20,7 @@
 <a class="cp-skip" href="#top">본문으로</a>
 <nav class="cp-nav" aria-label="작품 탐색"><div class="cp-shell">
 <a class="cp-back" href="../">작품 모음으로</a>
-<div class="cp-links"><a href="#now">지금까지</a><a href="#steps">만드는 단계</a><a href="board/">기록판</a></div>
+<div class="cp-links"><a href="#video">영상</a><a href="#now">지금까지</a><a href="#steps">만드는 단계</a><a href="board/">기록판</a></div>
 </div></nav>
 
 <main class="cp-shell" id="top">
@@ -33,6 +36,16 @@
 <p class="cp-meta"><b>이주형</b>최종 갱신 2026.10.22 · 진행하면서 이 페이지를 채웁니다</p>
 </div>
 </header>
+
+<section class="cp-section" id="video" aria-labelledby="video-h">
+<div class="cp-head"><h2 id="video-h">앱 화면으로 보기</h2><p>30초 · <a href="promo/promo-15s-vertical.mp4">세로 15초판</a></p></div>
+<figure class="cp-video">
+<video controls playsinline preload="metadata" poster="promo/poster.jpg" width="1920" height="1080">
+<source src="promo/promo-30s.mp4" type="video/mp4">
+</video>
+<figcaption>기획 요청부터 사실표 대조, 사람 검토, 회귀 감시, 게시 승인까지 실제 앱 화면입니다. 게시 장면은 채널 계정을 연결하기 전 연습 게시입니다.</figcaption>
+</figure>
+</section>
 
 <section class="cp-section" id="now" aria-labelledby="now-h">
 <div class="cp-head"><h2 id="now-h">지금까지 만든 것</h2><p>2026.10.22 기준 · 회차별 판정과 고친 과정은 <a href="board/">기록판</a>에서</p></div>
