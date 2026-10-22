@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>광고 소재 자동화 | 이주형</title>
+<meta name="description" content="직접 만든 게임 젤리 패닉의 광고 소재를 만들고 심사하고 성과를 리포트하는 흐름. 만들기 전에 광고 기준표와 정답 붙인 평가셋부터 만들었습니다. 만드는 중.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">
+<link rel="stylesheet" href="../ax-case/case/case-paper.css">
+<style>
+.cp-hero.solo{grid-template-columns:minmax(0,1fr)}
+.cp-hero.solo .cp-lead{max-width:46em}
+.cp-steps.five{grid-template-columns:repeat(5,minmax(0,1fr));gap:30px}
+.cp-steps.five li.done{background:var(--slip);outline:1.5px solid var(--accent);outline-offset:8px}
+@media(max-width:900px){.cp-steps.five{grid-template-columns:1fr;gap:28px}.cp-steps.five li+li::after{content:none}}
+.wip{display:inline-block;margin-left:.5em;padding:.1em .55em;border:1.5px solid var(--accent);font-size:.8em;font-weight:800}
+</style>
+</head>
+<body class="cp" data-ink="teal">
+<a class="cp-skip" href="#top">본문으로</a>
+<nav class="cp-nav" aria-label="작품 탐색"><div class="cp-shell">
+<a class="cp-back" href="../">작품 모음으로</a>
+<div class="cp-links"><a href="#now">지금까지</a><a href="#steps">만드는 단계</a><a href="board/">기록판</a></div>
+</div></nav>
+
+<main class="cp-shell" id="top">
+<header class="cp-hero solo">
+<div>
+<p class="cp-kicker"><b>광고 소재 자동화</b>젤리 패닉 · 2026.10~ <span class="wip">만드는 중</span></p>
+<h1 class="cp-h1">직접 만든 게임의 광고 소재를<br><b>만들고, 심사하고, 성과까지</b> 보는 흐름</h1>
+<p class="cp-lead">직접 만든 퍼즐 게임 젤리 패닉을 광고합니다. 게임 설명과 화면에서 광고 문구와 이미지 초안을 여러 안 만들고, 정한 기준으로 통과·반려와 반려 사유를 붙인 뒤, 통과한 소재를 무료 SNS(릴스·틱톡·쇼츠)에 올려 반응을 리포트로 받습니다. 만들기 전에 「좋은 광고」의 기준과 정답을 붙인 평가셋부터 만들었습니다.</p>
+<dl class="cp-who">
+<div><dt>내가 정한 것</dt><dd>광고할 게임, 올릴 채널, 광고 첫 장면(질 뻔하다 뒤집는 판), 집행은 무료 게시만</dd></div>
+<div><dt>AI 코딩 에이전트로 만드는 것</dt><dd>기준표, 평가셋과 점검 스크립트, 소재 생성기, 자동 심사기, 성과 리포트</dd></div>
+</dl>
+<p class="cp-meta"><b>이주형</b>최종 갱신 2026.10.22 · 진행하면서 이 페이지를 채웁니다</p>
+</div>
+</header>
+
+<section class="cp-section" id="now" aria-labelledby="now-h">
+<div class="cp-head"><h2 id="now-h">지금까지 만든 것</h2><p>2026.10.22 기준 · 회차별 판정과 고친 과정은 <a href="board/">기록판</a>에서</p></div>
+<div class="cp-stats">
+<div><b>19개</b><span>광고 기준. 통과 조건 8개와 반려 조건 11개. 반려 조건은 게임산업법, 표시광고법, 추천·보증 심사지침, 채널별 AI 생성물 표시 정책에서 가져와 출처를 붙임</span></div>
+<div><b>74개</b><span>정답을 붙인 시험용 소재. 기준을 고칠 때 보는 묶음 46개와 숨겨 두는 묶음 28개로 나눔</span></div>
+<div><b>67 / 74</b><span>다른 판정자가 따로 판정해 정답과 같았던 소재. 어긋난 7개를 보고 기준 문구를 고침</span></div>
+<div><b>30 / 30</b><span>따로 만든 세션이 작성해 숨겨 둔 소재 묶음을 자동 심사에 한 번 돌려 정답과 같았던 수. 반려할 소재를 통과시킨 것 0</span></div>
+<div><b>6편</b><span>게임을 자동으로 두며 녹화한 화면으로 만든 숏폼 광고. 글 심사와 녹화본 대조를 통과하고 사람 승인을 기다리는 중</span></div>
+</div>
+</section>
+
+<section class="cp-section" id="steps" aria-labelledby="steps-h">
+<div class="cp-head"><h2 id="steps-h">만드는 단계</h2><p>기준과 평가셋을 먼저 만들고 생성기를 만듭니다</p></div>
+<ol class="cp-steps five">
+<li class="done"><h3>기준표</h3><p>통과·반려 조건과 반려 사유 문장 틀.</p></li>
+<li class="done"><h3>평가셋</h3><p>통과할 소재와 반려될 소재에 정답을 붙여 모음.</p></li>
+<li class="done"><h3>소재 생성</h3><p>게임 설명과 화면에서 문구·이미지 초안 여러 안.</p></li>
+<li class="done"><h3>자동 심사</h3><p>통과·반려와 「무엇이 · 어디에 · 어떻게 고칠지」 사유. 사람이 최종 확인.</p></li>
+<li><h3>게시·리포트</h3><p>통과 소재를 SNS에 올리고 반응을 모아 다음에 바꿀 것을 슬랙으로.</p></li>
+</ol>
+</section>
+</main>
+</body></html>

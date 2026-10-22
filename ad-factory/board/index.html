@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>광고 공장 기록판 | 이주형</title>
+<meta name="description" content="젤리 패닉 광고 소재를 만들고 심사한 기록. 심사 정확도가 바뀐 과정, 회귀 감시, 소재별 판정과 사유, 사람 검토, 게시 승인 점검을 그대로 보여 줍니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">
+<style>
+:root{--paper:#f7f1e3;--card:#fffaf0;--ink:#1d2a2e;--muted:#5d6a6c;--line:#d9cfb8;--accent:#1f6f6b;--ok:#2f7d4a;--bad:#b23a2e;--wait:#9a6b12;--slip:#efe5cc}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1d1c;--card:#232726;--ink:#ece6d8;--muted:#a8a296;--line:#3a3f3d;--accent:#5fb3ad;--ok:#6cc08a;--bad:#e2786c;--wait:#d7a94b;--slip:#2b302e}}
+:root[data-theme="dark"]{--paper:#1a1d1c;--card:#232726;--ink:#ece6d8;--muted:#a8a296;--line:#3a3f3d;--accent:#5fb3ad;--ok:#6cc08a;--bad:#e2786c;--wait:#d7a94b;--slip:#2b302e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Wanted Sans Variable","Wanted Sans",system-ui,sans-serif;line-height:1.6;font-size:16px}
+.shell{max-width:1040px;margin:0 auto;padding:0 16px}
+nav{border-bottom:1.5px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:2}
+nav .shell{display:flex;gap:18px;align-items:center;min-height:52px;overflow-x:auto;white-space:nowrap}
+nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.92em}
+nav a.back{color:var(--accent);margin-right:auto}
+header{padding:40px 0 18px}
+.kicker{color:var(--accent);font-weight:800;letter-spacing:.02em;margin:0 0 8px}
+h1{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.25;margin:0 0 12px;letter-spacing:-.02em}
+.lead{max-width:44em;color:var(--muted);margin:0}
+.meta{margin-top:14px;font-size:.88em;color:var(--muted)}
+section{padding:34px 0;border-top:1.5px solid var(--line)}
+h2{font-size:1.3rem;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 18px;max-width:46em}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:22px}
+.stat{background:var(--card);border:1.5px solid var(--line);padding:14px 16px}
+.stat b{display:block;font-size:1.6rem;letter-spacing:-.02em}
+.stat span{font-size:.86em;color:var(--muted)}
+.chart{background:var(--card);border:1.5px solid var(--line);padding:12px;overflow-x:auto}
+.chart svg{display:block;min-width:640px;width:100%;height:auto}
+table{border-collapse:collapse;width:100%;font-size:.9em;background:var(--card)}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-weight:700;color:var(--muted);font-size:.86em;white-space:nowrap}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tablewrap{overflow-x:auto;border:1.5px solid var(--line);margin-top:14px}
+.badge{display:inline-block;padding:.05em .55em;border:1.5px solid currentColor;font-size:.8em;font-weight:700;white-space:nowrap}
+.b-ok{color:var(--ok)}.b-bad{color:var(--bad)}.b-wait{color:var(--wait)}.b-muted{color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filters button{font:inherit;font-size:.88em;padding:6px 12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--accent);background:var(--slip);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--card);border:1.5px solid var(--line);padding:14px 16px}
+.card h3{font-size:1rem;margin:6px 0 4px;line-height:1.4}
+.card .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.84em;color:var(--muted)}
+.card ul{margin:8px 0 0;padding-left:1.1em;font-size:.88em}
+.card .subs{font-size:.86em;color:var(--muted);margin-top:6px}
+.reason{margin-top:10px;padding:8px 10px;background:var(--slip);font-size:.86em}
+.reason b{color:var(--bad)}
+.flow{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:start}
+.flow .arrow{padding-top:4px;color:var(--muted)}
+.checks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.note{font-size:.84em;color:var(--muted);margin-top:12px}
+footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px solid var(--line)}
+@media(max-width:600px){.flow{grid-template-columns:1fr}.flow .arrow{display:none}}
+</style>
+</head>
+<body>
+<nav aria-label="기록판 안"><div class="shell">
+<a class="back" href="../">광고 소재 자동화로</a>
+<a href="#acc">정확도</a><a href="#regress">회귀</a><a href="#items">소재 판정</a><a href="#review">사람 검토</a><a href="#publish">게시 승인</a>
+</div></nav>
+<main class="shell">
+<header>
+<p class="kicker">광고 공장 기록판 · 읽기 전용</p>
+<h1>광고 소재를 만들고 심사한 기록을<br>고친 과정까지 그대로 보여 줍니다</h1>
+<p class="lead">아래 숫자와 판정은 손으로 옮겨 적지 않았습니다. 광고 공장 엔진이 남긴 작업 기록을 공개용 묶음 하나로 내보내고, 이 화면은 그 묶음만 읽습니다.</p>
+<p class="meta" id="meta"></p>
+<div class="stats" id="stats"></div>
+</header>
+
+<section id="acc" aria-labelledby="acc-h">
+<h2 id="acc-h">심사 정확도가 바뀐 과정</h2>
+<p class="sub">정답을 먼저 붙인 묶음을 자동 심사에 돌린 회차입니다. 점은 정답과 판정이 같은 비율이고, 빨간 점은 반려해야 할 소재를 통과시킨 회차입니다. 떨어진 회차마다 무엇을 고쳤는지 표에 적었습니다.</p>
+<div class="chart" id="chart" role="img" aria-label="회차별 심사 일치율"></div>
+<div class="tablewrap"><table id="acc-table"><thead><tr><th>회차</th><th>묶음</th><th>소재</th><th>일치</th><th>반려 놓침</th><th>기준표</th><th>무엇을 했나</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section id="regress" aria-labelledby="regress-h">
+<h2 id="regress-h">회귀 감시</h2>
+<p class="sub">기준표, 판정 요청문, 규칙 코드, 사실표, 사람 검토 묶음 중 하나라도 바뀌면 시험 묶음을 다시 돌립니다. 반려해야 할 소재를 통과시키면 관문에서 막습니다.</p>
+<div class="tablewrap"><table id="regress-table"><thead><tr><th>회차</th><th>바뀐 것</th><th>묶음별 결과</th><th>관문</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section id="items" aria-labelledby="items-h">
+<h2 id="items-h">생성한 소재와 판정</h2>
+<p class="sub">AI가 만든 대본마다 자동 심사의 마지막 판정입니다. 반려에는 걸린 조건과 「무엇이 · 어디에 · 어떻게 고칠지」 사유가 붙습니다. 사람이 먼저 붙인 정답이나 사람 검토 결과가 있으면 나란히 놓고, AI와 다르면 빨간 테두리로 표시합니다. 이렇게 어긋난 소재를 보고 사실표와 기준을 고쳤습니다.</p>
+<div class="filters" id="filters"></div>
+<div class="cards" id="cards"></div>
+</section>
+
+<section id="review" aria-labelledby="review-h">
+<h2 id="review-h">사람 검토</h2>
+<p class="sub">AI가 판단을 미룬 소재와 사람이 판정을 뒤집은 소재입니다. 사람이 정한 판정은 이유와 함께 다음 회귀 묶음으로 들어갑니다.</p>
+<div class="cards" id="review-cards"></div>
+</section>
+
+<section id="publish" aria-labelledby="publish-h">
+<h2 id="publish-h">게시 승인 점검</h2>
+<p class="sub">게시 요청마다 아래 조건을 자동으로 봅니다. 승인은 사람 이름으로만 받고, 승인 뒤 영상이나 글이 바뀌면 실행을 막습니다. 게시 기록은 줄마다 앞 줄 지문을 품어 중간을 고치면 드러납니다.</p>
+<div class="cards" id="publish-cards"></div>
+<p class="note" id="audit"></p>
+</section>
+</main>
+<footer><div class="shell" id="foot"></div></footer>
+<script src="data.js"></script>
+<script>
+(function(){
+const D = window.ADF_BOARD;
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pct = (x) => x == null ? '' : (x * 100).toFixed(1).replace(/\.0$/, '') + '%';
+const badge = (s) => { const c = {'통과':'b-ok','승인대기':'b-wait','승인':'b-ok','연습완료':'b-ok','게시됨':'b-ok','반려':'b-bad','점검실패':'b-bad','사람 확인':'b-wait','처리':'b-ok','대기':'b-wait','막음':'b-bad'}[s] || 'b-muted'; return `<span class="badge ${c}">${esc(s)}</span>`; };
+const setLabel = (s) => ({dev:'연습 묶음', holdout:'숨긴 묶음', holdout2:'새 숨긴 묶음', review:'사람 검토 묶음'}[s] || `생성분 ${s}`);
+if (!D) { $('#meta').textContent = '기록을 불러오지 못했습니다.'; return; }
+
+const made = D['만든_때'] ? D['만든_때'].replace('T', ' ').slice(0, 16) : '';
+$('#meta').innerHTML = `게임 ${D['게임'].map((g) => esc(g['이름'])).join(', ')} · 기준표 ${esc(D['기준표']['판'])} · 내보낸 때 ${esc(made)}`;
+
+const scoredAll = D['심사_이력'].filter((r) => r['채점'] && r['판정_일치'] != null);
+const scored = scoredAll.filter((r) => !r['다시_씀']);
+const hidden = scored.filter((r) => r['묶음'].startsWith('holdout')).slice(-1)[0];
+const lastDev = scored.filter((r) => r['묶음'] === 'dev').slice(-1)[0];
+const items = D['생성분'].flatMap((g) => g['소재']);
+const stats = [
+  [`${D['기준표']['통과_조건'] + D['기준표']['반려_조건']}개`, `광고 기준. 통과 조건 ${D['기준표']['통과_조건']}개, 반려 조건 ${D['기준표']['반려_조건']}개`],
+  lastDev && [pct(lastDev['판정_일치']), `최근 연습 묶음 ${lastDev['소재_수']}개에서 정답과 같은 판정 (${esc(lastDev['회차'])})`],
+  hidden && [pct(hidden['판정_일치']), `숨긴 묶음 ${hidden['소재_수']}개를 한 번 돌린 결과 (${esc(hidden['회차'])}), 반려 놓침 ${hidden['비싼_오류']}`],
+  [`${items.length}편`, `AI가 만든 대본. 사람 판정이 있는 ${items.filter((i) => i['사람']).length}편 중 AI와 다른 것 ${items.filter((i) => i['사람'] && i['사람']['판정'] !== i['최종']).length}편, 이걸 보고 사실표와 기준을 고침`],
+  [`${D['광고'].length}편`, `점검을 거친 숏폼 광고, 승인 대기 ${D['광고'].filter((a) => a['상태'] === '승인대기').length}편`],
+].filter(Boolean);
+$('#stats').innerHTML = stats.map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
+
+// 정확도 그림
+(function chart(){
+  const W = 860, H = 260, L = 46, R = 16, T = 18, B = 46;
+  const n = scored.length; if (!n) return;
+  const lo = 0;
+  const x = (i) => L + (n === 1 ? 0 : i * (W - L - R) / (n - 1));
+  const y = (v) => T + (1 - (v - lo) / (1 - lo)) * (H - T - B);
+  let g = '';
+  [0, 0.25, 0.5, 0.75, 1].forEach((v) => { g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${v * 100}%</text>`; });
+  const pts = scored.map((r, i) => `${x(i)},${y(Math.max(lo, r['판정_일치']))}`).join(' ');
+  g += `<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
+  scored.forEach((r, i) => {
+    const bad = r['비싼_오류'] > 0, hid = r['묶음'].startsWith('holdout');
+    g += `<circle cx="${x(i)}" cy="${y(Math.max(lo, r['판정_일치']))}" r="${hid ? 6 : 4.5}" fill="${bad ? 'var(--bad)' : (hid ? 'var(--card)' : 'var(--accent)')}" stroke="${bad ? 'var(--bad)' : 'var(--accent)'}" stroke-width="2"><title>${esc(r['회차'])} ${esc(setLabel(r['묶음']))} ${pct(r['판정_일치'])}</title></circle>`;
+    g += `<text x="${x(i)}" y="${H - B + 18}" text-anchor="middle" font-size="10.5" fill="var(--muted)">${esc(r['회차'].replace('-review', '·검토').replace('-dev', ''))}</text>`;
+  });
+  g += `<text x="${L}" y="${H - 6}" font-size="11" fill="var(--muted)">빈 원 = 숨긴 묶음 · 빨간 점 = 반려 놓침 있음</text>`;
+  $('#chart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${g}</svg>`;
+})();
+$('#acc-table tbody').innerHTML = scoredAll.map((r) => `<tr${r['다시_씀'] ? ' style="color:var(--muted)"' : ''}><td>${esc(r['회차'])}</td><td>${esc(setLabel(r['묶음']))}</td><td class="num">${r['소재_수'] ?? ''}</td><td class="num">${pct(r['판정_일치'])}</td><td class="num">${r['비싼_오류'] > 0 ? `<span class="badge b-bad">${r['비싼_오류']}</span>` : '0'}</td><td class="num">${esc(r['기준표_판'] || '')}</td><td>${esc(r['메모'])}</td></tr>`).join('');
+
+$('#regress-table tbody').innerHTML = D['회귀'].map((r) => `<tr><td>${esc(r.id)}<div class="note" style="margin:0">${esc((r['때'] || '').replace('T', ' ').slice(0, 16))}</div></td><td>${esc((r['바뀐_것'] || []).join(', ') || '기준점')}</td><td>${Object.entries(r['묶음별'] || {}).map(([k, v]) => `${esc(setLabel(k))} ${v['소재_수']}개 · 일치 ${pct(v['판정_일치'])} · 반려 놓침 ${v['비싼_오류']}`).join('<br>')}</td><td>${badge(r['관문'])}</td></tr>`).join('');
+
+// 소재 카드
+const runs = D['생성분'].map((g) => g['회차']);
+let fRun = '전체', fVer = '전체';
+function drawFilters(){
+  const btn = (k, v, cur) => `<button data-k="${k}" data-v="${esc(v)}" aria-pressed="${v === cur}">${esc(v === '전체' ? (k === 'run' ? '모든 회차' : '모든 판정') : v)}</button>`;
+  $('#filters').innerHTML = ['전체', ...runs].map((v) => btn('run', v, fRun)).join('') + ['전체', '통과', '반려', '사람 확인'].map((v) => btn('ver', v, fVer)).join('');
+}
+function drawCards(){
+  const list = D['생성분'].filter((g) => fRun === '전체' || g['회차'] === fRun).flatMap((g) => g['소재']).filter((i) => fVer === '전체' || i['최종'] === fVer);
+  $('#cards').innerHTML = list.map((i) => { const h = i['사람']; const miss = h && h['판정'] !== i['최종']; return `<article class="card"${miss ? ' style="border-color:var(--bad)"' : ''}><div class="row"><span>AI</span>${badge(i['최종'])}${h ? `<span>사람</span>${badge(h['판정'])}` : ''}<span>${esc(i.id)}</span><span>${esc(i['유형'] || '')}</span><span>${esc(i['채널'] || '')}</span></div><h3>${esc(i['제목'] || '')}</h3><div class="subs">${(i['자막'] || []).map(esc).join(' / ')}</div>${(i['사유'] || []).map((r) => `<div class="reason"><b>${esc(r['조건'])}</b> ${r['구절'] ? `「${esc(r['구절'])}」 ` : ''}${esc(r['사유'])}</div>`).join('')}${miss ? `<div class="reason" style="background:transparent;border-left:3px solid var(--bad)"><b>AI와 사람이 다름</b> ${esc((h['조건'] || []).join(', '))} ${esc(h['근거'])} <span class="note">(${esc(h['출처'])})</span></div>` : ''}</article>`; }).join('') || '<p class="note">이 조건의 소재가 없습니다.</p>';
+}
+$('#filters').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; if (b.dataset.k === 'run') fRun = b.dataset.v; else fVer = b.dataset.v; drawFilters(); drawCards(); });
+drawFilters(); drawCards();
+
+$('#review-cards').innerHTML = D['사람_검토'].map((q) => `<article class="card"><div class="row"><span>${esc(q.id)}</span><span>소재 ${esc(q['소재'])}</span>${q['뒤집음'] ? '<span class="badge b-bad">판정 뒤집음</span>' : ''}</div><div class="flow" style="margin-top:8px"><div><div class="note" style="margin:0">AI</div>${badge(q['AI_판정'])}<div class="subs">${esc(q['AI_이유'] || '')}</div></div><div class="arrow">→</div><div><div class="note" style="margin:0">사람</div>${q['결정'] ? badge(q['결정']) : badge('대기')}${q['조건'].length ? ` <span class="badge b-muted">${esc(q['조건'].join(', '))}</span>` : ''}<div class="subs">${esc(q['이유'] || '')}</div></div></div></article>`).join('');
+
+$('#publish-cards').innerHTML = D['광고'].map((a) => `<article class="card"><div class="row">${badge(a['상태'])}<span>${esc(a['광고'])}</span><span>${esc(a['채널'] || '')}</span></div><h3>${esc(a['제목'] || '')}</h3><div class="subs">${esc(a['글'] || '')}</div><div class="checks">${Object.entries(a['점검'] || {}).map(([k, v]) => `<span class="badge ${v ? 'b-ok' : 'b-bad'}">${v ? '✓' : '✗'} ${esc(k)}</span>`).join('')}</div></article>`).join('');
+const au = D['감사'] || {};
+$('#audit').textContent = `게시 기록 ${au['줄'] ?? 0}줄 · 중간에 고친 줄 ${au['온전함'] ? '없음' : '있음'}`;
+$('#foot').innerHTML = `자료 꼴 ${esc(D['판'])} · 승인한 사람 이름, 열쇠, 채널 계정은 공개용 묶음에 넣지 않습니다.`;
+})();
+</script>
+</body></html>
