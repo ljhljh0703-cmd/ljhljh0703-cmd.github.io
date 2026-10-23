@@ -55,6 +55,8 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .chan .next{font-size:.86em;margin-top:6px}
 .card.hit{outline:3px solid var(--accent);outline-offset:2px}
 .note{font-size:.84em;color:var(--muted);margin-top:12px}
+#q-note,#q-rules,#reaction .card ul{max-width:46em}
+#q-audit a,#q-rules a{color:var(--accent)}
 .note a,#reaction a{color:var(--accent)}
 footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px solid var(--line)}
 @media(max-width:600px){.flow{grid-template-columns:1fr}.flow .arrow{display:none}}
@@ -63,7 +65,7 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px s
 <body>
 <nav aria-label="기록판 안"><div class="shell">
 <a class="back" href="../">광고 소재 자동화로</a>
-<a href="#acc">정확도</a><a href="#regress">회귀</a><a href="#items">소재 판정</a><a href="#review">사람 검토</a><a href="#publish">게시 승인</a><a href="#reaction">게시 반응</a>
+<a href="#acc">정확도</a><a href="#regress">회귀</a><a href="#quality">심사 품질</a><a href="#items">소재 판정</a><a href="#review">사람 검토</a><a href="#publish">게시 승인</a><a href="#reaction">게시 반응</a>
 </div></nav>
 <main class="shell">
 <header>
@@ -85,6 +87,16 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px s
 <h2 id="regress-h">회귀 감시</h2>
 <p class="sub">기준표, 판정 요청문, 규칙 코드, 사실표, 사람 검토 묶음 중 하나라도 바뀌면 시험 묶음을 다시 돌립니다. 반려해야 할 소재를 통과시키면 관문에서 막습니다.</p>
 <div class="tablewrap"><table id="regress-table"><thead><tr><th>회차</th><th>바뀐 것</th><th>묶음별 결과</th><th>관문</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section id="quality" aria-labelledby="quality-h">
+<h2 id="quality-h">심사 품질 관리</h2>
+<p class="sub">일치율 하나로는 어떤 실수를 했는지 보이지 않아서 세 가지를 따로 잽니다. 틀린 종류마다 비용을 다르게 매기고, 같은 소재를 두 번 판정해 결과가 흔들리는지 보고, 자동으로 통과한 소재 일부를 사람이 다시 봅니다. 표본이 작으면 진짜 값이 들어 있을 범위(95% 구간)를 같이 적습니다.</p>
+<div class="stats" id="q-stats"></div>
+<div class="tablewrap"><table id="q-gold"><thead><tr><th>회차</th><th>묶음</th><th>소재</th><th>반려 잡음</th><th>반려 놓침률 최대</th><th>통과를 막음</th><th>반려 정밀도</th><th>정보력</th><th>소재당 비용</th></tr></thead><tbody></tbody></table></div>
+<div class="tablewrap"><table id="q-audit"><thead><tr><th>생성 회차</th><th>판정</th><th>자동 통과</th><th>사람이 본 것</th><th>사람이 반려로 본 것</th><th>다음에 사람이 볼 소재</th></tr></thead><tbody></tbody></table></div>
+<div id="q-rules"></div>
+<p class="note" id="q-note"></p>
 </section>
 
 <section id="items" aria-labelledby="items-h">
@@ -109,25 +121,27 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:.86em;border-top:1.5px s
 
 <section id="reaction" aria-labelledby="reaction-h">
 <h2 id="reaction-h">게시 반응</h2>
-<p class="sub">승인한 광고를 인스타그램 릴스와 유튜브 쇼츠에 올린 뒤의 반응입니다. 같은 광고도 채널마다 한 줄씩입니다. 왼쪽은 채널이 주는 숫자, 오른쪽은 광고 링크로 들어온 사람이 게임 안에서 한 일입니다. 시작한 판이 30판보다 적으면 숫자만 보여 주고 결론은 내리지 않습니다.</p>
+<p class="sub">광고 링크로 들어온 사람이 게임 안에서 한 일을 광고별로 셉니다. 무엇으로 비교할지와 몇 명이 모여야 결론을 낼지는 숫자를 보기 전에 정해 두었고, 그 전에는 방향만 적습니다.</p>
 <div id="reaction-body"></div>
 </section>
 </main>
 <footer><div class="shell" id="foot"></div></footer>
 <script src="data.js"></script>
 <script>
-(function(){
-const D = window.ADF_BOARD;
+const REMOTE = 'https://raw.githubusercontent.com/ljhljh0703-cmd/ad-factory/board-data/board/data.json';
+function main(D, SRC){
 const $ = (s) => document.querySelector(s);
 const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const pct = (x) => x == null ? '' : (x * 100).toFixed(1).replace(/\.0$/, '') + '%';
-const badge = (s) => { const c = {'통과':'b-ok','승인대기':'b-wait','승인':'b-ok','연습완료':'b-ok','게시됨':'b-ok','반려':'b-bad','점검실패':'b-bad','사람 확인':'b-wait','처리':'b-ok','대기':'b-wait','막음':'b-bad','표본 작음':'b-wait','충분':'b-ok','승인 대기':'b-wait','일부 공개로 올림':'b-ok','공개로 올림':'b-ok','비공개로 올림':'b-wait','내림':'b-muted'}[s] || 'b-muted'; return `<span class="badge ${c}">${esc(s)}</span>`; };
+const badge = (s) => { const c = {'통과':'b-ok','승인대기':'b-wait','승인':'b-ok','연습완료':'b-ok','게시됨':'b-ok','반려':'b-bad','점검실패':'b-bad','사람 확인':'b-wait','처리':'b-ok','대기':'b-wait','막음':'b-bad','표본 작음':'b-wait','충분':'b-ok','승인 대기':'b-wait','일부 공개로 올림':'b-ok','공개로 올림':'b-ok','비공개로 올림':'b-wait','내림':'b-muted','변화 큼':'b-bad','미리 정한 규칙':'b-muted','반려 놓침':'b-bad'}[s] || 'b-muted'; return `<span class="badge ${c}">${esc(s)}</span>`; };
 const stateLabel = (a) => { const st = a['상태'] || ''; if (st.startsWith('게시됨')) return a['공개'] === 'public' ? '공개로 올림' : a['공개'] === 'private' ? '비공개로 올림' : '일부 공개로 올림'; return st === '승인대기' ? '승인 대기' : st; };
 const setLabel = (s) => ({dev:'연습 묶음', holdout:'숨긴 묶음', holdout2:'새 숨긴 묶음', review:'사람 검토 묶음'}[s] || `생성분 ${s}`);
 if (!D) { $('#meta').textContent = '기록을 불러오지 못했습니다.'; return; }
 
 const made = D['만든_때'] ? D['만든_때'].replace('T', ' ').slice(0, 16) : '';
-$('#meta').innerHTML = `게임 ${D['게임'].map((g) => esc(g['이름'])).join(', ')} · 기준표 ${esc(D['기준표']['판'])} · 내보낸 때 ${esc(made)}`;
+const ago = (() => { const t = Date.parse(D['만든_때'] || ''); if (isNaN(t)) return ''; const h = Math.round((Date.now() - t) / 3600000); return h < 1 ? '방금' : h < 48 ? `${h}시간 전` : `${Math.round(h / 24)}일 전`; })();
+const lastRec = D['기록_마지막_때'] ? D['기록_마지막_때'].replace('T', ' ').slice(0, 16) : '';
+$('#meta').innerHTML = `게임 ${D['게임'].map((g) => esc(g['이름'])).join(', ')} · 기준표 ${esc(D['기준표']['판'])} · 내보낸 때 ${esc(made)}${ago ? ` (${esc(ago)})` : ''}${lastRec ? ` · 기록 마지막 변경 ${esc(lastRec)}` : ''} · ${SRC === 'remote' ? '저장소에서 바로 읽음' : '<span class="badge b-wait">이 페이지에 같이 올린 사본</span> 저장소보다 늦을 수 있음'}`;
 
 const scoredAll = D['심사_이력'].filter((r) => r['채점'] && r['판정_일치'] != null);
 const scored = scoredAll.filter((r) => !r['다시_씀']);
@@ -165,6 +179,31 @@ $('#stats').innerHTML = stats.map(([b, s]) => `<div class="stat"><b>${b}</b><spa
 $('#acc-table tbody').innerHTML = scoredAll.map((r) => `<tr${r['다시_씀'] ? ' style="color:var(--muted)"' : ''}><td>${esc(r['회차'])}</td><td>${esc(setLabel(r['묶음']))}</td><td class="num">${r['소재_수'] ?? ''}</td><td class="num">${pct(r['판정_일치'])}</td><td class="num">${r['비싼_오류'] > 0 ? `<span class="badge b-bad">${r['비싼_오류']}</span>` : '0'}</td><td class="num">${esc(r['기준표_판'] || '')}</td><td>${esc(r['메모'])}</td></tr>`).join('');
 
 $('#regress-table tbody').innerHTML = D['회귀'].map((r) => `<tr><td>${esc(r.id)}<div class="note" style="margin:0">${esc((r['때'] || '').replace('T', ' ').slice(0, 16))}</div></td><td>${esc((r['바뀐_것'] || []).join(', ') || '기준점')}</td><td>${Object.entries(r['묶음별'] || {}).map(([k, v]) => `${esc(setLabel(k))} ${v['소재_수']}개 · 일치 ${pct(v['판정_일치'])} · 반려 놓침 ${v['비싼_오류']}`).join('<br>')}</td><td>${badge(r['관문'])}</td></tr>`).join('');
+
+// 심사 품질
+(function quality(){
+  const Q = D['심사_품질']; if (!Q) { $('#quality').style.display = 'none'; return; }
+  const rng = (c) => c && c[0] != null ? `${pct(c[0])}~${pct(c[1])}` : '';
+  const fl = Q['흔들림'] || {};
+  const gold = (Q['정답_회차'] || []).filter((g) => g['소재_수'] >= 10);
+  const lastG = gold.filter((g) => g['묶음'] === 'dev').slice(-1)[0];
+  const hid = gold.filter((g) => g['묶음'].startsWith('holdout')).slice(-1)[0];
+  const sets = Q['생성_회차'] || [];
+  const unseen = sets.reduce((a, s) => a + (s['재검_계획']['자동_통과'] - s['재검_계획']['사람이_본_것']), 0);
+  const todo = sets.flatMap((s) => s['재검_계획']['더_볼_것']);
+  $('#q-stats').innerHTML = [
+    lastG && [lastG['소재당_비용'], `최근 연습 묶음 소재당 비용 (${esc(lastG['회차'])}). 반려할 것을 통과시키면 ${Q['설정']['비용']['반려→통과']}점, 통과할 것을 막으면 ${Q['설정']['비용']['통과→반려']}점`],
+    hid && [pct(hid['반려_놓침률_위쪽']), `숨긴 묶음에서 반려 놓침 ${hid['반려_정답'] - hid['반려_잡음']}건이어도 진짜 놓침률은 이만큼까지 있을 수 있음 (반려 정답 ${hid['반려_정답']}개, ${esc(hid['회차'])}). 5% 아래로 말하려면 반려 정답이 ${Math.ceil(Math.log(0.05) / Math.log(0.95))}개 필요`],
+    fl['두_번_판정'] && [pct(fl['엇갈림'] / fl['두_번_판정']), `같은 소재를 두 번 판정해 결과가 다른 비율. ${fl['두_번_판정']}개 중 ${fl['엇갈림']}개, 95% 구간 ${rng(fl['구간'])}. 엇갈리면 사람에게 넘김`],
+    [`${unseen}편`, `자동 통과했지만 사람이 아직 안 본 대본. 다음 재검 ${todo.length}편: ${todo.map(esc).join(', ') || '없음'}`],
+  ].filter(Boolean).map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
+  $('#q-gold tbody').innerHTML = gold.map((g) => `<tr><td>${esc(g['회차'])}</td><td>${esc(setLabel(g['묶음']))}</td><td class="num">${g['소재_수']}</td><td class="num">${g['반려_잡음']}/${g['반려_정답']}</td><td class="num">${pct(g['반려_놓침률_위쪽'])}</td><td class="num">${g['과잉_차단']}</td><td class="num">${g['반려_정밀도'] == null ? '' : pct(g['반려_정밀도'])}</td><td class="num">${g['informedness'] == null ? '' : g['informedness'].toFixed(2)}</td><td class="num">${g['소재당_비용']}</td></tr>`).join('');
+  $('#q-audit tbody').innerHTML = sets.map((s) => { const e = s['재검_추정'], pl = s['재검_계획'], j = s['판정_수'];
+    return `<tr><td>${esc(s['회차'])}<div class="note" style="margin:0">심사 ${esc(s['심사_회차'])}</div></td><td>통과 ${j['통과']} · 반려 ${j['반려']} · 사람 확인 ${j['사람 확인']}${s['앞_회차와_변화'] === '변화 큼' ? ` ${badge('변화 큼')}` : ''}</td><td class="num">${pl['자동_통과']}</td><td class="num">${pl['사람이_본_것']}</td><td class="num">${e['본_수'] ? `${e['사람_반려']}/${e['본_수']} (${rng(e['구간'])})` : '아직 없음'}</td><td>${pl['더_볼_것'].length ? pl['더_볼_것'].map((id) => `<a href="#item-${esc(id)}" data-jump="${esc(id)}">${esc(id)}</a>`).join(', ') : '채움'}</td></tr>`; }).join('');
+  const rc = Q['기준표_수정_후보'] || [];
+  $('#q-rules').innerHTML = rc.length ? `<h3>사람이 AI 판정을 뒤집은 소재 ${rc.length}편</h3><p class="note" id="q-rules-note">기준표 문구가 애매할 수 있는 곳입니다. 고칠지는 작가가 정하고, 고치면 이 소재를 정답 묶음에 넣습니다.</p><ul>${rc.map((c) => `<li><a href="#item-${esc(c['소재'])}" data-jump="${esc(c['소재'])}">${esc(c['소재'])}</a> AI ${esc(c['AI_판정'])} → 사람 ${esc(c['사람_결정'])}${c['조건'].length ? ` (${c['조건'].map(esc).join(', ')})` : ''}${c['비싼_오류'] ? ` ${badge('반려 놓침')}` : ''}</li>`).join('')}</ul>` : '';
+  $('#q-note').textContent = `정보력은 반려를 잡은 비율과 통과를 통과시킨 비율을 더해 1을 뺀 값으로, 1이면 완벽하고 0이면 동전 던지기와 같습니다. 비용 점수와 재검 비율(자동 통과의 ${Math.round(Q['설정']['재검_비율'] * 100)}%, 회차마다 최소 ${Q['설정']['재검_최소']}편)은 작가가 정해 바꿀 수 있는 값입니다. 다시 볼 소재는 회차 이름과 소재 번호로 정한 순서에서 앞부터 고르므로 누가 돌려도 같습니다. 이 무작위 재검으로만 놓친 비율을 추정하고, AI가 사람 확인을 요청해 사람이 본 소재는 약점을 찾는 데만 씁니다. 표본이 10개 미만인 회차는 표에서 뺐습니다.`;
+})();
 
 // 소재 카드
 const runs = D['생성분'].map((g) => g['회차']);
@@ -207,20 +246,39 @@ $('#publish-cards').innerHTML = groups.map((ad) => {
 document.addEventListener('click', (e) => { const l = e.target.closest('a[data-jump]'); if (!l) return; e.preventDefault(); fRun = '전체'; fVer = '전체'; drawFilters(); drawCards(); const el = document.getElementById('item-' + l.dataset.jump); if (!el) return; el.scrollIntoView({behavior: 'smooth', block: 'center'}); el.classList.add('hit'); setTimeout(() => el.classList.remove('hit'), 2400); });
 const au = D['감사'] || {};
 $('#audit').textContent = `게시 기록 ${au['줄'] ?? 0}줄 · 중간에 고친 줄 ${au['온전함'] ? '없음' : '있음'}`;
-const reacted = D['광고'].filter((a) => a['반응']);
-if (!reacted.length) {
-  const upN = D['광고'].filter((a) => String(a['상태'] || '').startsWith('게시됨')).length;
-  $('#reaction-body').innerHTML = upN
-    ? `<div class="card"><div class="row">${badge('대기')}<span>반응을 받아 오기 전</span></div><p class="subs" style="margin-top:8px;max-width:40em">${upN}건을 채널에 올렸고, 지금은 링크가 있는 사람만 볼 수 있습니다. 반응 숫자를 받아 오면 이 칸에 광고·채널별 재생·좋아요·댓글·공유·저장과 광고 링크로 들어온 사람의 첫 수·다시 하기 비율이 들어옵니다.</p></div>`
-    : `<div class="card"><div class="row">${badge('대기')}<span>아직 올리기 전</span></div><p class="subs" style="margin-top:8px;max-width:40em">게임 전용 인스타그램·유튜브 계정을 연 뒤 승인한 광고를 올리면, 이 칸에 광고·채널별 재생·좋아요·댓글·공유·저장과 광고 링크로 들어온 사람의 첫 수·다시 하기 비율이 들어옵니다.</p></div>`;
-} else {
-  const n = (x) => x == null ? '' : Number(x).toLocaleString('ko-KR');
-  const rows = reacted.map((a) => { const r = a['반응'], p = r['플랫폼'] || {}, g = r['게임'] || {}; const small = g['표본'] && g['표본'] !== '충분';
-    return `<tr><td>${esc(a['광고'])}<div class="note" style="margin:0">${esc(a['채널'] || '')} · ${esc((r['게시_때'] || '').slice(0, 10))}${r['주소'] ? ` · <a href="${esc(r['주소'])}" rel="noopener">게시물</a>` : ''}</div></td><td class="num">${n(p['재생'])}</td><td class="num">${n(p['좋아요'])}</td><td class="num">${n(p['댓글'])}</td><td class="num">${n(p['공유'])}</td><td class="num">${n(p['저장'])}</td><td class="num">${n(g['들어온_사람'])}</td><td class="num">${n(g['시작한_판'])}</td><td class="num">${pct(g['첫_수_둔_비율'])}</td><td class="num">${pct(g['다시_하기_비율'])}</td><td>${small ? badge('표본 작음') : badge('충분')}</td></tr>`; }).join('');
-  const sum = D['성과'] || {};
-  $('#reaction-body').innerHTML = `<div class="tablewrap"><table><thead><tr><th>광고</th><th>재생</th><th>좋아요</th><th>댓글</th><th>공유</th><th>저장</th><th>들어온 사람</th><th>시작한 판</th><th>첫 수</th><th>다시 하기</th><th>표본</th></tr></thead><tbody>${rows}</tbody></table></div>${sum['기간'] ? `<p class="note">기간 ${esc(sum['기간'])}${sum['받은_때'] ? ` · 받은 때 ${esc(sum['받은_때'].replace('T', ' ').slice(0, 16))}` : ''}</p>` : ''}${(sum['다음에_바꿀_것'] || []).length ? `<div class="card" style="margin-top:12px"><h3>다음에 바꿀 것</h3><ul>${sum['다음에_바꿀_것'].map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}`;
-}
+(function reaction(){
+  const P = D['성과'];
+  if (!P) { $('#reaction-body').innerHTML = `<div class="card"><div class="row">${badge('대기')}<span>성과 자료 없음</span></div></div>`; return; }
+  const R = P['규칙'], need = P['필요_표본'], looks = P['판정_시점'] || [];
+  const rule = `<div class="card"><div class="row">${badge('미리 정한 규칙')}<span>판 ${esc(R['판'])}</span></div><ul>
+<li>세는 단위: 광고 링크로 들어온 사람 1명. 시험 기록과 직접 들어온 사람은 뺍니다.</li>
+<li>주 지표: ${esc(R['주_지표']['이름'])} = ${esc(R['주_지표']['분자'])} ÷ ${esc(R['주_지표']['분모'])}. 「더 낫다」는 이 지표로만 말합니다. 보조 지표(${R['보조_지표'].map(esc).join(', ')})는 이유를 찾는 데만 씁니다.</li>
+<li>안전 지표: ${R['안전_지표'].map((x) => `${esc(x['이름'])}, ${esc(x['기준'])}`).join(' / ')}</li>
+<li>필요 표본: 광고 한 편에 ${need}명. ${pct(R['최소_감지_차이'])}p 차이를 유의수준 ${pct(R['유의수준'])}·검정력 ${pct(R['검정력'])}로 찾는 수이고, 기준값은 ${pct(R['기준값'])}로 가정했습니다.</li>
+<li>판정 시점: 들어온 사람 ${looks.join('명, ')}명에서만 봅니다. 시점마다 기준 ${pct(R['시점_기준'])}로 낮춰 중간에 들여다본 효과를 막습니다. 비교는 광고 하나 대 나머지 광고 합산, 홈 방식 보정. 확정 전에 ${R['최소_날_수']}일을 채웁니다.</li>
+<li>결과: 확정 · 방향(다음 소재를 만들 때만 참고) · 보류(${R['방향_최소']}명 미만) · 결론 없음(필요 표본을 채웠는데 차이 없음, 그 비교는 닫음).</li></ul></div>`;
+  const rows = P['광고'] || [];
+  if (!rows.length) {
+    $('#reaction-body').innerHTML = rule + `<div class="card" style="margin-top:12px"><div class="row">${badge('대기')}<span>광고 링크로 들어온 기록이 아직 없음</span></div><p class="subs" style="margin-top:8px;max-width:40em">일부 공개로 올린 쇼츠는 링크를 아는 사람만 봐서 유입이 거의 없습니다. 공개로 바꾸거나 릴스를 올리면 이 칸에 광고별 숫자가 들어옵니다.</p></div>`;
+    return;
+  }
+  const fat = P['피로'] || {};
+  const tagOf = (x) => ({'확정':'b-ok','방향':'b-wait','보류':'b-muted','결론 없음':'b-muted'}[x['판정']] || 'b-muted');
+  const body = rows.map((x) => { const ch = Object.entries(x['채널별'] || {}).map(([c, v]) => `${esc(c)} ${v['첫수']}/${v['들어옴']}`).join(' · ');
+    const f = fat[x['광고']];
+    return `<tr><td>${esc(x['광고'])}<div class="note" style="margin:0">${ch}</div></td><td class="num">${x['들어옴']}/${need}</td><td class="num">${pct(x['주_지표'])}<div class="note" style="margin:0">${x['구간'][0] != null ? `${pct(x['구간'][0])}~${pct(x['구간'][1])}` : ''}</div></td><td class="num">${pct(x['다시_하기_비율'])}</td><td class="num">${pct(x['최고일_확률'])}</td><td><span class="badge ${tagOf(x)}">${esc(x['판정'])}</span><div class="note" style="margin:4px 0 0">${esc(x['이유'] || '')}</div>${f && f['판단'] && f['판단'].startsWith('피로') ? `<span class="badge b-bad">피로 의심</span>` : ''}</td></tr>`; }).join('');
+  $('#reaction-body').innerHTML = rule + `<div class="tablewrap"><table><thead><tr><th>광고</th><th>들어온 사람</th><th>첫 수 둔 비율 (95% 구간)</th><th>다시 하기</th><th>가장 높을 확률</th><th>판정</th></tr></thead><tbody>${body}</tbody></table></div><p class="note">기록 ${P['기록_날_수']}일치. 「가장 높을 확률」은 다음 재게시 자리를 나누는 데만 씁니다. 피로는 유입과 첫 수 비율이 같이 떨어질 때만 표시합니다(최근 7일과 첫 7일 비교).</p>`;
+})();
 $('#foot').innerHTML = `자료 꼴 ${esc(D['판'])} · 승인한 사람 이름, 열쇠, 채널 계정은 공개용 묶음에 넣지 않습니다.`;
+}
+(async function load(){
+  const local = window.ADF_BOARD; let D = local, SRC = 'local';
+  try {
+    const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 4000);
+    const res = await fetch(REMOTE, {cache: 'no-store', signal: ctl.signal}); clearTimeout(t);
+    if (res.ok) { const remote = await res.json(); if (remote && remote['판'] === 'adf-board/1' && (!local || (remote['만든_때'] || '') >= (local['만든_때'] || ''))) { D = remote; SRC = 'remote'; } }
+  } catch (e) { /* 저장소에 못 닿으면 이 페이지에 같이 올린 사본을 쓴다 */ }
+  main(D, SRC);
 })();
 </script>
 </body></html>
