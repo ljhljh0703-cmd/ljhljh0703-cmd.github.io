@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>모션 효과 카드 82 — 이주형</title>
+<meta name="description" content="영상·웹 작업에 꺼내 쓰는 모션 효과 82가지. 효과마다 짧게 움직이는 견본 영상, 설명, AI에게 줄 지시 한 줄.">
+<meta property="og:title" content="모션 효과 카드 82">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">
+<link rel="stylesheet" href="../assets/view.css">
+<style>
+.v-sheet.wide{max-width:1180px}
+.tabs{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+.tabs button{font:700 15px var(--sans);padding:7px 14px;border:0;cursor:pointer;color:var(--ink);background:rgba(27,26,23,.08)}
+.tabs button.on{color:var(--on-color);background:var(--red)}
+.grid{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.c{background:#f6f2ea;box-shadow:0 3px 0 rgba(0,0,0,.18);display:flex;flex-direction:column}
+.c[hidden]{display:none}
+.c video{width:100%;aspect-ratio:956/320;display:block;background:#0d1016;object-fit:cover}
+.m{padding:14px 16px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.k{font-size:12px;font-weight:800;color:var(--ink-3)}
+.m h2{font-size:20px;line-height:1.3;font-weight:800}
+.m h2 span{font-size:13px;font-weight:600;color:var(--ink-3)}
+.w{font-size:15px;line-height:1.5}
+.ai{margin-top:auto;background:#1b1a17;color:#f6f2ea;font-size:14px;line-height:1.5;padding:10px 12px;border-radius:10px}
+.ai b{display:block;color:#ffd84a;font-size:12px}
+.qa{font-size:13px;color:#8a3a22;line-height:1.45}
+.tk{font:12px/1.45 ui-monospace,Menlo,monospace;color:var(--ink-3);overflow-wrap:anywhere}
+.note{margin-top:28px;font-size:14px;color:var(--ink-3)}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body class="v">
+<nav class="v-nav"><a href="/">작품 모음</a><a href="/design-styles/">디자인 사조 카드</a></nav>
+<main class="v-sheet wide">
+<header class="v-head"><p class="v-name">이주형 · 영상·콘텐츠 디자인 참고 카드</p>
+<h1>모션 효과 카드 82</h1>
+<p class="v-lead">직접 코드로 만든 모션 효과 82가지입니다. 레퍼런스 영상에서 뜯어 와 다시 만든 효과도 함께 담았습니다. 카드마다 실제로 움직이는 짧은 견본, 무엇을 하는 효과인지, AI에게 줄 지시 한 줄, 쓸 때 주의할 점이 들어 있습니다.</p></header>
+<div class="tabs" role="toolbar" aria-label="묶음 고르기"><button class="on" data-f="">전체 82</button><button data-f="cosmos">우주 11</button><button data-f="style">스타일 무드 16</button><button data-f="bg">배경 17</button><button data-f="loader">로더·스피너 13</button><button data-f="text">텍스트 8</button><button data-f="card">카드·UI 9</button><button data-f="data">데이터 6</button><button data-f="scroll">스크롤·기타 2</button></div>
+<div class="grid"><article class="c" data-g="cosmos">
+<video data-src="clips/galaxy.mp4" muted loop playsinline preload="none" aria-label="갤럭시 스핀 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>갤럭시 스핀 <span>galaxy</span></h2>
+<p class="w">나선 은하가 회전하는 입자 우주.</p>
+<p class="ai"><b>AI 지시</b>갤럭시(회전 나선 은하) 배경</p>
+<p class="qa">주의 · 입자 수 캡·오프스크린 정지.</p>
+<p class="tk">canvas: 나선팔 입자 + 중심 회전 rAF</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/warp.mp4" muted loop playsinline preload="none" aria-label="워프 스피드 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>워프 스피드 <span>hyperspace warp</span></h2>
+<p class="w">중심에서 별이 쏟아지는 하이퍼스페이스.</p>
+<p class="ai"><b>AI 지시</b>워프 스피드(하이퍼스페이스)</p>
+<p class="qa">주의 · 속도감 강함·짧게 노출 권장.</p>
+<p class="tk">canvas: 중심→방사 스트릭 가속</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/starscape.mp4" muted loop playsinline preload="none" aria-label="스타스케이프 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>스타스케이프 <span>starfield twinkle</span></h2>
+<p class="w">반짝이며 흐르는 깊은 별 하늘.</p>
+<p class="ai"><b>AI 지시</b>반짝이는 별 하늘(스타필드)</p>
+
+<p class="tk">canvas: 별 alpha 펄스 + 느린 드리프트</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/nebula.mp4" muted loop playsinline preload="none" aria-label="성운 클라우드 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>성운 클라우드 <span>nebula clouds</span></h2>
+<p class="w">보라·청록 성운이 떠다니는 우주.</p>
+<p class="ai"><b>AI 지시</b>성운(네뷸라) 배경</p>
+<p class="qa">주의 · blur 비용↑(모바일).</p>
+<p class="tk">blurred radial blobs + star dots</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/shooting.mp4" muted loop playsinline preload="none" aria-label="슈팅 스타 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>슈팅 스타 <span>shooting stars</span></h2>
+<p class="w">별똥별이 가로지르는 밤하늘.</p>
+<p class="ai"><b>AI 지시</b>별똥별(슈팅 스타) 지나가게</p>
+
+<p class="tk">diagonal streak + glow, 반복</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/orbits.mp4" muted loop playsinline preload="none" aria-label="오비탈 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>오비탈 <span>orbiting planets</span></h2>
+<p class="w">행성이 공전하는 궤도계.</p>
+<p class="ai"><b>AI 지시</b>행성 공전 궤도(오비탈)</p>
+
+<p class="tk">ring rotate + orbiting dot</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/wormhole.mp4" muted loop playsinline preload="none" aria-label="웜홀 터널 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>웜홀 터널 <span>wormhole</span></h2>
+<p class="w">중심으로 빨려드는 터널.</p>
+<p class="ai"><b>AI 지시</b>웜홀(빨려드는 터널)</p>
+
+<p class="tk">concentric rings scale→center</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/aurorasky.mp4" muted loop playsinline preload="none" aria-label="오로라 스카이 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>오로라 스카이 <span>aurora borealis</span></h2>
+<p class="w">밤하늘의 오로라 커튼.</p>
+<p class="ai"><b>AI 지시</b>오로라 스카이(밤하늘 커튼)</p>
+
+<p class="tk">blurred vertical bands + screen blend sway</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/comet.mp4" muted loop playsinline preload="none" aria-label="코멧 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>코멧 <span>comet</span></h2>
+<p class="w">화면을 가로지르는 혜성.</p>
+<p class="ai"><b>AI 지시</b>코멧(혜성) 지나가게</p>
+
+<p class="tk">diagonal streak + glow loop</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/pulsar.mp4" muted loop playsinline preload="none" aria-label="펄사 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>펄사 <span>pulsar</span></h2>
+<p class="w">맥동하는 별과 충격파.</p>
+<p class="ai"><b>AI 지시</b>펄사(맥동 별) 효과</p>
+
+<p class="tk">core glow + expanding ring</p></div></article>
+<article class="c" data-g="cosmos">
+<video data-src="clips/planet.mp4" muted loop playsinline preload="none" aria-label="고리 행성 움직임"></video>
+<div class="m"><p class="k">우주</p><h2>고리 행성 <span>ringed planet</span></h2>
+<p class="w">고리를 두른 행성.</p>
+<p class="ai"><b>AI 지시</b>고리 행성(토성형)</p>
+
+<p class="tk">radial planet + rotating ring</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/clay.mp4" muted loop playsinline preload="none" aria-label="클레이모피즘 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>클레이모피즘 <span>claymorphism</span></h2>
+<p class="w">말랑한 점토 같은 둥근 입체 덩어리.</p>
+<p class="ai"><b>AI 지시</b>클레이모피즘 — 파스텔 색 둥근 덩어리에 안쪽 밝은 그림자·바깥 부드러운 그림자, 천천히 통통 튀게</p>
+
+<p class="tk">inset 하이라이트+inset 그늘+바깥 soft shadow 3중 · scale(1.06,.94) bob</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/halftone.mp4" muted loop playsinline preload="none" aria-label="하프톤 망점 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>하프톤 망점 <span>halftone</span></h2>
+<p class="w">인쇄 망점이 가운데서 짙어지고 퍼지는 질감.</p>
+<p class="ai"><b>AI 지시</b>하프톤 망점 — 크림 바탕에 검정·주홍 망점 두 판을 살짝 어긋나게 겹치고 천천히 돌려</p>
+
+<p class="tk">radial-gradient 점 격자 12px + radial mask + 두 번째 판 multiply·offset</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/iso.mp4" muted loop playsinline preload="none" aria-label="아이소메트릭 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>아이소메트릭 <span>isometric</span></h2>
+<p class="w">45도로 눕힌 격자에서 블록이 차례로 솟음.</p>
+<p class="ai"><b>AI 지시</b>아이소메트릭 3×3 블록 — 판을 rotateX 55° rotateZ 45°로 눕히고 블록이 순서대로 솟았다 내려가게</p>
+
+<p class="tk">rotateX(55)+rotateZ(45) 판 · 블록 높이 = 겹친 box-shadow 단차</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/kinetic.mp4" muted loop playsinline preload="none" aria-label="키네틱 타이포 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>키네틱 타이포 <span>kinetic typography</span></h2>
+<p class="w">단어가 줄마다 시차를 두고 늘어났다 돌아옴.</p>
+<p class="ai"><b>AI 지시</b>키네틱 타이포 — 형광 바탕에 굵은 단어 세 줄, 줄마다 0.15초 시차로 옆으로 늘어났다 돌아오게</p>
+<p class="qa">주의 · 글자가 내용이면 읽힐 시간을 남긴다.</p>
+<p class="tk">span 줄별 animation-delay · translateX+scaleX · cubic-bezier(.7,0,.2,1)</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/chrome.mp4" muted loop playsinline preload="none" aria-label="Y2K 크롬 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>Y2K 크롬 <span>Y2K chrome</span></h2>
+<p class="w">금속 광택 글자에 빛줄기가 지나감.</p>
+<p class="ai"><b>AI 지시</b>Y2K 크롬 글자 — 은색 금속 그라데이션을 글자에 입히고 사선 빛줄기가 반복해서 지나가게, 살짝 흔들리게</p>
+<p class="qa">주의 · 웹페이지에선 한 화면에 한 포인트로만. 영상에는 제한 없음.</p>
+<p class="tk">background-clip:text 2중(빛줄기 260% 이동 + 금속 띠) · text-stroke 1px</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/papercut.mp4" muted loop playsinline preload="none" aria-label="페이퍼 컷아웃 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>페이퍼 컷아웃 <span>paper cutout</span></h2>
+<p class="w">오려 붙인 종이 언덕이 겹으로 천천히 밀림.</p>
+<p class="ai"><b>AI 지시</b>페이퍼 컷아웃 풍경 — 오린 종이 언덕 3겹에 아래 그림자, 겹마다 다른 속도로 좌우로 밀리게, 종이 해 하나</p>
+<p class="qa">주의 · 실제 종이 질감은 생성 이미지 재료로 올린다(포폴 첫 페이지 방식).</p>
+<p class="tk">clip-path 언덕 3겹 + drop-shadow · 겹별 duration 차 = 깊이</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/izoom.mp4" muted loop playsinline preload="none" aria-label="인피니트 줌 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>인피니트 줌 <span>infinite zoom</span></h2>
+<p class="w">사각 틀이 끝없이 다가오며 돈다.</p>
+<p class="ai"><b>AI 지시</b>인피니트 줌 — 색 테두리 사각형 4개가 중심에서 커지며 돌다 사라지고 끝없이 이어지게</p>
+
+<p class="tk">scale .1→6 + rotate 90° · 음수 delay 로 4개 위상 분산</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/vapor.mp4" muted loop playsinline preload="none" aria-label="베이퍼웨이브 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>베이퍼웨이브 <span>vaporwave</span></h2>
+<p class="w">줄무늬 해 + 흘러오는 원근 격자 바닥.</p>
+<p class="ai"><b>AI 지시</b>베이퍼웨이브 — 보라 하늘에 아래가 줄무늬로 잘린 노랑·분홍 해, 바닥은 원근 격자가 앞으로 흘러오게</p>
+<p class="qa">주의 · 웹페이지에선 한 화면에 한 포인트로만. 영상에는 제한 없음.</p>
+<p class="tk">해 = mask 2겹(위 꽉·아래 줄무늬) · 바닥 = 격자 background + perspective rotateX 58° + position 이동</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/scramble.mp4" muted loop playsinline preload="none" aria-label="텍스트 스크램블 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>텍스트 스크램블 <span>text scramble</span></h2>
+<p class="w">무작위 문자가 돌다 한 글자씩 제자리로.</p>
+<p class="ai"><b>AI 지시</b>텍스트 스크램블 — 단어가 무작위 기호로 뒤섞였다가 왼쪽부터 한 글자씩 맞춰지게, 2.6초마다 반복</p>
+<p class="qa">주의 · 스크린리더용 원문은 따로 둔다(aria-label).</p>
+<p class="tk">rAF · 진행률 p 로 i번째 글자 확정 · 화면 밖·움직임 줄이기면 원문 고정</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/bauhaus.mp4" muted loop playsinline preload="none" aria-label="바우하우스 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>바우하우스 <span>bauhaus</span></h2>
+<p class="w">원·사각·반원이 90도씩 툭툭 돈다.</p>
+<p class="ai"><b>AI 지시</b>바우하우스 격자 — 빨강·파랑·노랑·검정 원·사각·반원·사분원 6칸, 각자 다른 박자로 90도씩 끊어 돌게</p>
+
+<p class="tk">격자 3×2 · steps(1) 회전 4단 · 음수 delay 로 박자 분산</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/neub.mp4" muted loop playsinline preload="none" aria-label="뉴브루탈리즘 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>뉴브루탈리즘 <span>neubrutalism</span></h2>
+<p class="w">굵은 테두리 + 딱딱한 그림자, 눌리면 그림자가 사라짐.</p>
+<p class="ai"><b>AI 지시</b>뉴브루탈리즘 버튼 — 노랑 바탕, 흰 버튼에 3px 검정 테두리와 6px 딱딱한 그림자, 눌리면 그림자만큼 내려가게</p>
+
+<p class="tk">border 3px + box-shadow 6px 6px 0 · 눌림 = translate(6px,6px)+shadow 0 · steps(1)</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/morph.mp4" muted loop playsinline preload="none" aria-label="셰이프 모프 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>셰이프 모프 <span>shape morph</span></h2>
+<p class="w">사각 → 원 → 덩어리로 돌며 모양이 바뀜.</p>
+<p class="ai"><b>AI 지시</b>셰이프 모프 — 보라 그라데이션 도형이 사각에서 원, 원에서 비정형 덩어리로 돌면서 바뀌게</p>
+
+<p class="tk">border-radius 8값 보간 + rotate · 4s ease-in-out</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/memphis.mp4" muted loop playsinline preload="none" aria-label="멤피스 디자인 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>멤피스 디자인 <span>memphis design</span></h2>
+<p class="w">삼각·원·지그재그·점무늬가 둥실 흔들림.</p>
+<p class="ai"><b>AI 지시</b>멤피스 패턴 — 크림 바탕에 분홍 삼각형·노랑 원 테두리·검정 지그재그·초록 점무늬를 흩어 놓고 각자 살짝 떠서 돌게</p>
+
+<p class="tk">clip-path 삼각 · conic 없이 135/225deg 그라데이션 지그재그 · 점무늬 radial 10px</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/lowpoly.mp4" muted loop playsinline preload="none" aria-label="로우폴리 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>로우폴리 <span>low poly</span></h2>
+<p class="w">삼각 면으로 깎은 산에 빛이 면을 따라 지나감.</p>
+<p class="ai"><b>AI 지시</b>로우폴리 산 — 삼각형 면 몇 개로 산을 만들고 면마다 시차를 두고 밝아졌다 어두워지게</p>
+
+<p class="tk">SVG polygon 면 · filter:brightness 순차 delay</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/squash.mp4" muted loop playsinline preload="none" aria-label="스쿼시 앤 스트레치 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>스쿼시 앤 스트레치 <span>squash and stretch</span></h2>
+<p class="w">공이 떨어질 때 늘어나고 바닥에서 찌그러짐.</p>
+<p class="ai"><b>AI 지시</b>스쿼시 앤 스트레치 공 튀기기 — 오를 때·떨어질 때는 세로로 늘고, 바닥에 닿으면 가로로 찌그러지게, 떨어질 땐 가속</p>
+<p class="qa">주의 · 애니메이션 12원칙 중 가장 효과 큰 하나 — 영상 레인 블렌더 오프닝 공과 같은 원리.</p>
+<p class="tk">transform-origin 바닥 · 구간별 timing(오름 ease-out·낙하 ease-in) · scale(1.35,.65) 착지</p></div></article>
+<article class="c" data-g="style">
+<video data-src="clips/grainy.mp4" muted loop playsinline preload="none" aria-label="그레이니 그라디언트 움직임"></video>
+<div class="m"><p class="k">스타일 무드</p><h2>그레이니 그라디언트 <span>grainy gradient</span></h2>
+<p class="w">흐르는 색 그라데이션 위에 종이 같은 입자.</p>
+<p class="ai"><b>AI 지시</b>그레이니 그라디언트 — 분홍·보라·주황 덩어리 그라데이션이 천천히 흐르고 위에 노이즈 입자를 overlay 로 덮어</p>
+<p class="qa">주의 · 웹페이지에선 한 화면에 한 포인트로만. 영상에는 제한 없음.</p>
+<p class="tk">radial 3개 position 이동 + feTurbulence 노이즈 overlay .45</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/aurora.mp4" muted loop playsinline preload="none" aria-label="오로라 그라데이션 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>오로라 그라데이션 <span>aurora gradient</span></h2>
+<p class="w">움직이는 다색 그라데이션 배경.</p>
+<p class="ai"><b>AI 지시</b>오로라 그라데이션 배경</p>
+<p class="qa">주의 · 텍스트 대비 확보(오버레이).</p>
+<p class="tk">background:linear-gradient(125deg,…);background-size:300%;animation:auro 6s infinite;</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/mesh.mp4" muted loop playsinline preload="none" aria-label="메시 블롭 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>메시 블롭 <span>mesh blobs</span></h2>
+<p class="w">흐릿한 색 덩어리가 떠다니는 배경.</p>
+<p class="ai"><b>AI 지시</b>메시 블롭 배경(블러 덩어리)</p>
+<p class="qa">주의 · blur는 모바일 비용↑.</p>
+<p class="tk">blur(34px) radial blobs + translate animation</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/grid.mp4" muted loop playsinline preload="none" aria-label="무빙 그리드 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>무빙 그리드 <span>moving grid</span></h2>
+<p class="w">흐르는 격자 라인 배경(테크).</p>
+<p class="ai"><b>AI 지시</b>무빙 그리드 배경</p>
+
+<p class="tk">background-image:linear-gradient grid; animation gridm</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/grain.mp4" muted loop playsinline preload="none" aria-label="필름 그레인 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>필름 그레인 <span>film grain</span></h2>
+<p class="w">노이즈 질감 오버레이(아날로그).</p>
+<p class="ai"><b>AI 지시</b>필름 그레인 노이즈 입혀</p>
+<p class="qa">주의 · 과하면 가독 저하.</p>
+<p class="tk">SVG feTurbulence noise overlay + steps animation</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/spotlight.mp4" muted loop playsinline preload="none" aria-label="커서 스포트라이트 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>커서 스포트라이트 <span>cursor spotlight</span></h2>
+<p class="w">포인터 따라 빛이 따라오는 배경.</p>
+<p class="ai"><b>AI 지시</b>커서 스포트라이트 효과</p>
+<p class="qa">주의 · 터치기기엔 효과 없음.</p>
+<p class="tk">radial-gradient at var(--mx) var(--my); pointermove로 갱신</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/matrixrain.mp4" muted loop playsinline preload="none" aria-label="매트릭스 레인 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>매트릭스 레인 <span>matrix rain</span></h2>
+<p class="w">떨어지는 코드 비.</p>
+<p class="ai"><b>AI 지시</b>매트릭스 코드 레인</p>
+
+<p class="tk">canvas: 컬럼별 낙하 문자 + 잔상</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/flowfield.mp4" muted loop playsinline preload="none" aria-label="플로우 필드 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>플로우 필드 <span>flow field</span></h2>
+<p class="w">벡터장을 따라 흐르는 입자 실선.</p>
+<p class="ai"><b>AI 지시</b>플로우 필드(흐르는 입자선)</p>
+
+<p class="tk">canvas: sin/cos 벡터장 + 잔상 fade</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/dotwave.mp4" muted loop playsinline preload="none" aria-label="도트 웨이브 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>도트 웨이브 <span>dot matrix wave</span></h2>
+<p class="w">사인파로 물결치는 점 격자.</p>
+<p class="ai"><b>AI 지시</b>도트 매트릭스 웨이브</p>
+
+<p class="tk">canvas: grid dots y=sin(x+t)*amp</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/plasma.mp4" muted loop playsinline preload="none" aria-label="플라스마 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>플라스마 <span>plasma gradient</span></h2>
+<p class="w">섞이며 흐르는 플라스마 색면.</p>
+<p class="ai"><b>AI 지시</b>플라스마 그라데이션 배경</p>
+
+<p class="tk">multi radial-gradient + position animation</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/godrays.mp4" muted loop playsinline preload="none" aria-label="갓레이 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>갓레이 <span>god rays</span></h2>
+<p class="w">회전하는 빛줄기(틴들).</p>
+<p class="ai"><b>AI 지시</b>갓레이(빛줄기) 배경</p>
+
+<p class="tk">conic-gradient slices + slow rotate</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/holo.mp4" muted loop playsinline preload="none" aria-label="홀로그래픽 포일 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>홀로그래픽 포일 <span>holographic foil</span></h2>
+<p class="w">무지개 홀로그램 시트.</p>
+<p class="ai"><b>AI 지시</b>홀로그래픽 포일(무지개 사틴)</p>
+<p class="qa">주의 · 텍스트 올릴 땐 대비 확보.</p>
+<p class="tk">conic rainbow + hue-rotate</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/scanlines.mp4" muted loop playsinline preload="none" aria-label="CRT 스캔라인 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>CRT 스캔라인 <span>CRT scanlines</span></h2>
+<p class="w">레트로 CRT 주사선·깜빡임.</p>
+<p class="ai"><b>AI 지시</b>CRT 스캔라인(레트로 모니터)</p>
+<p class="qa">주의 · 깜빡임 접근성 주의.</p>
+<p class="tk">repeating-linear-gradient + flicker</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/orbs.mp4" muted loop playsinline preload="none" aria-label="그라디언트 오브 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>그라디언트 오브 <span>gradient orbs</span></h2>
+<p class="w">떠다니는 블러 컬러 오브.</p>
+<p class="ai"><b>AI 지시</b>그라디언트 오브(둥둥 뜬 빛덩이)</p>
+
+<p class="tk">blurred circles drift</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/waves.mp4" muted loop playsinline preload="none" aria-label="오션 웨이브 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>오션 웨이브 <span>layered waves</span></h2>
+<p class="w">층층이 흐르는 파도.</p>
+<p class="ai"><b>AI 지시</b>레이어드 오션 웨이브</p>
+
+<p class="tk">SVG wave path translateX 반복</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/blob.mp4" muted loop playsinline preload="none" aria-label="리퀴드 블롭 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>리퀴드 블롭 <span>liquid blob morph</span></h2>
+<p class="w">유기적으로 변형되는 액체 블롭.</p>
+<p class="ai"><b>AI 지시</b>리퀴드 블롭(말랑 변형)</p>
+
+<p class="tk">border-radius morph + rotate</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/conic.mp4" muted loop playsinline preload="none" aria-label="코닉 스핀 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>코닉 스핀 <span>conic spin</span></h2>
+<p class="w">원뿔 그라데이션이 회전.</p>
+<p class="ai"><b>AI 지시</b>코닉 그라데이션 회전 배경</p>
+
+<p class="tk">conic-gradient + spin + blur</p></div></article>
+<article class="c" data-g="bg">
+<video data-src="clips/ripgrid.mp4" muted loop playsinline preload="none" aria-label="리플 그리드 움직임"></video>
+<div class="m"><p class="k">배경</p><h2>리플 그리드 <span>ripple rings</span></h2>
+<p class="w">중심에서 퍼지는 링 파동.</p>
+<p class="ai"><b>AI 지시</b>리플(퍼지는 링) 배경</p>
+
+<p class="tk">expanding ring rings staggered</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-orbit.mp4" muted loop playsinline preload="none" aria-label="오빗 스피너 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>오빗 스피너 <span>orbit</span></h2>
+<p class="w">3중 궤도가 도는 로더.</p>
+<p class="ai"><b>AI 지시</b>오빗 스피너(3중 링) 로더</p>
+
+<p class="tk">nested border rings spin</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-atom.mp4" muted loop playsinline preload="none" aria-label="아톰 스피너 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>아톰 스피너 <span>atom</span></h2>
+<p class="w">전자가 핵을 도는 원자 로더.</p>
+<p class="ai"><b>AI 지시</b>아톰 스피너</p>
+
+<p class="tk">3 ellipse rings + glowing nucleus</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-half.mp4" muted loop playsinline preload="none" aria-label="하프서클 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>하프서클 <span>half-circle</span></h2>
+<p class="w">두 반원이 도는 클래식 로더.</p>
+<p class="ai"><b>AI 지시</b>하프서클 스피너</p>
+
+<p class="tk">border-top/bottom spin</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-dots.mp4" muted loop playsinline preload="none" aria-label="펄스 도트 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>펄스 도트 <span>hollow dots</span></h2>
+<p class="w">세 점이 차례로 맥동.</p>
+<p class="ai"><b>AI 지시</b>펄스 도트 로더</p>
+
+<p class="tk">scale pulse staggered</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-pixel.mp4" muted loop playsinline preload="none" aria-label="픽셀 스피너 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>픽셀 스피너 <span>pixel</span></h2>
+<p class="w">사각형이 회전·변형.</p>
+<p class="ai"><b>AI 지시</b>픽셀 스피너</p>
+
+<p class="tk">rotate + radius morph</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-radar.mp4" muted loop playsinline preload="none" aria-label="레이더 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>레이더 <span>radar</span></h2>
+<p class="w">레이더처럼 쓸어내리는 스윕.</p>
+<p class="ai"><b>AI 지시</b>레이더 스피너</p>
+
+<p class="tk">conic-gradient sweep</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-flower.mp4" muted loop playsinline preload="none" aria-label="플라워 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>플라워 <span>flower</span></h2>
+<p class="w">꽃잎 점이 회전.</p>
+<p class="ai"><b>AI 지시</b>플라워 스피너</p>
+
+<p class="tk">3 dots rotate</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-trinity.mp4" muted loop playsinline preload="none" aria-label="트리니티 링 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>트리니티 링 <span>trinity rings</span></h2>
+<p class="w">두 링이 교차 회전.</p>
+<p class="ai"><b>AI 지시</b>트리니티 링 스피너</p>
+
+<p class="tk">nested rings opposite spin</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-swap.mp4" muted loop playsinline preload="none" aria-label="스왑 스퀘어 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>스왑 스퀘어 <span>swapping squares</span></h2>
+<p class="w">네 사각형이 회전 스왑.</p>
+<p class="ai"><b>AI 지시</b>스왑 스퀘어 로더</p>
+
+<p class="tk">grid rotate</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-finger.mp4" muted loop playsinline preload="none" aria-label="핑거프린트 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>핑거프린트 <span>fingerprint</span></h2>
+<p class="w">지문 같은 동심 아크 회전.</p>
+<p class="ai"><b>AI 지시</b>핑거프린트 스피너</p>
+
+<p class="tk">concentric arcs staggered</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-spring.mp4" muted loop playsinline preload="none" aria-label="이퀄라이저 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>이퀄라이저 <span>spring bars</span></h2>
+<p class="w">막대가 오디오처럼 출렁.</p>
+<p class="ai"><b>AI 지시</b>이퀄라이저 바 로더</p>
+
+<p class="tk">scaleY staggered</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/sp-pulsering.mp4" muted loop playsinline preload="none" aria-label="펄스 링 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>펄스 링 <span>pulse ring</span></h2>
+<p class="w">링이 퍼지는 펄스.</p>
+<p class="ai"><b>AI 지시</b>펄스 링 로더</p>
+
+<p class="tk">scale+fade expanding rings</p></div></article>
+<article class="c" data-g="loader">
+<video data-src="clips/cube3d.mp4" muted loop playsinline preload="none" aria-label="3D 큐브 로더 움직임"></video>
+<div class="m"><p class="k">로더·스피너</p><h2>3D 큐브 로더 <span>3D cube</span></h2>
+<p class="w">회전하는 3D 큐브.</p>
+<p class="ai"><b>AI 지시</b>3D 큐브 로더</p>
+
+<p class="tk">preserve-3d faces + rotate</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/gradtext.mp4" muted loop playsinline preload="none" aria-label="그라데이션 텍스트 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>그라데이션 텍스트 <span>animated gradient text</span></h2>
+<p class="w">색이 흐르는 그라데이션 글자.</p>
+<p class="ai"><b>AI 지시</b>그라데이션 흐르는 헤드라인</p>
+<p class="qa">주의 · 긴 본문 금지(헤드 한정).</p>
+<p class="tk">background-clip:text;color:transparent;animation gradt</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/type.mp4" muted loop playsinline preload="none" aria-label="타이프라이터 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>타이프라이터 <span>typewriter</span></h2>
+<p class="w">한 글자씩 타이핑되는 텍스트.</p>
+<p class="ai"><b>AI 지시</b>타이프라이터로 타이핑되게</p>
+<p class="qa">주의 · 한글 ch폭 편차 — 폭 조정 필요.</p>
+<p class="tk">steps() width + caret blink</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/shine.mp4" muted loop playsinline preload="none" aria-label="샤인 스윕 텍스트 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>샤인 스윕 텍스트 <span>shine text</span></h2>
+<p class="w">빛이 글자를 훑고 지나감.</p>
+<p class="ai"><b>AI 지시</b>글자에 샤인 스윕</p>
+
+<p class="tk">linear-gradient highlight + background-position animation</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/glitch.mp4" muted loop playsinline preload="none" aria-label="글리치 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>글리치 <span>glitch</span></h2>
+<p class="w">RGB 분리·끊김의 글리치 텍스트.</p>
+<p class="ai"><b>AI 지시</b>글리치 텍스트 효과</p>
+<p class="qa">주의 · 접근성·가독 주의(절제).</p>
+<p class="tk">::before/::after clip-path 분리 애니</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/count.mp4" muted loop playsinline preload="none" aria-label="카운트업 숫자 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>카운트업 숫자 <span>count-up</span></h2>
+<p class="w">0→실값으로 차오르는 숫자.</p>
+<p class="ai"><b>AI 지시</b>숫자 카운트업</p>
+<p class="qa">주의 · 보일 때 1회·reduced-motion시 즉시값.</p>
+<p class="tk">rAF easeOutCubic + toLocaleString</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/neon.mp4" muted loop playsinline preload="none" aria-label="네온 사인 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>네온 사인 <span>neon flicker</span></h2>
+<p class="w">깜빡이는 네온 글자.</p>
+<p class="ai"><b>AI 지시</b>네온 사인 텍스트(깜빡임)</p>
+<p class="qa">주의 · 깜빡임 과하면 접근성 주의.</p>
+<p class="tk">text-shadow 다중 글로우 + flicker</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/t3d.mp4" muted loop playsinline preload="none" aria-label="3D 압출 텍스트 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>3D 압출 텍스트 <span>3D extrude</span></h2>
+<p class="w">두께감 있는 입체 글자.</p>
+<p class="ai"><b>AI 지시</b>3D 압출(두께감) 텍스트</p>
+
+<p class="tk">text-shadow 계단 + drop</p></div></article>
+<article class="c" data-g="text">
+<video data-src="clips/wave.mp4" muted loop playsinline preload="none" aria-label="웨이브 텍스트 움직임"></video>
+<div class="m"><p class="k">텍스트</p><h2>웨이브 텍스트 <span>wave text</span></h2>
+<p class="w">글자가 파도처럼 출렁.</p>
+<p class="ai"><b>AI 지시</b>글자 웨이브(출렁)</p>
+
+<p class="tk">per-letter translateY staggered</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/tilt.mp4" muted loop playsinline preload="none" aria-label="3D 틸트 카드 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>3D 틸트 카드 <span>3D tilt</span></h2>
+<p class="w">포인터 따라 기우는 3D 카드.</p>
+<p class="ai"><b>AI 지시</b>3D 틸트(마우스 따라 기울게)</p>
+<p class="qa">주의 · 터치 폴백 필요.</p>
+<p class="tk">perspective + rotateX/Y from pointer</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/glowborder.mp4" muted loop playsinline preload="none" aria-label="글로우 보더 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>글로우 보더 <span>glow border</span></h2>
+<p class="w">회전하는 네온 그라데이션 테두리.</p>
+<p class="ai"><b>AI 지시</b>글로우(회전 네온) 보더</p>
+
+<p class="tk">conic-gradient ::before + rotate animation</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/shineswp.mp4" muted loop playsinline preload="none" aria-label="샤인 스윕 카드 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>샤인 스윕 카드 <span>card shine</span></h2>
+<p class="w">카드 위로 빛이 스윕.</p>
+<p class="ai"><b>AI 지시</b>카드에 샤인 스윕(반짝)</p>
+
+<p class="tk">::after 대각 하이라이트 이동</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/magnetic.mp4" muted loop playsinline preload="none" aria-label="마그네틱 버튼 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>마그네틱 버튼 <span>magnetic button</span></h2>
+<p class="w">커서를 따라 끌려오는 버튼.</p>
+<p class="ai"><b>AI 지시</b>마그네틱 버튼(커서 따라옴)</p>
+<p class="qa">주의 · 터치 무효·과한 이동 금지.</p>
+<p class="tk">pointermove로 translate, leave시 복귀</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/ripple.mp4" muted loop playsinline preload="none" aria-label="리플(물결) 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>리플(물결) <span>ripple</span></h2>
+<p class="w">클릭 지점에서 퍼지는 물결.</p>
+<p class="ai"><b>AI 지시</b>클릭 리플(물결) 효과</p>
+
+<p class="tk">click 좌표에 원 생성 scale+fade</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/skeleton.mp4" muted loop playsinline preload="none" aria-label="스켈레톤 시머 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>스켈레톤 시머 <span>skeleton shimmer</span></h2>
+<p class="w">로딩용 반짝이는 자리표시.</p>
+<p class="ai"><b>AI 지시</b>스켈레톤 로딩(시머)</p>
+
+<p class="tk">linear-gradient background-position shimmer</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/beam.mp4" muted loop playsinline preload="none" aria-label="보더 빔 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>보더 빔 <span>border beam</span></h2>
+<p class="w">테두리를 도는 빛줄기.</p>
+<p class="ai"><b>AI 지시</b>보더 빔(테두리 도는 빛)</p>
+
+<p class="tk">conic + mask exclude + spin</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/flip.mp4" muted loop playsinline preload="none" aria-label="3D 플립 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>3D 플립 <span>flip card</span></h2>
+<p class="w">hover 시 뒤집히는 카드.</p>
+<p class="ai"><b>AI 지시</b>3D 플립 카드(hover 뒤집기)</p>
+
+<p class="tk">rotateY 180 + backface-hidden</p></div></article>
+<article class="c" data-g="card">
+<video data-src="clips/holo.mp4" muted loop playsinline preload="none" aria-label="홀로 시트 카드 움직임"></video>
+<div class="m"><p class="k">카드·UI</p><h2>홀로 시트 카드 <span>holo sheen</span></h2>
+<p class="w">무지개 시트가 흐르는 카드.</p>
+<p class="ai"><b>AI 지시</b>홀로그램 시트 카드</p>
+
+<p class="tk">diagonal gradient sweep</p></div></article>
+<article class="c" data-g="data">
+<video data-src="clips/radial.mp4" muted loop playsinline preload="none" aria-label="라디얼 프로그레스 움직임"></video>
+<div class="m"><p class="k">데이터</p><h2>라디얼 프로그레스 <span>radial progress</span></h2>
+<p class="w">원형으로 차오르는 진행률.</p>
+<p class="ai"><b>AI 지시</b>라디얼(원형) 프로그레스</p>
+<p class="qa">주의 · 수치는 실측만(샘플=mock 표기).</p>
+<p class="tk">conic-gradient(--fxp%) + @property 트랜지션</p></div></article>
+<article class="c" data-g="data">
+<video data-src="clips/bars.mp4" muted loop playsinline preload="none" aria-label="바 차트 리빌 움직임"></video>
+<div class="m"><p class="k">데이터</p><h2>바 차트 리빌 <span>bar reveal</span></h2>
+<p class="w">보일 때 차오르는 막대 차트.</p>
+<p class="ai"><b>AI 지시</b>막대 차트 차오르게(리빌)</p>
+<p class="qa">주의 · 데이터=실측 출처 표기.</p>
+<p class="tk">height var(--h) transition on .run(IO)</p></div></article>
+<article class="c" data-g="data">
+<video data-src="clips/line.mp4" muted loop playsinline preload="none" aria-label="라인 드로우 움직임"></video>
+<div class="m"><p class="k">데이터</p><h2>라인 드로우 <span>line draw</span></h2>
+<p class="w">선이 그려지는 라인 차트.</p>
+<p class="ai"><b>AI 지시</b>라인 차트 그려지게(draw-on)</p>
+
+<p class="tk">stroke-dashoffset len→0 transition</p></div></article>
+<article class="c" data-g="data">
+<video data-src="clips/donut.mp4" muted loop playsinline preload="none" aria-label="도넛 차트 움직임"></video>
+<div class="m"><p class="k">데이터</p><h2>도넛 차트 <span>donut chart</span></h2>
+<p class="w">비율 도넛(conic) 차트.</p>
+<p class="ai"><b>AI 지시</b>도넛 차트로 비율</p>
+<p class="qa">주의 · 구간=실데이터.</p>
+<p class="tk">conic-gradient 구간 + 가운데 구멍</p></div></article>
+<article class="c" data-g="data">
+<video data-src="clips/network.mp4" muted loop playsinline preload="none" aria-label="파티클 네트워크 움직임"></video>
+<div class="m"><p class="k">데이터</p><h2>파티클 네트워크 <span>particle network</span></h2>
+<p class="w">노드·연결선이 떠다니는 그래프.</p>
+<p class="ai"><b>AI 지시</b>파티클 네트워크(노드 연결망)</p>
+<p class="qa">주의 · 입자 수 제한(성능).</p>
+<p class="tk">canvas 노드+근접 링크, rAF, IO로 정지</p></div></article>
+<article class="c" data-g="data">
+<video data-src="clips/gauge.mp4" muted loop playsinline preload="none" aria-label="게이지 움직임"></video>
+<div class="m"><p class="k">데이터</p><h2>게이지 <span>semicircle gauge</span></h2>
+<p class="w">반원 게이지가 차오름.</p>
+<p class="ai"><b>AI 지시</b>반원 게이지(차오르는)</p>
+<p class="qa">주의 · 수치는 실측만(샘플=mock).</p>
+<p class="tk">conic-gradient(--fxp%) 반원 마스크</p></div></article>
+<article class="c" data-g="scroll">
+<video data-src="clips/marquee.mp4" muted loop playsinline preload="none" aria-label="마퀴 티커 움직임"></video>
+<div class="m"><p class="k">스크롤·기타</p><h2>마퀴 티커 <span>marquee ticker</span></h2>
+<p class="w">끝없이 흐르는 텍스트 띠.</p>
+<p class="ai"><b>AI 지시</b>마퀴 티커(흐르는 텍스트)</p>
+<p class="qa">주의 · 무한모션 — 핵심정보엔 금지.</p>
+<p class="tk">translateX -100% linear infinite + mask fade</p></div></article>
+<article class="c" data-g="scroll">
+<video data-src="clips/parallax.mp4" muted loop playsinline preload="none" aria-label="패럴랙스 레이어 움직임"></video>
+<div class="m"><p class="k">스크롤·기타</p><h2>패럴랙스 레이어 <span>parallax layers</span></h2>
+<p class="w">포인터 따라 깊이차로 움직임.</p>
+<p class="ai"><b>AI 지시</b>패럴랙스(깊이차 이동)</p>
+<p class="qa">주의 · reduced-motion 비활성.</p>
+<p class="tk">pointermove로 레이어별 translate(depth)</p></div></article></div>
+<p class="note">견본 영상은 각 효과를 웹 화면에서 실제로 돌려 3초씩 녹화한 것입니다. 마우스를 따라 움직이는 효과는 커서가 원을 그리며 지나가는 모습으로 녹화했습니다. 맨 아래 작은 글씨는 개발자용 구현 힌트입니다.</p>
+</main>
+<script>
+const io = new IntersectionObserver(es => es.forEach(x => { const v = x.target;
+  if (x.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }), {rootMargin: '200px'});
+document.querySelectorAll('video').forEach(v => io.observe(v));
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tabs button').forEach(x => x.classList.toggle('on', x === b));
+  document.querySelectorAll('.c').forEach(c => c.hidden = !!b.dataset.f && c.dataset.g !== b.dataset.f);
+});
+</script>
+</body></html>
