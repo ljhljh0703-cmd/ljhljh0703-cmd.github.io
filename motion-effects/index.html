@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>모션 효과 카드 82 — 이주형</title>
+<title>모션 효과 카드 — 이주형</title>
 <meta name="description" content="영상·웹 작업에 꺼내 쓰는 모션 효과 82가지. 효과마다 짧게 움직이는 견본 영상, 설명, AI에게 줄 지시 한 줄.">
-<meta property="og:title" content="모션 효과 카드 82">
+<meta property="og:title" content="모션 효과 카드 — 영상 모션 20 · 웹 화면 효과 82">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">
 <link rel="stylesheet" href="../assets/view.css">
 <style>
@@ -13,6 +13,9 @@
 .grid{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
 .c{background:#f6f2ea;box-shadow:0 3px 0 rgba(0,0,0,.18);display:flex;flex-direction:column}
 .c[hidden]{display:none}
+.vgrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.grid[hidden]{display:none}
+.vc video{aspect-ratio:1/1!important}
 .c video{width:100%;aspect-ratio:956/320;display:block;background:#0d1016;object-fit:cover}
 .m{padding:14px 16px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
 .k{font-size:12px;font-weight:800;color:var(--ink-3)}
@@ -30,10 +33,90 @@
 <nav class="v-nav"><a href="/">작품 모음</a><a href="/design-styles/">디자인 사조 카드</a></nav>
 <main class="v-sheet wide">
 <header class="v-head"><p class="v-name">이주형 · 영상·콘텐츠 디자인 참고 카드</p>
-<h1>모션 효과 카드 82</h1>
-<p class="v-lead">직접 코드로 만든 모션 효과 82가지입니다. 레퍼런스 영상에서 뜯어 와 다시 만든 효과도 함께 담았습니다. 카드마다 실제로 움직이는 짧은 견본, 무엇을 하는 효과인지, AI에게 줄 지시 한 줄, 쓸 때 주의할 점이 들어 있습니다.</p></header>
-<div class="tabs" role="toolbar" aria-label="묶음 고르기"><button class="on" data-f="">전체 82</button><button data-f="cosmos">우주 11</button><button data-f="style">스타일 무드 16</button><button data-f="bg">배경 17</button><button data-f="loader">로더·스피너 13</button><button data-f="text">텍스트 8</button><button data-f="card">카드·UI 9</button><button data-f="data">데이터 6</button><button data-f="scroll">스크롤·기타 2</button></div>
-<div class="grid"><article class="c" data-g="cosmos">
+<h1>모션 효과 카드</h1>
+<p class="v-lead">영상에 바로 쓰는 모션 효과 20가지와 웹 화면 효과 82가지입니다. 카드마다 직접 만들어 돌린 4초 견본, 무엇을 하는 효과인지, AI에게 줄 지시 한 줄이 들어 있습니다.</p></header>
+<div class="tabs" role="toolbar" aria-label="묶음 고르기"><button class="on" data-f="video">영상 모션 20</button><button data-f="web">웹 화면 효과 82</button><button data-f="cosmos">웹 · 우주 11</button><button data-f="style">웹 · 스타일 무드 16</button><button data-f="bg">웹 · 배경 17</button><button data-f="loader">웹 · 로더·스피너 13</button><button data-f="text">웹 · 텍스트 8</button><button data-f="card">웹 · 카드·UI 9</button><button data-f="data">웹 · 데이터 6</button><button data-f="scroll">웹 · 스크롤·기타 2</button></div>
+<div class="grid vgrid" id="vg"><article class="c vc" data-g="video">
+<video data-src="video/liquid.mp4" muted loop playsinline preload="none" aria-label="리퀴드 메탈 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 01</p><h2>리퀴드 메탈 <span>Liquid Motion</span></h2>
+<p class="w">무지갯빛 금속 덩어리가 출렁이며 천천히 돈다.</p><p class="ai"><b>AI 지시</b>무지갯빛이 도는 액체 금속 덩어리가 화면 가운데서 출렁이며 천천히 회전, 어두운 보라 배경</p><p class="tk">쓰는 곳 · 제품·브랜드 로고 등장 직전, 테크 영상 오프닝</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/chrome.mp4" muted loop playsinline preload="none" aria-label="Y2K 크롬 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 02</p><h2>Y2K 크롬 <span>Y2K Chrome</span></h2>
+<p class="w">크롬 별이 반 바퀴씩 휙 돌고, 크롬 고리가 감싼다.</p><p class="ai"><b>AI 지시</b>거울처럼 반사되는 크롬 별이 반 바퀴씩 빠르게 돌고 멈춤, 얇은 크롬 고리가 주위를 감쌈, 연보라 배경</p><p class="tk">쓰는 곳 · 패션·음악·Y2K 감성 광고, 장 전환</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/holo.mp4" muted loop playsinline preload="none" aria-label="홀로그래픽 카드 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 03</p><h2>홀로그래픽 카드 <span>Holographic</span></h2>
+<p class="w">무지개 포일 카드가 기울며 빛줄기가 흐른다.</p><p class="ai"><b>AI 지시</b>무지개 포일 질감 카드가 좌우로 기울고, 빛이 표면을 쓸고 지나감</p><p class="tk">쓰는 곳 · 카드·멤버십·한정판 소개 컷</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/clay.mp4" muted loop playsinline preload="none" aria-label="클레이모피즘 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 04</p><h2>클레이모피즘 <span>Claymorphism</span></h2>
+<p class="w">말랑한 점토 도형 셋이 찌그러지며 통통 튄다.</p><p class="ai"><b>AI 지시</b>파스텔 점토 질감의 알약·도넛·공이 차례로 통통 튀고 바닥에 닿을 때 살짝 찌그러짐, 부드러운 그림자</p><p class="tk">쓰는 곳 · 앱·서비스 소개, 친근한 설명 영상</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/morph.mp4" muted loop playsinline preload="none" aria-label="셰이프 모프 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 05</p><h2>셰이프 모프 <span>Shape Morph</span></h2>
+<p class="w">정육면체가 둥글게 녹아 구가 되고 다시 각진다.</p><p class="ai"><b>AI 지시</b>광택 있는 보라 정육면체가 천천히 돌며 구로 변했다가 다시 정육면체로 돌아옴</p><p class="tk">쓰는 곳 · 변화·전환을 말하는 장면, 로고 변형</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/iso.mp4" muted loop playsinline preload="none" aria-label="아이소메트릭 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 06</p><h2>아이소메트릭 <span>Isometric</span></h2>
+<p class="w">블록 도시가 가운데부터 파도처럼 솟았다 내려간다.</p><p class="ai"><b>AI 지시</b>비스듬히 내려다본 블록 격자, 가운데부터 블록 높이가 파도처럼 오르내림, 선명한 원색</p><p class="tk">쓰는 곳 · 데이터·성장·도시 이야기, 인포그래픽 배경</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/lowpoly.mp4" muted loop playsinline preload="none" aria-label="로우폴리 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 07</p><h2>로우폴리 <span>Low Poly</span></h2>
+<p class="w">각진 면으로 만든 산과 물이 천천히 돈다.</p><p class="ai"><b>AI 지시</b>각진 다각형 면으로 만든 설산 섬이 천천히 회전, 평평한 색 면</p><p class="tk">쓰는 곳 · 여행·지역·환경 영상, 게임 감성</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/squash.mp4" muted loop playsinline preload="none" aria-label="스쿼시 앤 스트레치 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 08</p><h2>스쿼시 앤 스트레치 <span>Squash &amp; Stretch</span></h2>
+<p class="w">분홍 공이 떨어지며 늘어나고 닿으며 찌그러진다.</p><p class="ai"><b>AI 지시</b>웃는 얼굴의 분홍 공이 튀어 오르고, 떨어질 때 길쭉, 바닥에 닿을 때 납작하게</p><p class="tk">쓰는 곳 · 캐릭터 등장, 귀여운 브랜드 마스코트</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/halftone.mp4" muted loop playsinline preload="none" aria-label="하프톤 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 09</p><h2>하프톤 <span>Halftone</span></h2>
+<p class="w">망점 도넛이 돌며 빛 방향이 바뀐다.</p><p class="ai"><b>AI 지시</b>주황 바탕에 검은 망점으로 그린 도넛, 빛 방향이 돌면서 점 크기가 출렁임</p><p class="tk">쓰는 곳 · 레트로 인쇄 감성, 포스터형 장면</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/kinetic.mp4" muted loop playsinline preload="none" aria-label="키네틱 타이포 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 10</p><h2>키네틱 타이포 <span>Kinetic Typography</span></h2>
+<p class="w">글자 줄이 박자에 맞춰 늘었다 줄었다 한다.</p><p class="ai"><b>AI 지시</b>굵은 글자 세 줄이 번갈아 위아래로 늘어났다 줄어듦, 가운데 줄은 형광 연두 띠</p><p class="tk">쓰는 곳 · 핵심 문장 강조, 숏폼 첫 3초</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/papercut.mp4" muted loop playsinline preload="none" aria-label="페이퍼 컷아웃 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 11</p><h2>페이퍼 컷아웃 <span>Paper Cutout</span></h2>
+<p class="w">오려 붙인 종이 언덕이 겹겹이 흐른다.</p><p class="ai"><b>AI 지시</b>종이를 오려 겹친 언덕 다섯 겹이 서로 다른 방향으로 흐르고, 겹 사이에 그림자</p><p class="tk">쓰는 곳 · 동화·교육·감성 영상 배경</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/izoom.mp4" muted loop playsinline preload="none" aria-label="인피니트 줌 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 12</p><h2>인피니트 줌 <span>Infinite Zoom</span></h2>
+<p class="w">겹친 네모 속으로 끝없이 빨려 들어간다.</p><p class="ai"><b>AI 지시</b>색이 다른 둥근 네모가 겹겹이 돌며 화면 가운데로 끝없이 확대되어 들어감</p><p class="tk">쓰는 곳 · 장 전환, 몰입·깊이를 말하는 장면</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/vapor.mp4" muted loop playsinline preload="none" aria-label="베이퍼웨이브 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 13</p><h2>베이퍼웨이브 <span>Vaporwave</span></h2>
+<p class="w">줄무늬 해 아래로 빛나는 격자 바닥이 흘러온다.</p><p class="ai"><b>AI 지시</b>보라·분홍 하늘에 아래가 줄무늬로 잘린 해, 바닥은 빛나는 격자가 앞으로 흘러옴</p><p class="tk">쓰는 곳 · 레트로·음악·게임 영상</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/grainy.mp4" muted loop playsinline preload="none" aria-label="그레이니 그라디언트 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 14</p><h2>그레이니 그라디언트 <span>Grainy Gradient</span></h2>
+<p class="w">색 덩어리가 흐르고 종이 입자가 덮는다.</p><p class="ai"><b>AI 지시</b>분홍·보라·주황·하늘 색 덩어리가 천천히 흐르고 위에 고운 입자 질감</p><p class="tk">쓰는 곳 · 배경, 감성 문구 뒤 바탕</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/line.mp4" muted loop playsinline preload="none" aria-label="라인 애니메이션 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 15</p><h2>라인 애니메이션 <span>Line Animation</span></h2>
+<p class="w">빛나는 선이 매듭 모양을 그리며 달린다.</p><p class="ai"><b>AI 지시</b>어두운 남색 바탕에 빛나는 보라 선이 매듭 모양 길을 따라 그려지며 꼬리가 사라짐</p><p class="tk">쓰는 곳 · 연결·흐름 설명, 로고 그리기</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/scramble.mp4" muted loop playsinline preload="none" aria-label="텍스트 스크램블 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 16</p><h2>텍스트 스크램블 <span>Text Scramble</span></h2>
+<p class="w">무작위 글자가 정답 단어로 풀린다.</p><p class="ai"><b>AI 지시</b>검은 화면에 무작위 글자가 빠르게 바뀌다 왼쪽부터 정답 단어로 하나씩 고정됨, 해커 느낌</p><p class="tk">쓰는 곳 · 제목 공개, 테크·보안 영상</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/glitch.mp4" muted loop playsinline preload="none" aria-label="글리치 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 17</p><h2>글리치 <span>Glitch</span></h2>
+<p class="w">색이 갈라지고 줄이 어긋나는 깨진 화면.</p><p class="ai"><b>AI 지시</b>굵은 글자가 빨강·하늘 색으로 갈라지고 가로 줄이 어긋나며 잠깐씩 깨짐</p><p class="tk">쓰는 곳 · 전환, 경고·오류 장면, 강한 첫인상</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/bauhaus.mp4" muted loop playsinline preload="none" aria-label="바우하우스 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 18</p><h2>바우하우스 <span>Bauhaus</span></h2>
+<p class="w">원색 도형이 90도씩 끊어 돌며 자리를 지킨다.</p><p class="ai"><b>AI 지시</b>빨강·파랑·노랑·검정 원과 반원, 네모가 격자 위에서 90도씩 끊어 회전</p><p class="tk">쓰는 곳 · 디자인·예술 주제, 정돈된 인포그래픽</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/neub.mp4" muted loop playsinline preload="none" aria-label="뉴브루탈리즘 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 19</p><h2>뉴브루탈리즘 <span>Neubrutalism</span></h2>
+<p class="w">두꺼운 테두리 창, 버튼이 딸깍 눌린다.</p><p class="ai"><b>AI 지시</b>굵은 검정 테두리와 그림자가 진 창, 형광 버튼이 딸깍 눌리고 아래 띠에 글자가 흐름</p><p class="tk">쓰는 곳 · 앱·웹 서비스 소개, 젊은 브랜드</p></div></article>
+<article class="c vc" data-g="video">
+<video data-src="video/memphis.mp4" muted loop playsinline preload="none" aria-label="멤피스 움직임"></video>
+<div class="m"><p class="k">영상 모션 · 20</p><h2>멤피스 <span>Memphis Design</span></h2>
+<p class="w">구불선·세모·동그라미가 통통 떠다닌다.</p><p class="ai"><b>AI 지시</b>크림 바탕에 분홍·청록·노랑 구불선과 세모, 동그라미가 통통 떠다님</p><p class="tk">쓰는 곳 · 파티·이벤트·키즈 영상 배경</p></div></article></div>
+<div class="grid" id="wg" hidden><article class="c" data-g="cosmos">
 <video data-src="clips/galaxy.mp4" muted loop playsinline preload="none" aria-label="갤럭시 스핀 움직임"></video>
 <div class="m"><p class="k">우주</p><h2>갤럭시 스핀 <span>galaxy</span></h2>
 <p class="w">나선 은하가 회전하는 입자 우주.</p>
@@ -607,7 +690,7 @@
 <p class="ai"><b>AI 지시</b>패럴랙스(깊이차 이동)</p>
 <p class="qa">주의 · reduced-motion 비활성.</p>
 <p class="tk">pointermove로 레이어별 translate(depth)</p></div></article></div>
-<p class="note">견본 영상은 각 효과를 웹 화면에서 실제로 돌려 3초씩 녹화한 것입니다. 마우스를 따라 움직이는 효과는 커서가 원을 그리며 지나가는 모습으로 녹화했습니다. 맨 아래 작은 글씨는 개발자용 구현 힌트입니다.</p>
+<p class="note">영상 모션은 3D·코드로 직접 만들어 초당 30장으로 녹화한 4초 반복 견본입니다. 웹 화면 효과는 웹 화면에서 실제로 돌려 3초씩 녹화한 것입니다. 마우스를 따라 움직이는 효과는 커서가 원을 그리며 지나가는 모습으로 녹화했습니다. 맨 아래 작은 글씨는 개발자용 구현 힌트입니다.</p>
 </main>
 <script>
 const io = new IntersectionObserver(es => es.forEach(x => { const v = x.target;
@@ -615,7 +698,9 @@ const io = new IntersectionObserver(es => es.forEach(x => { const v = x.target;
 document.querySelectorAll('video').forEach(v => io.observe(v));
 document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => {
   document.querySelectorAll('.tabs button').forEach(x => x.classList.toggle('on', x === b));
-  document.querySelectorAll('.c').forEach(c => c.hidden = !!b.dataset.f && c.dataset.g !== b.dataset.f);
+  const f = b.dataset.f, web = f !== 'video';
+  document.getElementById('vg').hidden = web; document.getElementById('wg').hidden = !web;
+  document.querySelectorAll('#wg .c').forEach(c => c.hidden = !!f && f !== 'web' && c.dataset.g !== f);
 });
 </script>
 </body></html>
