@@ -207,13 +207,13 @@ window.PORTFOLIO = {
       "k": "#1b1a17",
       "name": "실무 경력",
       "en": "Work",
-      "desc": "제안 PM으로 시작해 지금은 AI 엔지니어로 일하는 중",
+      "desc": "제안 PM으로 시작해 AI 엔지니어 인턴까지",
       "meta": "2022 ~ 현재",
       "items": [
         {
           "name": "위메이드엑스알",
           "url": "doc-search/",
-          "desc": "AI 엔지니어 인턴 · 기획 문서 탐색 AI 스킬 · 재직 중"
+          "desc": "AI 엔지니어 인턴 · 기획 문서 탐색 AI 스킬 · 2026.08~2026.11"
         },
         {
           "name": "AX 전환",
