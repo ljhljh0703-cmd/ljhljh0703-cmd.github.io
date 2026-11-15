@@ -88,16 +88,6 @@ window.PORTFOLIO = {
           "name": "BackRoom Level 0",
           "url": "backroom-level-0-godot/portfolio.html",
           "desc": "Godot 탐험 게임"
-        },
-        {
-          "name": "해골 짐꾼의 탑",
-          "url": null,
-          "desc": "로그라이크 개조판 · 진행 중"
-        },
-        {
-          "name": "턴제 퍼즐",
-          "url": null,
-          "desc": "솔버가 풀이 가능 여부를 판정 · 진행 중"
         }
       ]
     },
@@ -177,7 +167,7 @@ window.PORTFOLIO = {
       "name": "대회·해커톤",
       "en": "Competitions",
       "desc": "정해진 시간 안에 문제를 다시 정하고 끝까지 낸 기록",
-      "meta": "수상 1 · 제출 3",
+      "meta": "수상 1 · 제출 1",
       "items": [
         {
           "name": "Cofathon 2026 최우수 수상",
@@ -185,19 +175,9 @@ window.PORTFOLIO = {
           "desc": "KRAFTON Forward Deployed Engineer 트랙 · 개인 참가"
         },
         {
-          "name": "카투사 해커톤",
-          "url": "https://github.com/ljhljh0703-cmd/katousa-agent-harness",
-          "desc": "투자 에이전트 안전 기준 · 제출"
-        },
-        {
           "name": "OpenAI Build Week",
           "url": "penelope-ontology/portfolio/",
           "desc": "Penelope · 이야기 생성 엔진 · 제출"
-        },
-        {
-          "name": "SKT 모두의 promp.T",
-          "url": null,
-          "desc": "업무 AI 활용 · 제출"
         }
       ]
     },
@@ -223,7 +203,7 @@ window.PORTFOLIO = {
         {
           "name": "트루빈스",
           "url": null,
-          "desc": "제안 PM · 2년 6개월 재직 동안 누적 매출 17.18억 원 · 2022~2024"
+          "desc": "제안 PM · 2년 6개월 재직 동안 누적 매출 17억 원 · 2022~2024"
         },
         {
           "name": "기업 홍보 영상 기획",
