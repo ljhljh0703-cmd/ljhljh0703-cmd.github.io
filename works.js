@@ -7,7 +7,7 @@ window.PORTFOLIO = {
     {
       "id": "08-cofathon",
       "name": "Cofathon 2026",
-      "line": "판정 기준을 비개발자 담당자가 직접 고치게 만든 AI 연습 도구",
+      "line": "판정 기준을 비개발자 담당자가 고칠 수 있게 만든 AI 연습 도구",
       "stage": "최우수 수상 · 개인 참가",
       "url": "cofathon/",
       "ink": "#c0412a"
