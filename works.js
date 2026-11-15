@@ -72,7 +72,7 @@ window.PORTFOLIO = {
         {
           "name": "지켜줘! 젤리 패닉",
           "url": "jelly-panic/portfolio.html",
-          "desc": "수읽기 퍼즐 디펜스 · 스토어 심사 제출"
+          "desc": "수읽기 퍼즐 디펜스 · ONE store 출시"
         },
         {
           "name": "회귀자는 탑을 오른다",
