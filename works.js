@@ -46,9 +46,9 @@ window.PORTFOLIO = {
     {
       "id": "07-hwigi-tower",
       "name": "회귀자는 탑을 오른다",
-      "line": "강화학습 AI가 플레이어보다 먼저 전투의 밸런스 빈틈을 찾고, 그 답을 동료의 행동 규칙으로 옮긴 로그라이크",
-      "stage": "플레이 가능 · Android",
-      "url": "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html",
+      "line": "적의 다음 공격을 읽고 주사위를 나눠 버티는 턴제 로그라이크, 밸런스 QA는 AI 플레이어로",
+      "stage": "웹에서 바로 플레이",
+      "url": "hwigi-tower-remake/portfolio/",
       "ink": "#c0412a"
     },
     {
@@ -76,8 +76,8 @@ window.PORTFOLIO = {
         },
         {
           "name": "회귀자는 탑을 오른다",
-          "url": "hwigi-tower-portfolio/Docs/Portfolio/hwigi-tower-steam-portfolio.html",
-          "desc": "동료 AI와 오르는 로그라이크 · Android"
+          "url": "hwigi-tower-remake/portfolio/",
+          "desc": "주사위 턴제 로그라이크 · 웹"
         },
         {
           "name": "Bone Trail",
